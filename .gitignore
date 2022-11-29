@@ -3,6 +3,7 @@
 *.o
 *.swp
 **.dSYM
+lib/libft/libft.a
 .DS_Store
 .vscode
 cub3d
