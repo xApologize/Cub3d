@@ -6,7 +6,7 @@
 #    By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/03 10:53:07 by jrossign          #+#    #+#              #
-#    Updated: 2022/11/29 10:19:46 by jrossign         ###   ########.fr        #
+#    Updated: 2022/11/29 13:05:33 by jrossign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,22 +19,28 @@ C_FILES_M = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_
 			ft_putchar_fd.c ft_putstr_fd.c ft_putnbr_fd.c ft_putendl_fd.c				\
 			ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c	\
 			ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+
 #--C FILES TO O--#
 O_FILES_M = $(C_FILES_M:.c=.o)
+
 #--names--#
 LIB_NAME	= libft.a
-#--commands--#
+
 #--flags--#
 ERROR_FLAGS	= -Wall -Werror -Wextra
+
 #--path--#
 OBJ_DIR		= obj/
 SRC_DIR		= src/
 INCLUDE_DIR	= include/
+
 #--VPATH--#
 VPATH		= $(SRC_DIR)
+
 #--prefix--#
 PRE_SRC_M	= $(addprefix $(SRC_DIR), $(C_FILES_M))
 PRE_OBJ_M	= $(addprefix $(OBJ_DIR), $(O_FILES_M))
+
 #--action--#
 $(OBJ_DIR)%.o:	%.c
 					@mkdir -p obj
