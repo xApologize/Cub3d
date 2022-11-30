@@ -1,7 +1,7 @@
 *.txt
 *.out
 *.o
-lib/*/*.a
+lib/libft/*.a
 *.swp
 **.dSYM
 .DS_Store
