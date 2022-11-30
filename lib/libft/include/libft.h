@@ -6,12 +6,14 @@
 /*   By: jrossign <jrossign@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 09:11:07 by jrossign          #+#    #+#             */
-/*   Updated: 2022/04/26 11:07:40 by jrossign         ###   ########.fr       */
+/*   Updated: 2022/11/30 13:59:51 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# define BUFFER_SIZE 1000
 
 # include <unistd.h>
 # include <stddef.h>
