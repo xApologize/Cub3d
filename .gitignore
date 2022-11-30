@@ -1,8 +1,8 @@
 *.txt
 *.out
 *.o
-lib/libft/*.a
 *.swp
+**.a
 **.dSYM
 .DS_Store
 .vscode
