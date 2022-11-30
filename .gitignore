@@ -1,7 +1,7 @@
 *.txt
 *.out
 *.o
-*.a
+**.a
 *.swp
 **.dSYM
 .DS_Store
