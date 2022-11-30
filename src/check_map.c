@@ -10,6 +10,8 @@ void	check_map(char *map, t_data *data)
 	char	*map_read;
 
 	(void) data;
+	(void) map_fd;
+	(void) map_read;
 	map_read = ft_calloc(sizeof(char), 10000);
 	check_extension(map);
 
