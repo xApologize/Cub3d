@@ -21,7 +21,6 @@ INC_DIR			= include/
 LIB_DIR			= lib/libft/
 
 #--PREFIX--#
-PRE_SRC			= $(addprefix $(SRC_DIR), $(C_FILES))
 PRE_OBJ			= $(addprefix $(OBJ_DIR), $(O_FILES))
 
 #--VPATH--#
