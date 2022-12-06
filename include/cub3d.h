@@ -14,8 +14,9 @@ typedef struct s_data
 } 			t_data;
 
 //check_map.c
-int		check_map_exist(char *map);
 void	check_map(char *map, t_data *data);
 void	check_extension(char *map);
+void	get_map(int map_fd, t_data *data);
+int		check_map_exist(char *map);
 
 #endif
