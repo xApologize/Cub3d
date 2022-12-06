@@ -1,7 +1,5 @@
 #include "cub3d.h"
 #include <stdio.h>
-#include <stdlib.h>
-#include <sys/fcntl.h>
 #include <unistd.h>
 
 void	check_map(char *map, t_data *data)
@@ -14,7 +12,7 @@ void	check_map(char *map, t_data *data)
 	(void) map_read;
 	map_read = ft_calloc(sizeof(char), 10000);
 	check_extension(map);
-
+	check_map_exist(map);
 }
 
 void	check_extension(char *map)
@@ -25,7 +23,10 @@ void	check_extension(char *map)
 	length = ft_strlen(map);
 	extension = ft_substr(map, length - ft_strlen(EXTENSION), length);
 	if (ft_strncmp(extension, EXTENSION, ft_strlen(EXTENSION)) != 0)
+	{
+		printf("Error extension\n");
 		exit(EXIT_FAILURE);
+	}
 }
 
 int check_map_exist(char *map)
