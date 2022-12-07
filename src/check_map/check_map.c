@@ -4,8 +4,8 @@
 
 void	check_map(char *map, t_data *data)
 {
+	data->map = NULL;
 	check_extension(map);
-	data->map = ft_calloc(1, 1);
 	get_map(check_map_exist(map), data);
 }
 
@@ -28,6 +28,8 @@ void	get_map(int map_fd, t_data *data)
 	char	*gnl_ret;
 	char	*map;
 
+	map = NULL;
+	gnl_ret = NULL;
 	gnl_ret = get_next_line(map_fd);
 	map = ft_strjoinfree(map, gnl_ret);
 	while (1)
@@ -37,7 +39,6 @@ void	get_map(int map_fd, t_data *data)
 			break ;
 		map = ft_strjoinfree(map, gnl_ret);
 	}
-	ft_freepp(data->map);
 	data->map = ft_split(map, '\n');
 	free(map);
 }
