@@ -16,10 +16,10 @@ typedef struct s_data
 
 typedef struct s_map
 {
-	char	*north_wall;
-	char	*south_wall;
-	char	*east_wall;
-	char	*west_wall;
+	int		north_wall;
+	int		south_wall;
+	int		east_wall;
+	int		west_wall;
 	char	*ceiling_color;
 	char	*floor_color;
 }			t_map;
@@ -29,7 +29,7 @@ void	check_aguments(t_data *data);
 void	get_arguments(t_data *data);
 void	set_map_data(t_data *data, char *arg, char *str);
 void	create_map_data(t_data *data);
-void	open_assets_file(t_data *data);
+int		open_assets_file(char *path);
 
 //check_map/check_map.c
 void	check_map(char *map, t_data *data);
