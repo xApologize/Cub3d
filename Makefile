@@ -2,7 +2,7 @@
 PROJECT_NAME	= cub3d
 
 #--C FILES--# > all .c files
-C_FILES			= 
+C_FILES			= cub3d.c 
 
 #--C FILES TO O FILES--# > where you make the .o files dependencies
 O_FILES			= $(C_FILES:.c=.o)
@@ -30,12 +30,12 @@ VPATH			= $(SRC_DIR)
 #--ACTIONS--# > all the thing you want your Makefile to do
 $(OBJ_DIR)%.o:		%.c
 				@mkdir -p obj
-				@gcc $(ERROR_FLAGS) -o $@ -c $<
+				@gcc $(ERROR_FLAGS) -Iinclude/ -o $@ -c $<
 
 $(NAME):			$(PRE_OBJ)
 				@make -C $(LIB_DIR)
 				@echo "Compiling $(PROJECT_NAME)..."
-				@gcc $(ERROR_FLAGS) $(PRE_OBJ) -o $(NAME) $(LIB_FLAG)
+				@gcc $(ERROR_FLAGS) $(PRE_OBJ) -Iinclude/ -o $(NAME) $(LIB_FLAG)
 				@echo "Compiling $(PROJECT_NAME) done."
 
 all:				$(NAME)
