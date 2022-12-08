@@ -2,7 +2,8 @@
 PROJECT_NAME	= cub3d
 
 #--C FILES--# > all .c files
-C_FILES			= cub3d.c check_map/check_map.c 
+C_FILES			= cub3d.c check_map/check_map.c check_map/check_path.c check_map/check_arguments.c \
+
 
 #--C FILES TO O FILES--# > where you make the .o files dependencies
 O_FILES			= $(C_FILES:.c=.o)
