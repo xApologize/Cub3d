@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 11:12:19 by jrossign          #+#    #+#             */
-/*   Updated: 2022/06/01 15:06:32 by jrossign         ###   ########.fr       */
+/*   Updated: 2022/12/09 09:19:44 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-char	*ft_strtrim(const char *s1, const char set)
+char	*ft_strtrim_char(const char *s1, const char set)
 {
 	int		i;
 	int		j;

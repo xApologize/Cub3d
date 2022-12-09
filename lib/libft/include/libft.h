@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 09:11:07 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/06 15:52:01 by jrossign         ###   ########.fr       */
+/*   Updated: 2022/12/09 09:26:54 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ char	*ft_strchr(const char *str, int c);
 char	*ft_strrchr(const char *str, int c);
 char	*ft_strdup(const char *s1);
 char	*ft_itoa(int n);
-char	*ft_strtrim(const char *s1, const char set);
+char	*ft_strtrim_char(const char *s1, const char set);
+char	*ft_strtrim_str(const char *s1, const char *set);
 char	*ft_strmapi(const char *s, char (*f)(unsigned int, char));
 char	*ft_substr(const char *s, unsigned int start, size_t len);
 char	*ft_strjoin(const char *s1, const char *s2);
