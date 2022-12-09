@@ -44,7 +44,7 @@ void	set_map_data(t_data *data, char *arg, char *str)
 		data->map_data->floor_color = str;
 	else
 	{
-		printf("error\n");
+		printf("error set_map_data\n");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -67,8 +67,13 @@ void	create_map_data(t_data *data)
 
 int	open_assets_file(char *path)
 {
-	int	i;
+	int	fd;
 
-	i = 0;
-	return (0);
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+	{
+		printf("error open_assets_file\n");
+		exit(EXIT_FAILURE);
+	}
+	return (fd);
 }
