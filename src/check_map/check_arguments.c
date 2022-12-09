@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include <stdio.h>
 
 void	check_aguments(t_data *data)
 {
@@ -26,6 +27,16 @@ void	get_arguments(t_data *data)
 	tmp = ft_strtrim_str(data->map_data->floor_color[0], "F ");
 	free(data->map_data->floor_color[0]);
 	data->map_data->floor_color[0] = tmp;
+	printf("data.map.north_wall: %i\n", data->map_data->north_wall);
+	printf("data.map.south_wall: %i\n", data->map_data->south_wall);
+	printf("data.map.east_wall: %i\n", data->map_data->east_wall);
+	printf("data.map.west_wall: %i\n", data->map_data->west_wall);
+	printf("data.map.ceiling_color[0], %s\n", data->map_data->ceiling_color[0]);
+	printf("data.map.ceiling_color[1], %s\n", data->map_data->ceiling_color[1]);
+	printf("data.map.ceiling_color[2], %s\n", data->map_data->ceiling_color[2]);
+	printf("data.map.floor_color[0], %s\n", data->map_data->floor_color[0]);
+	printf("data.map.floor_color[1], %s\n", data->map_data->floor_color[1]);
+	printf("data.map.floor_color[2], %s\n", data->map_data->floor_color[2]);
 }
 
 void	set_map_data(t_data *data, char *arg, char *str)
