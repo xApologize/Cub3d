@@ -6,13 +6,14 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 15:50:58 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/06 15:52:41 by jrossign         ###   ########.fr       */
+/*   Updated: 2022/12/09 13:59:55 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
+#include <stdlib.h>
 
-void	ft_freepp(char **str)
+void	ft_freepp(void **str)
 {
 	int	i;
 
@@ -22,4 +23,5 @@ void	ft_freepp(char **str)
 		free(str[i]);
 		i++;
 	}
+	free(str);
 }

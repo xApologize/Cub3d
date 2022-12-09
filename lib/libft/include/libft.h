@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 09:11:07 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/09 09:26:54 by jrossign         ###   ########.fr       */
+/*   Updated: 2022/12/09 14:00:19 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	*ft_memmove(void *dest, const void *src, int len);
 void	*ft_memchr(const void *str, int c, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(char *str, size_t n);
-void	ft_freepp(char **str);
+void	ft_freepp(void **str);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
