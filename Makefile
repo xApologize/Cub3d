@@ -1,33 +1,35 @@
 #--PROJECT_NAME--#
 PROJECT_NAME	= cub3d
 
-#--C FILES--# > all .c files
-C_FILES			= cub3d.c check_map.c check_path.c check_arguments.c \
+#--C FILES--# >
+C_FILES_MAIN	= cub3d.c										\
 
-#--C FILES TO O FILES--# > where you make the .o files dependencies
-O_FILES			= $(C_FILES:.c=.o)
+C_FILES_CHECK	= check_arguments.c check_map.c check_path.c	\
 
-#--NAME--# > name of the project
+#--C FILES TO O FILES--# >
+O_FILES			= $(C_FILES_MAIN:.c=.o) $(C_FILES_CHECK:.c=.o)
+
+#--NAME--# >
 NAME			= $(PROJECT_NAME)
 
-#--FLAGS--# > flags used by the command above
+#--FLAGS--# >
 ERROR_FLAGS		= -Werror -Wall -Wextra -g
 LIB_FLAG		= -L./lib/libft -lft
 
-#--DIR PATH--# > path to the file
+#--DIR PATH--# >
 SRC_DIR			= src/
 OBJ_DIR			= obj/
 INC_DIR			= include/
 LIB_DIR			= lib/libft/
-PROJECT_PATH	= ~/Documents/Cursus/cursus-projet/Cub3d/
+CHECK_MAP_DIR	= $(SRC_DIR)check_map/
 
 #--PREFIX--#
 PRE_OBJ			= $(addprefix $(OBJ_DIR), $(O_FILES))
 
 #--VPATH--#
-VPATH			= $(SRC_DIR)
+VPATH			= $(SRC_DIR) $(CHECK_MAP_DIR)
 
-#--ACTIONS--# > all the thing you want your Makefile to do
+#--ACTIONS--# >
 $(OBJ_DIR)%.o:		%.c
 				@mkdir -p obj/
 				@gcc $(ERROR_FLAGS) -Iinclude/ -o $@ -c $<
