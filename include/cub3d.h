@@ -20,8 +20,8 @@ typedef struct s_map
 	int		south_wall;
 	int		east_wall;
 	int		west_wall;
-	char	*ceiling_color;
-	char	*floor_color;
+	char	**ceiling_color;
+	char	**floor_color;
 }			t_map;
 
 //check_arguments.c
