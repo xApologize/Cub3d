@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/11 11:58:58 by jrossign          #+#    #+#             */
-/*   Updated: 2022/03/03 11:10:23 by jrossign         ###   ########.fr       */
+/*   Updated: 2022/12/09 14:24:17 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 		return (NULL);
 	if (start >= slen)
 		return (newstring);
-	while (i < len && s[i])
+	while (i < len && s[start + i])
 	{
 		newstring[i] = s[start + i];
 		i++;
