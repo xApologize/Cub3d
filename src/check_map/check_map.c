@@ -1,9 +1,10 @@
 #include "cub3d.h"
+#include <unistd.h>
 
 void	check_map(char *map, t_data *data)
 {
 	data->map = NULL;
-	check_extension(map);
+	check_extension(map, EXTENSION_MAP);
 	get_map(check_map_exist(map), data);
 }
 
@@ -25,4 +26,5 @@ void	get_map(int map_fd, t_data *data)
 	}
 	data->map = ft_split(map, '\n');
 	free(map);
+	close(map_fd);
 }
