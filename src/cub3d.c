@@ -10,9 +10,13 @@ int	main(int argc, char **argv)
 		return (EXIT_FAILURE);
 	}
 	check_map(argv[1], &data);
-	check_aguments(&data);
+	check_arguments(&data);
 	ft_freepp((void **)data.map_data->floor_color);
 	ft_freepp((void **)data.map_data->ceiling_color);
-	free(data.map_data);
 	ft_freepp((void **)data.map);
+	close(data.map_data->north_wall);
+	close(data.map_data->south_wall);
+	close(data.map_data->east_wall);
+	close(data.map_data->west_wall);
+	free(data.map_data);
 }
