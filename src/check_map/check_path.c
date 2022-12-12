@@ -1,20 +1,19 @@
 #include "cub3d.h"
-#include <stdlib.h>
 
-void	check_extension(char *map)
+void	check_extension(char *path, char *extension)
 {
 	int		length;
-	char	*extension;
+	char	*path_extension;
 
-	length = ft_strlen(map);
-	extension = ft_substr(map, length - ft_strlen(EXTENSION), length);
-	if (ft_strncmp(extension, EXTENSION, ft_strlen(EXTENSION)) != 0)
+	length = ft_strlen(path);
+	path_extension = ft_substr(path, length - ft_strlen(extension), length);
+	if (ft_strncmp(extension, path_extension, ft_strlen(extension)) != 0)
 	{
-		printf("Error extension\n");
-		free(extension);
+		printf("Error extension: %s\n", extension);
+		free(path_extension);
 		exit(EXIT_FAILURE);
 	}
-	free(extension);
+	free(path_extension);
 }
 
 int check_map_exist(char *map)
