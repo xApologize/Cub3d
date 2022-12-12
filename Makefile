@@ -5,6 +5,7 @@ PROJECT_NAME	= cub3d
 C_FILES_MAIN	= cub3d.c										\
 
 C_FILES_CHECK	= check_arguments.c check_map.c check_path.c	\
+				  check_arguments_1.c							\
 
 #--C FILES TO O FILES--# >
 O_FILES			= $(C_FILES_MAIN:.c=.o) $(C_FILES_CHECK:.c=.o)
