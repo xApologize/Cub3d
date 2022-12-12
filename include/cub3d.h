@@ -18,12 +18,12 @@ typedef struct s_data
 
 typedef struct s_map
 {
-	int		north_wall;
-	int		south_wall;
-	int		east_wall;
-	int		west_wall;
-	char	**ceiling_color;
-	char	**floor_color;
+	int	north_wall;
+	int	south_wall;
+	int	east_wall;
+	int	west_wall;
+	int	*ceiling_color;
+	int	*floor_color;
 }			t_map;
 
 //check_arguments.c
@@ -34,8 +34,8 @@ void	create_map_data(t_data *data);
 int		open_assets_file(char **path);
 
 //check_arguments_1.c
-void	set_colors(t_data *data);
-void	check_colors(t_data *data);
+int		*set_colors(char **color);
+void	check_colors(char **color);
 void	check_isdigit(char **colors);
 void	check_isuchar(char **colors);
 
