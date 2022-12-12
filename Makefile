@@ -28,7 +28,7 @@ PRE_OBJ			= $(addprefix $(OBJ_DIR), $(O_FILES))
 VPATH			= $(SRC_DIR)
 
 #--ACTIONS--# > all the thing you want your Makefile to do
-$(OBJ_DIR)%.o:		%.c
+$(OBJ_DIR)%o:		%.c
 				@mkdir -p obj
 				@gcc $(ERROR_FLAGS) -Iinclude/ -o $@ -c $<
 
