@@ -1,7 +1,7 @@
 #include "cub3d.h"
 #include <stdio.h>
 
-void	check_aguments(t_data *data)
+void	check_arguments(t_data *data)
 {
 	create_map_data(data);
 	get_arguments(data);
@@ -10,7 +10,6 @@ void	check_aguments(t_data *data)
 void	get_arguments(t_data *data)
 {
 	int		i;
-	char	*tmp;
 
 	i = 0;
 	while (i < 6)
@@ -21,44 +20,45 @@ void	get_arguments(t_data *data)
 			set_map_data(data, ft_substr(data->map[i], 0, 1), data->map[i]);
 		i++;
 	}
-	tmp = ft_strtrim_str(data->map_data->ceiling_color[0], "C ");
-	free(data->map_data->ceiling_color[0]);
-	data->map_data->ceiling_color[0] = tmp;
-	tmp = ft_strtrim_str(data->map_data->floor_color[0], "F ");
-	free(data->map_data->floor_color[0]);
-	data->map_data->floor_color[0] = tmp;
-	printf("data.map.north_wall: %i\n", data->map_data->north_wall);
-	printf("data.map.south_wall: %i\n", data->map_data->south_wall);
-	printf("data.map.east_wall: %i\n", data->map_data->east_wall);
-	printf("data.map.west_wall: %i\n", data->map_data->west_wall);
-	printf("data.map.ceiling_color[0], %s\n", data->map_data->ceiling_color[0]);
-	printf("data.map.ceiling_color[1], %s\n", data->map_data->ceiling_color[1]);
-	printf("data.map.ceiling_color[2], %s\n", data->map_data->ceiling_color[2]);
-	printf("data.map.floor_color[0], %s\n", data->map_data->floor_color[0]);
-	printf("data.map.floor_color[1], %s\n", data->map_data->floor_color[1]);
-	printf("data.map.floor_color[2], %s\n", data->map_data->floor_color[2]);
+	set_colors(data);
+	printf("data.map_data.north_wall: %i\n", data->map_data->north_wall);
+	printf("data.map_data.south_wall: %i\n", data->map_data->south_wall);
+	printf("data.map_data.east_wall: %i\n", data->map_data->east_wall);
+	printf("data.map_data.west_wall: %i\n", data->map_data->west_wall);
+	printf("data.map_data.ceiling_color[0], %s\n", data->map_data->ceiling_color[0]);
+	printf("data.map_data.ceiling_color[1], %s\n", data->map_data->ceiling_color[1]);
+	printf("data.map_data.ceiling_color[2], %s\n", data->map_data->ceiling_color[2]);
+	printf("data.map_data.floor_color[0], %s\n", data->map_data->floor_color[0]);
+	printf("data.map_data.floor_color[1], %s\n", data->map_data->floor_color[1]);
+	printf("data.map_data.floor_color[2], %s\n", data->map_data->floor_color[2]);
+	printf("data.map:\n");
+	while (data->map[i])
+	{
+		printf("%s\n", data->map[i]);
+		i++;
+	}
 }
 
 void	set_map_data(t_data *data, char *arg, char *str)
 {
 	if (!ft_strncmp(arg, "NO", ft_strlen(arg))
 		&& !data->map_data->north_wall)
-		data->map_data->north_wall = open_assets_file(str);
+		data->map_data->north_wall = open_assets_file(ft_split(str, ' '));
 	else if (!ft_strncmp(arg, "SO", ft_strlen(arg))
 		&& !data->map_data->south_wall)
-		data->map_data->south_wall = open_assets_file(str);
+		data->map_data->south_wall = open_assets_file(ft_split(str, ' '));
 	else if (!ft_strncmp(arg, "EA", ft_strlen(arg))
 		&& !data->map_data->east_wall)
-		data->map_data->east_wall = open_assets_file(str);
+		data->map_data->east_wall = open_assets_file(ft_split(str, ' '));
 	else if (!ft_strncmp(arg, "WE", ft_strlen(arg))
 		&& !data->map_data->west_wall)
-		data->map_data->west_wall = open_assets_file(str);
+		data->map_data->west_wall = open_assets_file(ft_split(str, ' '));
 	else if (!ft_strncmp(arg, "C", ft_strlen(arg))
 		&& !data->map_data->ceiling_color)
-		data->map_data->ceiling_color = ft_split(str, ',');
+		data->map_data->ceiling_color = ft_split(str, ' ');
 	else if (!ft_strncmp(arg, "F", ft_strlen(arg))
 		&& !data->map_data->floor_color)
-		data->map_data->floor_color = ft_split(str, ',');
+		data->map_data->floor_color = ft_split(str, ' ');
 	else
 	{
 		printf("error set_map_data\n");
@@ -84,23 +84,18 @@ void	create_map_data(t_data *data)
 	data->map_data = map;
 }
 
-int	open_assets_file(char *path)
+int	open_assets_file(char **path)
 {
 	int		fd;
-	int		i;
-	char	*new_string;
 
-	i = 2;
-	while (path[i] == ' ')
-		i++;
-	new_string = ft_substr(path, i, ft_strlen(path));
-	fd = open(new_string, O_RDONLY);
+	check_extension(path[1], EXTENSION_TEXTURE);
+	fd = open(path[1], O_RDONLY);
 	if (fd < 0)
 	{
-		printf("error open_assets_file: %s\n", new_string);
-		free(new_string);
+		printf("error open_assets_file: %s\n", path[1]);
+		ft_freepp((void**)path);
 		exit(EXIT_FAILURE);
 	}
-	free(new_string);
+	ft_freepp((void**)path);
 	return (fd);
 }
