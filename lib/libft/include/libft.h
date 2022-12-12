@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/29 09:11:07 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/09 14:00:19 by jrossign         ###   ########.fr       */
+/*   Updated: 2022/12/12 09:30:30 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		ft_toupper(int character);
 int		ft_tolower(int character);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strcmp(const char *s1, const char *s2);
 int		ft_lstsize(t_list *lst);
 long	ft_atoi(const char *nptr);
 size_t	ft_strlen(const char *str);
