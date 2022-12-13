@@ -16,6 +16,10 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 
+# define mapWidth 24 // va etre a mettre dans la struct
+# define mapHeight 24
+
+
 typedef struct s_ray{
 	mlx_t		*mlx;
 	mlx_image_t	*img;
@@ -54,8 +58,8 @@ typedef struct s_map
 	int		south_wall;
 	int		east_wall;
 	int		west_wall;
-	char	**ceiling_color;
-	char	**floor_color;
+	int		*ceiling_color;
+	int		*floor_color;
 }	t_map;
 
 typedef struct s_data
@@ -90,5 +94,12 @@ int		check_map_exist(char *map);
 void	init_mlx(t_data *data);
 void	raycaster(t_data *data);
 void	hook(mlx_key_data_t keydata, void *temp);
+
+//draw.c
+void	draw_player(t_data *data, int x, int y);
+void	draw_wall(t_data *data, int x, int y);
+void	draw_space(t_data *data, int x, int y);
+void	draw_map(t_data *data);
+
 
 #endif

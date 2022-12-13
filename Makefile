@@ -2,7 +2,7 @@
 PROJECT_NAME	= cub3d
 
 #--C FILES--# >
-C_FILES_MAIN	= cub3d.c raycaster.c								\
+C_FILES_MAIN	= cub3d.c raycaster.c draw.c						\
 
 C_FILES_CHECK	= check_arguments.c check_map.c check_path.c	\
 				  check_arguments_1.c							\

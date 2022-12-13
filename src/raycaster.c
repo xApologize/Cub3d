@@ -1,9 +1,6 @@
 
 #include "../include/cub3d.h"
 
-#define mapWidth 24
-#define mapHeight 24
-
 int worldMap[mapWidth][mapHeight]=
 {
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -31,6 +28,84 @@ int worldMap[mapWidth][mapHeight]=
   {1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
+
+void	draw_player(t_data *data, int x, int y)
+{
+	int hold;
+	int hold2;
+
+	hold = y + 9;
+	while (y < hold)
+	{
+		hold2 = x + 9;
+		while (x < hold2)
+			mlx_put_pixel(data->ray->img, x++, y, 0x8a15bdFF);
+		y++;
+		x -= 9;
+	}
+	y -= 9;	
+}
+
+void	draw_wall(t_data *data, int x, int y)
+{
+	int hold;
+	int hold2;
+
+	hold = y + 9;
+	while (y < hold)
+	{
+		hold2 = x + 9;
+		while (x < hold2)
+			mlx_put_pixel(data->ray->img, x++, y, 0xFFFFFFFF);
+		y++;
+		x -= 9;
+	}
+	y -= 9;
+}
+
+void	draw_space(t_data *data, int x, int y)
+{
+	int hold;
+	int hold2;
+
+	hold = y + 9;
+	while (y < hold)
+	{
+		hold2 = x + 9;
+		while (x < hold2)
+			mlx_put_pixel(data->ray->img, x++, y, 0x000000FF);
+		y++;
+		x -= 9;
+	}
+	y -= 9;
+}
+
+void	draw_map(t_data *data)
+{
+	int	i;
+	int	j;
+	int x;
+	int	y;
+
+	i = -1;
+	y = 0;
+	while (++i < mapHeight)
+	{
+		j = -1;
+		x = 0;
+		while (++j < mapWidth)
+		{
+			if (j == (int) data->ray->posX && i == (int) data->ray->posY)
+				draw_player(data, x, y);
+			else if (worldMap[i][j] != 0)
+				draw_wall(data, x, y);
+			else
+				draw_space(data, x, y);
+			x+= 10;
+		}
+		y += 10;
+	}
+}
 
 void	init_var(t_data *data, int i)
 {
@@ -115,72 +190,10 @@ void	clear_image(t_data *data)
 		while (++j < HEIGHT)
 		{
 			if (j <= HEIGHT / 2)
-				mlx_put_pixel(data->ray->img, i, j, data->ray->floor);
-			else
 				mlx_put_pixel(data->ray->img, i, j, data->ray->ceiling);
-		}
-	}
-}
-
-void	draw_map(t_data *data)
-{
-	int	i;
-	int	j;
-	int x;
-	int	y;
-	int hold;
-	int hold2;
-
-	i = -1;
-	y = 0;
-	while (++i < mapHeight)
-	{
-		j = -1;
-		x = 0;
-		while (++j < mapWidth)
-		{
-			if (j == (int) data->ray->posX && i == (int) data->ray->posY)
-			{
-				hold = y + 10;
-				while (y < hold)
-				{
-					hold2 = x + 10;
-					while (x < hold2)
-						mlx_put_pixel(data->ray->img, x++, y, 0xFFFF00FF);
-					y++;
-					x -= 10;
-				}
-				y -= 10;
-			}
-			else if (worldMap[i][j] != 0)
-			{
-				hold = y + 10;
-				while (y < hold)
-				{
-					hold2 = x + 10;
-					while (x < hold2)
-						mlx_put_pixel(data->ray->img, x++, y, 0xFFFFFFFF);
-					y++;
-					x -= 10;
-				}
-				y -= 10;
-			}
 			else
-			{
-				hold = y + 10;
-				while (y < hold)
-				{
-					hold2 = x + 10;
-					while (x < hold2)
-						mlx_put_pixel(data->ray->img, x++, y, 0x000000FF);
-					y++;
-					x -= 10;
-				}
-				y -= 10;
-			}
-			x+= 10;
+				mlx_put_pixel(data->ray->img, i, j, data->ray->floor);
 		}
-		y += 10;
 	}
 }
 
@@ -215,9 +228,8 @@ void	hook(mlx_key_data_t keydata, void *temp)
 	data = temp;
 	if (keydata.key == MLX_KEY_ESCAPE)
 		mlx_close_window(data->ray->mlx);
-	if (keydata.key == MLX_KEY_A)
+	if (keydata.key == MLX_KEY_D)
 	{
-		 //both camera direction and camera plane must be rotated
       	double oldDirX = data->ray->dirX;
     	data->ray->dirX =data->ray->dirX * cos(data->ray->rSpeed) - data->ray->dirY * sin(data->ray->rSpeed);
      	data->ray->dirY = oldDirX * sin(data->ray->rSpeed) + data->ray->dirY * cos(data->ray->rSpeed);
@@ -225,9 +237,8 @@ void	hook(mlx_key_data_t keydata, void *temp)
       	data->ray->planeX = data->ray->planeX * cos(data->ray->rSpeed) - data->ray->planeY * sin(data->ray->rSpeed);
       	data->ray->planeY = oldPlaneX * sin(data->ray->rSpeed) + data->ray->planeY * cos(data->ray->rSpeed);
 	}
-	if (keydata.key == MLX_KEY_D)
+	if (keydata.key == MLX_KEY_A)
 	{
-		 //both camera direction and camera plane must be rotated
       	double oldDirX = data->ray->dirX;
     	data->ray->dirX = data->ray->dirX * cos(-data->ray->rSpeed) - data->ray->dirY * sin(-data->ray->rSpeed);
      	data->ray->dirY = oldDirX * sin(-data->ray->rSpeed) + data->ray->dirY * cos(-data->ray->rSpeed);
@@ -265,11 +276,11 @@ void	init_mlx(t_data *data)
 	data->ray->img = mlx_new_image(data->ray->mlx, WIDTH, HEIGHT);
 	data->ray->posX = 17;
 	data->ray->posY = 12;
-	data->ray->dirX = -1;
-	data->ray->dirY = 1;
+	data->ray->dirX = 1;
+	data->ray->dirY = 0;
 	data->ray->planeX = 0;
 	data->ray->planeY = 0.66;
-	data->ray->mSpeed = 0.25;
+	data->ray->mSpeed = 0.1;
 	data->ray->rSpeed = 0.07;
 	data->ray->ceiling = create_colour(data->map_data->ceiling_color[0], data->map_data->ceiling_color[1], data->map_data->ceiling_color[2], 255);
 	data->ray->floor = create_colour(data->map_data->floor_color[0], data->map_data->floor_color[1], data->map_data->floor_color[2], 255);
