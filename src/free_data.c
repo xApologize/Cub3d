@@ -1,6 +1,4 @@
 #include "cub3d.h"
-#include <stdlib.h>
-#include <unistd.h>
 
 void	free_full_data(t_data *data)
 {
