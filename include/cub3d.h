@@ -61,4 +61,11 @@ int		check_map_exist(char *map);
 void	set_map(char *map, t_data *data);
 void	get_map(int map_fd, t_data *data);
 
+//error.c
+void	error_and_free(t_data *data, char *err_msg);
+
+//free_data.c
+void	free_full_data(t_data *data);
+void	close_fds(t_data *data);
+
 #endif
