@@ -1,5 +1,4 @@
 #include "cub3d.h"
-#include <stdlib.h>
 
 int	main(int argc, char **argv)
 {
@@ -12,6 +11,7 @@ int	main(int argc, char **argv)
 	}
 	check_map(argv[1], &data);
 	check_arguments(&data);
+	set_map_only(&data);
 	free(data.map_data->ceiling_color);
 	free(data.map_data->floor_color);
 	ft_freepp((void **)data.map);
