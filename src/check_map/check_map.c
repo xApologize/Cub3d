@@ -1,30 +1,27 @@
 #include "cub3d.h"
-#include <unistd.h>
 
-void	check_map(char *map, t_data *data)
+void	set_map_only(t_data *data)
 {
-	data->map = NULL;
-	check_extension(map, EXTENSION_MAP);
-	get_map(check_map_exist(map), data);
-}
+	int		i;
+	char	**tmp;
 
-void	get_map(int map_fd, t_data *data)
-{
-	char	*gnl_ret;
-	char	*map;
-
-	map = NULL;
-	gnl_ret = NULL;
-	gnl_ret = get_next_line(map_fd);
-	map = ft_strjoinfree(map, gnl_ret);
-	while (1)
+	i = 0;
+	while (data->map[i + 6])
+		i++;
+	tmp = ft_calloc(sizeof(char *),  i + 1);
+	i = 0;
+	while (data->map[i + 6])
 	{
-		gnl_ret = get_next_line(map_fd);
-		if (gnl_ret == NULL)
-			break ;
-		map = ft_strjoinfree(map, gnl_ret);
+		tmp[i] = ft_strdup(data->map[i + 6]);
+		i++;
 	}
-	data->map = ft_split(map, '\n');
-	free(map);
-	close(map_fd);
+	i = 0;
+	ft_freepp((void **) data->map);
+	data->map = tmp;
+	i = 0;
+	while (data->map[i])
+	{
+		printf("%s\n", data->map[i]);
+		i++;
+	}
 }
