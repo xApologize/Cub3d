@@ -1,5 +1,4 @@
 #include "cub3d.h"
-#include <stdio.h>
 
 void	check_arguments(t_data *data)
 {
@@ -20,17 +19,16 @@ void	get_arguments(t_data *data)
 			set_map_data(data, ft_substr(data->map[i], 0, 1), data->map[i]);
 		i++;
 	}
-	set_colors(data);
 	printf("data.map_data.north_wall: %i\n", data->map_data->north_wall);
 	printf("data.map_data.south_wall: %i\n", data->map_data->south_wall);
 	printf("data.map_data.east_wall: %i\n", data->map_data->east_wall);
 	printf("data.map_data.west_wall: %i\n", data->map_data->west_wall);
-	printf("data.map_data.ceiling_color[0], %s\n", data->map_data->ceiling_color[0]);
-	printf("data.map_data.ceiling_color[1], %s\n", data->map_data->ceiling_color[1]);
-	printf("data.map_data.ceiling_color[2], %s\n", data->map_data->ceiling_color[2]);
-	printf("data.map_data.floor_color[0], %s\n", data->map_data->floor_color[0]);
-	printf("data.map_data.floor_color[1], %s\n", data->map_data->floor_color[1]);
-	printf("data.map_data.floor_color[2], %s\n", data->map_data->floor_color[2]);
+	printf("data.map_data.ceiling_color[0]: %d\n", data->map_data->ceiling_color[0]);
+	printf("data.map_data.ceiling_color[1]: %d\n", data->map_data->ceiling_color[1]);
+	printf("data.map_data.ceiling_color[2]: %d\n", data->map_data->ceiling_color[2]);
+	printf("data.map_data.floor_color[0]: %d\n", data->map_data->floor_color[0]);
+	printf("data.map_data.floor_color[1]: %d\n", data->map_data->floor_color[1]);
+	printf("data.map_data.floor_color[2]: %d\n", data->map_data->floor_color[2]);
 	printf("data.map:\n");
 	while (data->map[i])
 	{
@@ -55,10 +53,10 @@ void	set_map_data(t_data *data, char *arg, char *str)
 		data->map_data->west_wall = open_assets_file(ft_split(str, ' '));
 	else if (!ft_strncmp(arg, "C", ft_strlen(arg))
 		&& !data->map_data->ceiling_color)
-		data->map_data->ceiling_color = ft_split(str, ' ');
+		data->map_data->ceiling_color = set_colors(ft_split(str, ' '));
 	else if (!ft_strncmp(arg, "F", ft_strlen(arg))
 		&& !data->map_data->floor_color)
-		data->map_data->floor_color = ft_split(str, ' ');
+		data->map_data->floor_color = set_colors(ft_split(str, ' '));
 	else
 	{
 		printf("error set_map_data\n");
@@ -88,6 +86,11 @@ int	open_assets_file(char **path)
 {
 	int		fd;
 
+	if (!path[1])
+	{
+		printf("Error open_assets_file: %s\n", path[0]);
+		exit(EXIT_FAILURE);
+	}
 	check_extension(path[1], EXTENSION_TEXTURE);
 	fd = open(path[1], O_RDONLY);
 	if (fd < 0)

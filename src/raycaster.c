@@ -115,9 +115,9 @@ void	clear_image(t_data *data)
 		while (++j < HEIGHT)
 		{
 			if (j <= HEIGHT / 2)
-				mlx_put_pixel(data->ray->img, i, j, 0x000000FF);
+				mlx_put_pixel(data->ray->img, i, j, data->ray->floor);
 			else
-				mlx_put_pixel(data->ray->img, i, j, 0x00FF00FF);
+				mlx_put_pixel(data->ray->img, i, j, data->ray->ceiling);
 		}
 	}
 }
@@ -271,8 +271,8 @@ void	init_mlx(t_data *data)
 	data->ray->planeY = 0.66;
 	data->ray->mSpeed = 0.25;
 	data->ray->rSpeed = 0.07;
-	create_colour(, , , 255);
-	create_colour(, , , 255)
+	data->ray->ceiling = create_colour(data->map_data->ceiling_color[0], data->map_data->ceiling_color[1], data->map_data->ceiling_color[2], 255);
+	data->ray->floor = create_colour(data->map_data->floor_color[0], data->map_data->floor_color[1], data->map_data->floor_color[2], 255);
 	raycaster(data);
 	mlx_key_hook(data->ray->mlx, &hook, (void *) data);
 	mlx_loop(data->ray->mlx);

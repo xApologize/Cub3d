@@ -35,6 +35,8 @@ typedef struct s_ray{
 	double		wallDist;
 	double		mSpeed;
 	double		rSpeed;
+	int			floor;
+	int			ceiling;
 	int			mapX;
 	int			mapY;
 	int			stepX;
@@ -71,8 +73,8 @@ void	create_map_data(t_data *data);
 int		open_assets_file(char **path);
 
 //check_arguments_1.c
-void	set_colors(t_data *data);
-void	check_colors(t_data *data);
+int		*set_colors(char **color);
+void	check_colors(char **color);
 void	check_isdigit(char **colors);
 void	check_isuchar(char **colors);
 

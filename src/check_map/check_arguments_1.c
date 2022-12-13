@@ -1,35 +1,34 @@
 #include "cub3d.h"
-#include <limits.h>
-#include <stdio.h>
-#include <stdlib.h>
 
-void	set_colors(t_data *data)
+int	*set_colors(char **color)
 {
+	int		*rgb;
 	char	*tmp;
+	char	**split_color;
 
-	tmp = ft_strdup(data->map_data->ceiling_color[1]);
-	if (ft_strcmp(data->map_data->ceiling_color[0], "C") == 0)
+	if (!color[1])
 	{
-		ft_freepp((void **) data->map_data->ceiling_color);
-		data->map_data->ceiling_color = ft_split(tmp, ',');
+		printf("Error set_colors: %s\n", color[0]);
+		exit(EXIT_FAILURE);
 	}
+	tmp = ft_strdup(color[1]);
+	split_color = ft_split(tmp, ',');
 	free(tmp);
-	tmp = ft_strdup(data->map_data->floor_color[1]);
-	if (ft_strcmp(data->map_data->floor_color[0], "F") == 0)
-	{
-		ft_freepp((void **) data->map_data->floor_color);
-		data->map_data->floor_color = ft_split(tmp, ',');
-	}
-	free(tmp);
-	check_colors(data);
+	ft_freepp((void **) color);
+	check_colors(split_color);
+	rgb = malloc(sizeof(int) * 3);
+	rgb[0] = ft_atoi(split_color[0]);
+	rgb[1] = ft_atoi(split_color[1]);
+	rgb[2] = ft_atoi(split_color[2]);
+	ft_freepp((void **) split_color);
+	return (rgb);
+
 }
 
-void	check_colors(t_data *data)
+void	check_colors(char **color)
 {
-	check_isdigit(data->map_data->ceiling_color);
-	check_isdigit(data->map_data->floor_color);
-	check_isuchar(data->map_data->ceiling_color);
-	check_isuchar(data->map_data->floor_color);
+	check_isdigit(color);
+	check_isuchar(color);
 }
 
 void	check_isdigit(char **colors)
