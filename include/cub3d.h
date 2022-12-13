@@ -40,11 +40,14 @@ void	check_isdigit(char **colors);
 void	check_isuchar(char **colors);
 
 //check_map.c
-void	check_map(char *map, t_data *data);
-void	get_map(int map_fd, t_data *data);
+void	set_map_only(t_data *data);
 
 //check_path.c
 void	check_extension(char *path, char *extension);
 int		check_map_exist(char *map);
+
+//get_map.c
+void	check_map(char *map, t_data *data);
+void	get_map(int map_fd, t_data *data);
 
 #endif
