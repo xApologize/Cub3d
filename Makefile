@@ -1,41 +1,47 @@
 #--PROJECT_NAME--#
 PROJECT_NAME	= cub3d
 
-#--C FILES--# > all .c files
-C_FILES			= cub3d.c 
+#--C FILES--# >
+C_FILES_MAIN	= cub3d.c raycaster.c								\
 
-#--C FILES TO O FILES--# > where you make the .o files dependencies
-O_FILES			= $(C_FILES:.c=.o)
+C_FILES_CHECK	= check_arguments.c check_map.c check_path.c	\
+				  check_arguments_1.c							\
 
-#--NAME--# > name of the project
+#--C FILES TO O FILES--# >
+O_FILES			= $(C_FILES_MAIN:.c=.o) $(C_FILES_CHECK:.c=.o)
+
+#--NAME--# >
 NAME			= $(PROJECT_NAME)
 
-#--FLAGS--# > flags used by the command above
+#--FLAGS--# >
 ERROR_FLAGS		= -Werror -Wall -Wextra -g
 LIB_FLAG		= -L./lib/libft -lft
+MLX				= MLX42/libmlx42.a 
+MLX_FLAG		= -lglfw -L /Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib/
 
-#--DIR PATH--# > path to the file
+
+#--DIR PATH--# >
 SRC_DIR			= src/
 OBJ_DIR			= obj/
 INC_DIR			= include/
 LIB_DIR			= lib/libft/
+CHECK_MAP_DIR	= $(SRC_DIR)check_map/
 
 #--PREFIX--#
-PRE_SRC			= $(addprefix $(SRC_DIR), $(C_FILES))
 PRE_OBJ			= $(addprefix $(OBJ_DIR), $(O_FILES))
 
 #--VPATH--#
-VPATH			= $(SRC_DIR)
+VPATH			= $(SRC_DIR) $(CHECK_MAP_DIR)
 
-#--ACTIONS--# > all the thing you want your Makefile to do
-$(OBJ_DIR)%o:		%.c
-				@mkdir -p obj
+#--ACTIONS--# >
+$(OBJ_DIR)%.o:		%.c
+				@mkdir -p obj/
 				@gcc $(ERROR_FLAGS) -Iinclude/ -o $@ -c $<
 
 $(NAME):			$(PRE_OBJ)
 				@make -C $(LIB_DIR)
 				@echo "Compiling $(PROJECT_NAME)..."
-				@gcc $(ERROR_FLAGS) $(PRE_OBJ) -Iinclude/ -o $(NAME) $(LIB_FLAG)
+				@gcc $(ERROR_FLAGS) $(PRE_OBJ) -Iinclude/ -o $(NAME) $(LIB_FLAG) $(MLX) $(MLX_FLAG)
 				@echo "Compiling $(PROJECT_NAME) done."
 
 all:				$(NAME)
@@ -43,7 +49,7 @@ all:				$(NAME)
 clean:
 				@make -C $(LIB_DIR) clean
 				@echo "Removing $(PROJECT_NAME) object files..."
-				@rm -f $(PRE_OBJ)
+				@rm -f $(O_FILES)
 				@rm -rf $(OBJ_DIR)
 				@echo "Removing $(PROJECT_NAME) object files done."
 

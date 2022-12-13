@@ -1,11 +1,17 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+# define EXTENSION_MAP ".cub"
+# define EXTENSION_TEXTURE ".xpm"
+
 # include "../lib/libft/include/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <stdio.h>
 # include <math.h>
 # include <string.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <limits.h>
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -27,6 +33,8 @@ typedef struct s_ray{
 	double		deltaX;
 	double		deltaY;
 	double		wallDist;
+	double		mSpeed;
+	double		rSpeed;
 	int			mapX;
 	int			mapY;
 	int			stepX;
@@ -37,5 +45,48 @@ typedef struct s_ray{
 	int			end;
 	int			start;
 }	t_ray;
+
+typedef struct s_map
+{
+	int		north_wall;
+	int		south_wall;
+	int		east_wall;
+	int		west_wall;
+	char	**ceiling_color;
+	char	**floor_color;
+}	t_map;
+
+typedef struct s_data
+{
+	char	**map;
+	t_map	*map_data;
+	t_ray	*ray;
+} 	t_data;
+
+//check_arguments.c
+void	check_arguments(t_data *data);
+void	get_arguments(t_data *data);
+void	set_map_data(t_data *data, char *arg, char *str);
+void	create_map_data(t_data *data);
+int		open_assets_file(char **path);
+
+//check_arguments_1.c
+void	set_colors(t_data *data);
+void	check_colors(t_data *data);
+void	check_isdigit(char **colors);
+void	check_isuchar(char **colors);
+
+//check_map.c
+void	check_map(char *map, t_data *data);
+void	get_map(int map_fd, t_data *data);
+
+//check_path.c
+void	check_extension(char *path, char *extension);
+int		check_map_exist(char *map);
+
+//raycaster.c
+void	init_mlx(t_data *data);
+void	raycaster(t_data *data);
+void	hook(mlx_key_data_t keydata, void *temp);
 
 #endif

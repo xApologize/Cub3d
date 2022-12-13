@@ -2,6 +2,7 @@
 *.out
 *.o
 *.swp
+**.a
 **.dSYM
 .DS_Store
 .vscode

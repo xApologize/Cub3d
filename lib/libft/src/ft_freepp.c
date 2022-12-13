@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*   ft_freepp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 11:12:19 by jrossign          #+#    #+#             */
-/*   Updated: 2022/06/01 15:06:32 by jrossign         ###   ########.fr       */
+/*   Created: 2022/12/06 15:50:58 by jrossign          #+#    #+#             */
+/*   Updated: 2022/12/09 13:59:55 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
+#include <stdlib.h>
 
-char	*ft_strtrim(const char *s1, const char set)
+void	ft_freepp(void **str)
 {
-	int		i;
-	int		j;
-	int		s1len;
+	int	i;
 
-	if (!s1 || !set)
-		return (NULL);
-	s1len = ft_strlen((char *)s1);
 	i = 0;
-	while (i < s1len && s1[i] == set)
+	while (str[i])
+	{
+		free(str[i]);
 		i++;
-	j = s1len - 1;
-	while (j > i && s1[j] == set)
-		j--;
-	return (ft_substr(s1, i, j - i + 1));
+	}
+	free(str);
 }
