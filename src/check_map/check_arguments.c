@@ -56,7 +56,7 @@ void	create_map_data(t_data *data)
 
 	map = malloc(sizeof(t_map));
 	if (!map)
-		exit(EXIT_FAILURE); //need a real return with exit
+		error_and_free(data, ERR_MALLOC, 1);
 	map->north_wall = 0;
 	map->south_wall = 0;
 	map->east_wall = 0;
