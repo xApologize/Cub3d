@@ -1,5 +1,7 @@
 #include "cub3d.h"
 
+
+
 void	set_map_only(t_data *data)
 {
 	int		i;

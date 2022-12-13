@@ -47,7 +47,7 @@ void	check_extension(char *path, char *extension);
 int		check_map_exist(char *map);
 
 //get_map.c
-void	check_map(char *map, t_data *data);
+void	set_map(char *map, t_data *data);
 void	get_map(int map_fd, t_data *data);
 
 #endif

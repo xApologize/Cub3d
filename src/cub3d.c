@@ -9,7 +9,7 @@ int	main(int argc, char **argv)
 		printf("Error\n");
 		return (EXIT_FAILURE);
 	}
-	check_map(argv[1], &data);
+	set_map(argv[1], &data);
 	check_arguments(&data);
 	set_map_only(&data);
 	free(data.map_data->ceiling_color);

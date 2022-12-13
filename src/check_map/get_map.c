@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	check_map(char *map, t_data *data)
+void	set_map(char *map, t_data *data)
 {
 	data->map = NULL;
 	check_extension(map, EXTENSION_MAP);
