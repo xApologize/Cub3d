@@ -23,6 +23,8 @@ typedef struct s_data
 
 typedef struct s_map
 {
+	int	x;
+	int	y;
 	int	north_wall;
 	int	south_wall;
 	int	east_wall;
