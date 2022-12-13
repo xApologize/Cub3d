@@ -1,5 +1,4 @@
 #include "cub3d.h"
-#include <stdio.h>
 
 void	check_arguments(t_data *data)
 {
@@ -87,6 +86,11 @@ int	open_assets_file(char **path)
 {
 	int		fd;
 
+	if (!path[1])
+	{
+		printf("Error open_assets_file: %s\n", path[0]);
+		exit(EXIT_FAILURE);
+	}
 	check_extension(path[1], EXTENSION_TEXTURE);
 	fd = open(path[1], O_RDONLY);
 	if (fd < 0)

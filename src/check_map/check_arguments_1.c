@@ -1,5 +1,4 @@
 #include "cub3d.h"
-#include <stdlib.h>
 
 int	*set_colors(char **color)
 {
@@ -7,6 +6,11 @@ int	*set_colors(char **color)
 	char	*tmp;
 	char	**split_color;
 
+	if (!color[1])
+	{
+		printf("Error set_colors: %s\n", color[0]);
+		exit(EXIT_FAILURE);
+	}
 	tmp = ft_strdup(color[1]);
 	split_color = ft_split(tmp, ',');
 	free(tmp);
