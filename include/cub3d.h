@@ -11,6 +11,10 @@
 # define ERROR "Error: "
 # define ERR_MALLOC "an error happened when allocating memory.\n"
 # define ERR_MAIN_ARG "you must only give the program one argument.\n"
+# define ERR_MAP_EXT "the map you pass to the program must have a\
+.cub extension.\n"
+# define ERR_ASSET_EXT "the asset you pass in the map must have a\
+.xpm extension.\n"
 
 # include "../lib/libft/include/libft.h"
 # include <stdio.h>
@@ -41,7 +45,7 @@ void	check_arguments(t_data *data);
 void	get_arguments(t_data *data);
 void	set_map_data(t_data *data, char *arg, char *str);
 void	create_map_data(t_data *data);
-int		open_assets_file(char **path);
+int		open_assets_file(char **path, t_data *data, char *arg);
 
 //check_arguments_1.c
 int		*set_colors(char **color);
@@ -57,7 +61,7 @@ void	check_map_char(t_data *data);
 void	set_map_only(t_data *data);
 
 //check_path.c
-void	check_extension(char *path, char *extension);
+int		check_extension(char *path, char *extension);
 int		check_map_exist(char *map);
 
 //get_map.c
