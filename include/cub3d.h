@@ -40,6 +40,9 @@ void	check_isdigit(char **colors);
 void	check_isuchar(char **colors);
 
 //check_map.c
+void	check_map(t_data *data);
+
+//check_map_utils.c
 void	set_map_only(t_data *data);
 
 //check_path.c
