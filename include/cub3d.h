@@ -1,8 +1,13 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
+//valid char/extension
 # define EXTENSION_MAP ".cub"
 # define EXTENSION_TEXTURE ".xpm"
+# define VALID_MAP_CHAR "01 NEWS"
+# define VALID_STARTING_POINT "NEWS"
+
+//error message
 
 # include "../lib/libft/include/libft.h"
 # include <stdio.h>
@@ -41,6 +46,7 @@ void	check_isuchar(char **colors);
 
 //check_map.c
 void	check_map(t_data *data);
+void	check_map_char(t_data *data);
 
 //check_map_utils.c
 void	set_map_only(t_data *data);
