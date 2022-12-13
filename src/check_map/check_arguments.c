@@ -19,22 +19,6 @@ void	get_arguments(t_data *data)
 			set_map_data(data, ft_substr(data->map[i], 0, 1), data->map[i]);
 		i++;
 	}
-	printf("data.map_data.north_wall: %i\n", data->map_data->north_wall);
-	printf("data.map_data.south_wall: %i\n", data->map_data->south_wall);
-	printf("data.map_data.east_wall: %i\n", data->map_data->east_wall);
-	printf("data.map_data.west_wall: %i\n", data->map_data->west_wall);
-	printf("data.map_data.ceiling_color[0]: %d\n", data->map_data->ceiling_color[0]);
-	printf("data.map_data.ceiling_color[1]: %d\n", data->map_data->ceiling_color[1]);
-	printf("data.map_data.ceiling_color[2]: %d\n", data->map_data->ceiling_color[2]);
-	printf("data.map_data.floor_color[0]: %d\n", data->map_data->floor_color[0]);
-	printf("data.map_data.floor_color[1]: %d\n", data->map_data->floor_color[1]);
-	printf("data.map_data.floor_color[2]: %d\n", data->map_data->floor_color[2]);
-	printf("data.map:\n");
-	while (data->map[i])
-	{
-		printf("%s\n", data->map[i]);
-		i++;
-	}
 }
 
 void	set_map_data(t_data *data, char *arg, char *str)
