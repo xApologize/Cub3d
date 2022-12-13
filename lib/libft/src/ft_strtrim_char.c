@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/11 11:58:58 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/09 14:24:17 by jrossign         ###   ########.fr       */
+/*   Created: 2021/10/12 11:12:19 by jrossign          #+#    #+#             */
+/*   Updated: 2022/12/09 09:19:44 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/libft.h"
 
-char	*ft_substr(const char *s, unsigned int start, size_t len)
+char	*ft_strtrim_char(const char *s1, const char set)
 {
-	size_t			i;
-	unsigned int	slen;
-	char			*newstring;
+	int		i;
+	int		j;
+	int		s1len;
 
-	if (!s)
+	if (!s1 || !set)
 		return (NULL);
+	s1len = ft_strlen((char *)s1);
 	i = 0;
-	slen = ft_strlen((char *)s);
-	if (len > slen)
-		newstring = ft_calloc((slen + 1), sizeof(char));
-	else
-		newstring = ft_calloc((len + 1), sizeof(char));
-	if (!newstring)
-		return (NULL);
-	if (start >= slen)
-		return (newstring);
-	while (i < len && s[start + i])
-	{
-		newstring[i] = s[start + i];
+	while (i < s1len && s1[i] == set)
 		i++;
-	}
-	newstring[i] = '\0';
-	return (newstring);
+	j = s1len - 1;
+	while (j > i && s1[j] == set)
+		j--;
+	return (ft_substr(s1, i, j - i + 1));
 }
