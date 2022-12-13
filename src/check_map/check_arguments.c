@@ -23,18 +23,19 @@ void	get_arguments(t_data *data)
 
 void	set_map_data(t_data *data, char *arg, char *str)
 {
+	//need to change how this thing work, to have less repetition
 	if (!ft_strncmp(arg, "NO", ft_strlen(arg))
 		&& !data->map_data->north_wall)
-		data->map_data->north_wall = open_assets_file(ft_split(str, ' '));
+		data->map_data->north_wall = open_assets_file(ft_split(str, ' '), data, arg);
 	else if (!ft_strncmp(arg, "SO", ft_strlen(arg))
 		&& !data->map_data->south_wall)
-		data->map_data->south_wall = open_assets_file(ft_split(str, ' '));
+		data->map_data->south_wall = open_assets_file(ft_split(str, ' '), data, arg);
 	else if (!ft_strncmp(arg, "EA", ft_strlen(arg))
 		&& !data->map_data->east_wall)
-		data->map_data->east_wall = open_assets_file(ft_split(str, ' '));
+		data->map_data->east_wall = open_assets_file(ft_split(str, ' '), data, arg);
 	else if (!ft_strncmp(arg, "WE", ft_strlen(arg))
 		&& !data->map_data->west_wall)
-		data->map_data->west_wall = open_assets_file(ft_split(str, ' '));
+		data->map_data->west_wall = open_assets_file(ft_split(str, ' '), data, arg);
 	else if (!ft_strncmp(arg, "C", ft_strlen(arg))
 		&& !data->map_data->ceiling_color)
 		data->map_data->ceiling_color = set_colors(ft_split(str, ' '));
@@ -66,7 +67,7 @@ void	create_map_data(t_data *data)
 	data->map_data = map;
 }
 
-int	open_assets_file(char **path)
+int	open_assets_file(char **path, t_data *data, char *arg)
 {
 	int		fd;
 
@@ -75,7 +76,12 @@ int	open_assets_file(char **path)
 		printf("Error open_assets_file: %s\n", path[0]);
 		exit(EXIT_FAILURE);
 	}
-	check_extension(path[1], EXTENSION_TEXTURE);
+	if (check_extension(path[1], EXTENSION_TEXTURE) == -1)
+	{
+		ft_freepp((void **) path);
+		free(arg);
+		error_and_free(data, ERR_ASSET_EXT, 1);
+	}
 	fd = open(path[1], O_RDONLY);
 	if (fd < 0)
 	{
