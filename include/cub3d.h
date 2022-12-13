@@ -8,6 +8,9 @@
 # define VALID_STARTING_POINT "NEWS"
 
 //error message
+# define ERROR "Error: "
+# define ERR_MALLOC "an error happened when allocating memory.\n"
+# define ERR_MAIN_ARG "you must only give the program one argument.\n"
 
 # include "../lib/libft/include/libft.h"
 # include <stdio.h>
@@ -62,7 +65,7 @@ void	set_map(char *map, t_data *data);
 void	get_map(int map_fd, t_data *data);
 
 //error.c
-void	error_and_free(t_data *data, char *err_msg);
+void	error_and_free(t_data *data, char *err_msg, int flag);
 
 //free_data.c
 void	free_full_data(t_data *data);
