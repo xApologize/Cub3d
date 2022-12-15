@@ -21,6 +21,16 @@
  numeric characters only.\n"
 # define ERR_NOT_UCHAR "the argument for the colors in the map needs to be\
  a number that fit within a unsigned char(0 to 255)\n"
+# define ERR_ARG_NAME "one of the argument you passed in the map is not a\
+ valid argument.\n"
+# define ERR_WRONG_CHAR_MAP "one of the character in the map is not a valid\
+ one. The valid one are : N, S, E, W, 0 and 1.\n"
+# define ERR_START_POINT "the map need to have no more and no less than one\
+ starting point.\n"
+# define ERR_MAP_NOT_EXIST "the map you passed in the program argument does\
+ not exist.\n"
+# define ERR_MAP_DIR "the map you passed in the program argument is a\
+ directory.\n"
 
 //error code
 # define CODE_PATH_ERR -2
@@ -83,6 +93,7 @@ void	set_texture(t_data *data, char *arg, int fd);
 void	set_color(t_data *data, char *arg, char *str);
 
 //error.c
+void	error_and_exit(char *err_msg);
 void	error_and_free(t_data *data, char *err_msg, int flag);
 void	error_code_arg(t_data *data, int err_code);
 
