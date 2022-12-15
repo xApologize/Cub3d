@@ -35,9 +35,8 @@ void	set_map_data(t_data *data, char *arg, char *str)
 		set_color(data, arg, str);
 	else
 	{
-		printf("error set_map_data\n");
 		free(arg);
-		exit(EXIT_FAILURE);
+		error_and_free(data, ERR_ARG_NAME, 1);
 	}
 	free(arg);
 }
