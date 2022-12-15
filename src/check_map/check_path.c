@@ -23,15 +23,11 @@ int check_map_exist(char *map)
 	fd = open(map, O_DIRECTORY);
 	if (fd > 0)
 	{
-		printf("The map you passed is a directory\n");
 		close(fd);
-		exit(EXIT_FAILURE);
+		error_and_exit(ERR_MAP_DIR);
 	}
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-	{
-		printf("The map you passed does not exist\n");
-		exit(EXIT_FAILURE);
-	}
+		error_and_exit(ERR_MAP_NOT_EXIST);
 	return (fd);
 }

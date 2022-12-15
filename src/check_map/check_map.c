@@ -1,6 +1,4 @@
 #include "cub3d.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 void	check_map(t_data *data)
 {
@@ -22,10 +20,7 @@ void	check_map_char(t_data *data)
 		while (data->map[i][j])
 		{
 			if (!ft_strchr(VALID_MAP_CHAR, data->map[i][j]))
-			{
-				printf("Error check_map_char invalid char: %c\n", data->map[i][j]);
-				exit(EXIT_FAILURE);
-			}
+				error_and_free(data, ERR_WRONG_CHAR_MAP, 1);
 			if (ft_strchr(VALID_STARTING_POINT, data->map[i][j]))
 				starting_point++;
 			j++;
@@ -34,8 +29,5 @@ void	check_map_char(t_data *data)
 		i++;
 	}
 	if (starting_point != 1)
-	{
-		printf("Error check_map_char more than 1 starting point.\n");
-		exit(EXIT_FAILURE);
-	}
+		error_and_free(data, ERR_START_POINT, 1);
 }
