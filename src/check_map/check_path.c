@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	check_extension(char *path, char *extension)
+int	check_extension(char *path, char *extension)
 {
 	int		length;
 	char	*path_extension;
@@ -9,11 +9,11 @@ void	check_extension(char *path, char *extension)
 	path_extension = ft_substr(path, length - ft_strlen(extension), length);
 	if (ft_strncmp(extension, path_extension, ft_strlen(extension)) != 0)
 	{
-		printf("Error extension: %s\n", extension);
 		free(path_extension);
-		exit(EXIT_FAILURE);
+		return (-1);
 	}
 	free(path_extension);
+	return (0);
 }
 
 int check_map_exist(char *map)
@@ -23,15 +23,11 @@ int check_map_exist(char *map)
 	fd = open(map, O_DIRECTORY);
 	if (fd > 0)
 	{
-		printf("The map you passed is a directory\n");
 		close(fd);
-		exit(EXIT_FAILURE);
+		error_and_exit(ERR_MAP_DIR);
 	}
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-	{
-		printf("The map you passed does not exist\n");
-		exit(EXIT_FAILURE);
-	}
+		error_and_exit(ERR_MAP_NOT_EXIST);
 	return (fd);
 }

@@ -3,7 +3,8 @@
 void	set_map(char *map, t_data *data)
 {
 	data->map = NULL;
-	check_extension(map, EXTENSION_MAP);
+	if (check_extension(map, EXTENSION_MAP) == -1)
+		error_and_free(data, ERR_MAP_EXT, 0);
 	get_map(check_map_exist(map), data);
 }
 

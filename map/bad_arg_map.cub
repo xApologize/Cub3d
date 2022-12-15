@@ -1,9 +1,9 @@
-NO ./path_to_the_north_texture
-NO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO asset/wall.xpm
+SO asset/wall.xpm
+EA asset/wall.xpm
+WE asset/wall.xpm
 
-F 220,100,0
+F 256,100,0
 C 225,30,0
 
 1111111111111111111111111
