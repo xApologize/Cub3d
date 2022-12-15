@@ -1,4 +1,12 @@
 #include "cub3d.h"
+#include <stdlib.h>
+
+void	error_and_exit(char *err_msg)
+{
+	ft_putstr_fd(ERROR, 2);
+	ft_putstr_fd(err_msg, 2);
+	exit(EXIT_FAILURE);
+}
 
 void	error_and_free(t_data *data, char *err_msg, int flag)
 {
