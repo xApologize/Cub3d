@@ -98,6 +98,9 @@ void	set_color(t_data *data, char *arg, char *str);
 //flood_fill
 //flood_fill.c
 void	flood_fill(t_data *data);
+void	flood_fill_algo_in(int x, int y, char **map_copy);
+void	flood_fill_algo_border(int x, int y, char **map_copy);
+void	check_map_x(char **map);
 
 //flood_fill_utils.c
 char	**copy_map(t_data *data);
