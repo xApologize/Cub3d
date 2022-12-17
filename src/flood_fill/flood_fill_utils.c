@@ -1,4 +1,3 @@
-
 #include "cub3d.h"
 
 char	**copy_map(t_data *data)
@@ -9,13 +8,12 @@ char	**copy_map(t_data *data)
 	len = 0;
 	while (data->map[len])
 		len++;
-	copy = malloc(sizeof(char *) * len + 1);
+	copy = ft_calloc(sizeof(char *), len + 1);
 	len = 0;
 	while (data->map[len])
 	{
 		copy[len] = ft_strdup(data->map[len]);
 		len++;
 	}
-	copy[len] = "\0";
 	return (copy);
 }
