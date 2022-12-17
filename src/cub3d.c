@@ -5,6 +5,14 @@ void	print_data(t_data *data)
 	int	i;
 
 	i = 0;
+	printf("data.map:\n");
+	while (data->map[i])
+	{
+		printf("%s\n", data->map[i]);
+		i++;
+	}
+	printf("data.map.start_pos[0]: %i\n", data->start_pos[0]);
+	printf("data.map.start_pos[1]: %i\n", data->start_pos[1]);
 	printf("data.map_data.north_wall: %i\n", data->map_data->north_wall);
 	printf("data.map_data.south_wall: %i\n", data->map_data->south_wall);
 	printf("data.map_data.east_wall: %i\n", data->map_data->east_wall);
@@ -15,12 +23,6 @@ void	print_data(t_data *data)
 	printf("data.map_data.floor_color[0]: %d\n", data->map_data->floor_color[0]);
 	printf("data.map_data.floor_color[1]: %d\n", data->map_data->floor_color[1]);
 	printf("data.map_data.floor_color[2]: %d\n", data->map_data->floor_color[2]);
-	printf("data.map:\n");
-	while (data->map[i])
-	{
-		printf("%s\n", data->map[i]);
-		i++;
-	}
 }
 
 int	main(int argc, char **argv)
@@ -32,7 +34,7 @@ int	main(int argc, char **argv)
 	set_map(argv[1], &data);
 	check_arguments(&data);
 	check_map(&data);
-	print_data(&data);
+	// print_data(&data);
 	free_full_data(&data);
 	return (EXIT_SUCCESS);
 }
