@@ -13,23 +13,23 @@
 # define ERR_MAIN_ARG "you must only give the program one argument.\n"
 # define ERR_MAP_EXT "the map you pass to the program must have a\
  .cub extension.\n"
-# define ERR_ASSET_EXT "the asset you pass in the map information must have a\
+# define ERR_ASSET_EXT "the assets you pass in the map information must have a\
  .xpm extension.\n"
 # define ERR_ARG_PATH "one of the path in the map information is not valid.\n"
 # define ERR_COL_LINE "one of the line in the map information is not valid.\n"
-# define ERR_NOT_DIGIT "the argument for the colors in the map needs to be\
- numeric characters only.\n"
-# define ERR_NOT_UCHAR "the argument for the colors in the map needs to be\
- a number that fit within a unsigned char(0 to 255)\n"
-# define ERR_ARG_NAME "one of the argument you passed in the map is not a\
+# define ERR_NOT_DIGIT "the argument for the colours in the map needs to be\
+ digit characters only.\n"
+# define ERR_NOT_UCHAR "the argument for the colours in the map needs to be\
+ a number that fit within a unsigned char(0 to 255).\n"
+# define ERR_ARG_NAME "one of the argument you passed in the map was not a\
  valid argument.\n"
 # define ERR_WRONG_CHAR_MAP "one of the character in the map is not a valid\
- one. The valid one are : N, S, E, W, 0 and 1.\n"
+ one. The valid ones are : N, S, E, W, 0 and 1.\n"
 # define ERR_START_POINT "the map need to have no more and no less than one\
  starting point.\n"
-# define ERR_MAP_NOT_EXIST "the map you passed in the program argument does\
+# define ERR_MAP_NOT_EXIST "the map you passed in the program argument did\
  not exist.\n"
-# define ERR_MAP_DIR "the map you passed in the program argument is a\
+# define ERR_MAP_DIR "the map you passed in the program argument was a\
  directory.\n"
 
 //error code
@@ -44,6 +44,7 @@
 
 typedef struct s_data
 {
+	int				start_pos[2];
 	char			**map;
 	struct s_map	*map_data;
 } 					t_data;
@@ -60,6 +61,7 @@ typedef struct s_map
 	int	*floor_color;
 }			t_map;
 
+//check_map
 //check_arguments.c
 void	check_arguments(t_data *data);
 void	get_arguments(t_data *data);
@@ -75,6 +77,7 @@ int		check_isuchar(char **colors);
 //check_map.c
 void	check_map(t_data *data);
 void	check_map_char(t_data *data);
+void	set_start_pos(t_data *data);
 
 //check_map_utils.c
 void	set_map_only(t_data *data);
@@ -91,6 +94,13 @@ void	get_map(int map_fd, t_data *data);
 void	create_map_data(t_data *data);
 void	set_texture(t_data *data, char *arg, int fd);
 void	set_color(t_data *data, char *arg, char *str);
+
+//flood_fill
+//flood_fill.c
+void	flood_fill(t_data *data);
+
+//flood_fill_utils.c
+char	**copy_map(t_data *data);
 
 //error.c
 void	error_and_exit(char *err_msg);
