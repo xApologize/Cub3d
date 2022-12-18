@@ -12,12 +12,15 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <stdbool.h>
 
 # define WIDTH 1920
 # define HEIGHT 1080
+# define MSPEED	0.1
+# define RSPEED 0.07
 
-# define mapWidth 24 // va etre a mettre dans la struct
-# define mapHeight 24
+# define mapWidth 36 // va etre a mettre dans la struct
+# define mapHeight 42
 
 
 typedef struct s_ray{
@@ -37,10 +40,7 @@ typedef struct s_ray{
 	double		deltaX;
 	double		deltaY;
 	double		wallDist;
-	double		mSpeed;
-	double		rSpeed;
-	int			floor;
-	int			ceiling;
+	double		rayLenght;
 	int			mapX;
 	int			mapY;
 	int			stepX;
@@ -50,6 +50,9 @@ typedef struct s_ray{
 	int			line;
 	int			end;
 	int			start;
+	int			floor;
+	int			ceiling;
+	bool		rays;
 }	t_ray;
 
 typedef struct s_map
@@ -96,7 +99,7 @@ void	raycaster(t_data *data);
 void	hook(mlx_key_data_t keydata, void *temp);
 
 //draw.c
-void	draw_player(t_data *data, int x, int y);
+void	draw_player(t_data *data);
 void	draw_wall(t_data *data, int x, int y);
 void	draw_space(t_data *data, int x, int y);
 void	draw_map(t_data *data);
