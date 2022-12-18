@@ -16,8 +16,7 @@
 
 # define WIDTH 1920
 # define HEIGHT 1080
-# define MSPEED	0.1
-# define RSPEED 0.07
+# define RSPEED 0.1
 
 # define mapWidth 36 // va etre a mettre dans la struct
 # define mapHeight 42
@@ -41,6 +40,7 @@ typedef struct s_ray{
 	double		deltaY;
 	double		wallDist;
 	double		rayLenght;
+	double		mSpeed;
 	int			mapX;
 	int			mapY;
 	int			stepX;

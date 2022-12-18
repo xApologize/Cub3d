@@ -46,6 +46,32 @@ int worldMap[mapHeight][mapWidth]=
   {1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
+/* {
+  {4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,7,7,7,7,7,7,7,7},
+  {4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,7},
+  {4,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7},
+  {4,0,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7},
+  {4,0,3,0,0,0,0,0,0,0,0,0,0,0,0,0,7,0,0,0,0,0,0,7},
+  {4,0,4,0,0,0,0,5,5,5,5,5,5,5,5,5,7,7,0,7,7,7,7,7},
+  {4,0,5,0,0,0,0,5,0,5,0,5,0,5,0,5,7,0,0,0,7,7,7,1},
+  {4,0,6,0,0,0,0,5,0,0,0,0,0,0,0,5,7,0,0,0,0,0,0,8},
+  {4,0,7,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,7,7,7,1},
+  {4,0,8,0,0,0,0,5,0,0,0,0,0,0,0,5,7,0,0,0,0,0,0,8},
+  {4,0,0,0,0,0,0,5,0,0,0,0,0,0,0,5,7,0,0,0,7,7,7,1},
+  {4,0,0,0,0,0,0,5,5,5,5,0,5,5,5,5,7,7,7,7,7,7,7,1},
+  {6,6,6,6,6,6,6,6,6,6,6,0,6,6,6,6,6,6,6,6,6,6,6,6},
+  {8,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4},
+  {6,6,6,6,6,6,0,6,6,6,6,0,6,6,6,6,6,6,6,6,6,6,6,6},
+  {4,4,4,4,4,4,0,4,4,4,6,0,6,2,2,2,2,2,2,2,3,3,3,3},
+  {4,0,0,0,0,0,0,0,0,4,6,0,6,2,0,0,0,0,0,2,0,0,0,2},
+  {4,0,0,0,0,0,0,0,0,0,0,0,6,2,0,0,5,0,0,2,0,0,0,2},
+  {4,0,0,0,0,0,0,0,0,4,6,0,6,2,0,0,0,0,0,2,2,0,2,2},
+  {4,0,6,0,6,0,0,0,0,4,6,0,0,0,0,0,5,0,0,0,0,0,0,2},
+  {4,0,0,5,0,0,0,0,0,4,6,0,6,2,0,0,0,0,0,2,2,0,2,2},
+  {4,0,6,0,6,0,0,0,0,4,6,0,6,2,0,0,5,0,0,2,0,0,0,2},
+  {4,0,0,0,0,0,0,0,0,4,6,0,6,2,0,0,0,0,0,2,0,0,0,2},
+  {4,4,4,4,4,4,4,4,4,4,1,1,1,2,2,2,2,2,2,3,3,3,3,3}
+}; */
 
 void	draw_player(t_data *data)
 {
@@ -65,15 +91,15 @@ void	draw_player(t_data *data)
 		y++;
 		x -= 9;
 	}
-	/* y = (double) (data->ray->posY) * 10; //+ 4.5;
-	x = (double) (data->ray->posX) * 10; //+ 4.5;
-	hold = data->ray->rayLenght * 10; //+ 4.5;
+	y = (double) (data->ray->posY) * 10;
+	x = (double) (data->ray->posX) * 10;
+	hold = data->ray->rayLenght * 10;
 	while (hold-- >= 0 && y > 0 && x > 0 && x < mapWidth * 10 && y < mapHeight * 10)
 	{
 		mlx_put_pixel(data->ray->img, x, y, 0xFF0000FF );
 		y += data->ray->dirY;
 		x += data->ray->dirX;
-	} */
+	}
 }
 
 void	draw_wall(t_data *data, int x, int y)
@@ -184,18 +210,25 @@ void	dda(t_data *data)
 		{
 			data->ray->distX += data->ray->deltaX;
 			data->ray->mapX += data->ray->stepX;
-			data->ray->side = 0;
+			if (data->ray->rayX > 0)
+				data->ray->side = 0;
+			else
+				data->ray->side = 1;
 		}
 		else
 		{
 			data->ray->distY += data->ray->deltaY;
 			data->ray->mapY += data->ray->stepY;
-			data->ray->side = 1;
+			if (data->ray->rayY > 0)
+				data->ray->side = 2;
+			else
+				data->ray->side = 3;
+			
 		}
 		if (worldMap[data->ray->mapY][data->ray->mapX] != 0)
 			break ;
 	}
-	if (data->ray->side == 0)
+	if (data->ray->side < 2)
 		data->ray->wallDist = data->ray->distX - data->ray->deltaX;
 	else
 		data->ray->wallDist = data->ray->distY - data->ray->deltaY;
@@ -245,7 +278,6 @@ void	map(t_data *data)
 		init_var(data, i);
 		init_dist(data);
 		dda(data);
-		calc_line(data);
 		y = (double) (data->ray->posY) * 10; //+ 4.5;
 		x = (double) (data->ray->posX) * 10; //+ 4.5;
 		hold = data->ray->wallDist * 10; //+ 4.5;
@@ -276,9 +308,13 @@ void	raycaster(t_data *data)
 		while (data->ray->start < data->ray->end)
 		{
 			if (data->ray->side == 0)
-				mlx_put_pixel(data->ray->img, i, data->ray->start++, 0xa103fcFF);
+				mlx_put_pixel(data->ray->img, i, data->ray->start++, 0xa103fcFF); // east
+			else if (data->ray->side == 1)
+				mlx_put_pixel(data->ray->img, i, data->ray->start++, 0x4287f5FF); // west
+			else if (data->ray->side == 2)
+				mlx_put_pixel(data->ray->img, i, data->ray->start++, 0xf0224eFF); // south
 			else
-				mlx_put_pixel(data->ray->img, i, data->ray->start++, 0x0000FFFF);
+				mlx_put_pixel(data->ray->img, i, data->ray->start++, 0x0000FFFF); // north
 		}
 	}
 	if (data->ray->rays == true)
@@ -312,21 +348,29 @@ void	hook(mlx_key_data_t keydata, void *temp)
       	data->ray->planeX = data->ray->planeX * cos(-RSPEED) - data->ray->planeY * sin(-RSPEED);
       	data->ray->planeY = oldPlaneX * sin(-RSPEED) + data->ray->planeY * cos(-RSPEED);
 	}
-	if(keydata.key == MLX_KEY_W)
+	if (keydata.key == MLX_KEY_W)
     {
-    	if(worldMap[(int)(data->ray->posY)][(int)(data->ray->posX + data->ray->dirX * MSPEED)] == false) 
-			data->ray->posX += data->ray->dirX * MSPEED;
-    	if(worldMap[(int)(data->ray->posY + data->ray->dirY * MSPEED)][(int)(data->ray->posX)] == false)
-			data->ray->posY += data->ray->dirY * MSPEED;
+    	if(worldMap[(int)(data->ray->posY)][(int)(data->ray->posX + data->ray->dirX * data->ray->mSpeed)] == false) 
+			data->ray->posX += data->ray->dirX * data->ray->mSpeed;
+    	if(worldMap[(int)(data->ray->posY + data->ray->dirY * data->ray->mSpeed)][(int)(data->ray->posX)] == false)
+			data->ray->posY += data->ray->dirY * data->ray->mSpeed;
     }
-    if(keydata.key == MLX_KEY_S)
+    if (keydata.key == MLX_KEY_S)
     {
-		if(worldMap[(int)(data->ray->posY)][(int)(data->ray->posX - data->ray->dirX * MSPEED)] == false) 
-	  		data->ray->posX -= data->ray->dirX * MSPEED;
-		if(worldMap[(int)(data->ray->posY - data->ray->dirY * MSPEED)][(int)(data->ray->posX)] == false)
-	  		data->ray->posY -= data->ray->dirY * MSPEED;
+		if(worldMap[(int)(data->ray->posY)][(int)(data->ray->posX - data->ray->dirX * data->ray->mSpeed)] == false) 
+	  		data->ray->posX -= data->ray->dirX * data->ray->mSpeed;
+		if(worldMap[(int)(data->ray->posY - data->ray->dirY * data->ray->mSpeed)][(int)(data->ray->posX)] == false)
+	  		data->ray->posY -= data->ray->dirY * data->ray->mSpeed;
     }
-	if(keydata.key == MLX_KEY_R && keydata.action == 0)
+	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_RELEASE)
+	{
+		if (data->ray->mSpeed < 0.95)
+			data->ray->mSpeed += 0.05;
+	}
+	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_RELEASE)
+		if (data->ray->mSpeed > 0.1)
+			data->ray->mSpeed -= 0.05;
+	if (keydata.key == MLX_KEY_R && keydata.action == MLX_RELEASE)
 	{
 		if (data->ray->rays == true)
 			data->ray->rays = false;
@@ -348,10 +392,11 @@ void	init_mlx(t_data *data)
 	data->ray->img = mlx_new_image(data->ray->mlx, WIDTH, HEIGHT);
 	data->ray->posX = 17;
 	data->ray->posY = 12;
-	data->ray->dirX = 1;
-	data->ray->dirY = 0;
+	data->ray->dirX = 1; //pour 1 planeY 0.66 pour -1 planeY -0.66
+	data->ray->dirY = 0;// pour 1 planeX -0.66 pour 1 planeX 0.66
 	data->ray->planeX = 0;
 	data->ray->planeY = 0.66;
+	data->ray->mSpeed = 0.1;
 	data->ray->rays = false;
 	data->ray->ceiling = create_colour(data->map_data->ceiling_color[0], data->map_data->ceiling_color[1], data->map_data->ceiling_color[2], 255);
 	data->ray->floor = create_colour(data->map_data->floor_color[0], data->map_data->floor_color[1], data->map_data->floor_color[2], 255);
