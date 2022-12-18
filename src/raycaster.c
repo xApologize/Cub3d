@@ -323,6 +323,42 @@ void	raycaster(t_data *data)
 		draw_map(data);
 }
 
+void	right(t_data *data)
+{
+      	double oldDirX = data->ray->dirX;
+    	data->ray->dirX =data->ray->dirX * cos(RSPEED) - data->ray->dirY * sin(RSPEED);
+     	data->ray->dirY = oldDirX * sin(RSPEED) + data->ray->dirY * cos(RSPEED);
+      	double oldPlaneX = data->ray->planeX;
+      	data->ray->planeX = data->ray->planeX * cos(RSPEED) - data->ray->planeY * sin(RSPEED);
+      	data->ray->planeY = oldPlaneX * sin(RSPEED) + data->ray->planeY * cos(RSPEED);
+}
+
+void	left(t_data *data)
+{
+      	double oldDirX = data->ray->dirX;
+    	data->ray->dirX = data->ray->dirX * cos(-RSPEED) - data->ray->dirY * sin(-RSPEED);
+     	data->ray->dirY = oldDirX * sin(-RSPEED) + data->ray->dirY * cos(-RSPEED);
+      	double oldPlaneX = data->ray->planeX;
+      	data->ray->planeX = data->ray->planeX * cos(-RSPEED) - data->ray->planeY * sin(-RSPEED);
+      	data->ray->planeY = oldPlaneX * sin(-RSPEED) + data->ray->planeY * cos(-RSPEED);
+}
+
+void	forward(t_data *data)
+{
+	if(worldMap[(int)(data->ray->posY)][(int)(data->ray->posX + data->ray->dirX * data->ray->mSpeed)] == false) 
+		data->ray->posX += data->ray->dirX * data->ray->mSpeed;
+    if(worldMap[(int)(data->ray->posY + data->ray->dirY * data->ray->mSpeed)][(int)(data->ray->posX)] == false)
+		data->ray->posY += data->ray->dirY * data->ray->mSpeed;
+}
+
+void	backward(t_data *data)
+{
+	if(worldMap[(int)(data->ray->posY)][(int)(data->ray->posX - data->ray->dirX * data->ray->mSpeed)] == false) 
+		data->ray->posX -= data->ray->dirX * data->ray->mSpeed;
+	if(worldMap[(int)(data->ray->posY - data->ray->dirY * data->ray->mSpeed)][(int)(data->ray->posX)] == false)
+		data->ray->posY -= data->ray->dirY * data->ray->mSpeed;
+}
+
 void	hook(mlx_key_data_t keydata, void *temp)
 {
 	t_data *data;
@@ -331,37 +367,13 @@ void	hook(mlx_key_data_t keydata, void *temp)
 	if (keydata.key == MLX_KEY_ESCAPE)
 		mlx_close_window(data->ray->mlx);
 	if (keydata.key == MLX_KEY_RIGHT)
-	{
-      	double oldDirX = data->ray->dirX;
-    	data->ray->dirX =data->ray->dirX * cos(RSPEED) - data->ray->dirY * sin(RSPEED);
-     	data->ray->dirY = oldDirX * sin(RSPEED) + data->ray->dirY * cos(RSPEED);
-      	double oldPlaneX = data->ray->planeX;
-      	data->ray->planeX = data->ray->planeX * cos(RSPEED) - data->ray->planeY * sin(RSPEED);
-      	data->ray->planeY = oldPlaneX * sin(RSPEED) + data->ray->planeY * cos(RSPEED);
-	}
+		right(data);
 	if (keydata.key == MLX_KEY_LEFT)
-	{
-      	double oldDirX = data->ray->dirX;
-    	data->ray->dirX = data->ray->dirX * cos(-RSPEED) - data->ray->dirY * sin(-RSPEED);
-     	data->ray->dirY = oldDirX * sin(-RSPEED) + data->ray->dirY * cos(-RSPEED);
-      	double oldPlaneX = data->ray->planeX;
-      	data->ray->planeX = data->ray->planeX * cos(-RSPEED) - data->ray->planeY * sin(-RSPEED);
-      	data->ray->planeY = oldPlaneX * sin(-RSPEED) + data->ray->planeY * cos(-RSPEED);
-	}
+		left(data);
 	if (keydata.key == MLX_KEY_W)
-    {
-    	if(worldMap[(int)(data->ray->posY)][(int)(data->ray->posX + data->ray->dirX * data->ray->mSpeed)] == false) 
-			data->ray->posX += data->ray->dirX * data->ray->mSpeed;
-    	if(worldMap[(int)(data->ray->posY + data->ray->dirY * data->ray->mSpeed)][(int)(data->ray->posX)] == false)
-			data->ray->posY += data->ray->dirY * data->ray->mSpeed;
-    }
+		forward(data);
     if (keydata.key == MLX_KEY_S)
-    {
-		if(worldMap[(int)(data->ray->posY)][(int)(data->ray->posX - data->ray->dirX * data->ray->mSpeed)] == false) 
-	  		data->ray->posX -= data->ray->dirX * data->ray->mSpeed;
-		if(worldMap[(int)(data->ray->posY - data->ray->dirY * data->ray->mSpeed)][(int)(data->ray->posX)] == false)
-	  		data->ray->posY -= data->ray->dirY * data->ray->mSpeed;
-    }
+		backward(data);
 	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_RELEASE)
 	{
 		if (data->ray->mSpeed < 0.95)
