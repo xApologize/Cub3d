@@ -1,6 +1,4 @@
 #include "cub3d.h"
-#include <stdio.h>
-#include <unistd.h>
 
 void	print_map(char **map)
 {
