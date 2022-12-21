@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_arguments.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 14:16:39 by jrossign          #+#    #+#             */
+/*   Updated: 2022/12/21 14:17:02 by jrossign         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	check_arguments(t_data *data)
@@ -26,7 +38,7 @@ void	set_map_data(t_data *data, char *arg, char *str)
 	int	fd;
 
 	if (!ft_strcmp(arg, "NO") || !ft_strcmp(arg, "SO")
-			|| !ft_strcmp(arg, "EA") || !ft_strcmp(arg, "WE"))
+		|| !ft_strcmp(arg, "EA") || !ft_strcmp(arg, "WE"))
 	{
 		fd = open_assets_file(ft_split(str, ' '));
 		set_texture(data, arg, fd);
@@ -56,6 +68,6 @@ int	open_assets_file(char **path)
 		return (CODE_EXT_ERR);
 	}
 	fd = open(path[1], O_RDONLY);
-	ft_freepp((void**)path);
+	ft_freepp((void **)path);
 	return (fd);
 }

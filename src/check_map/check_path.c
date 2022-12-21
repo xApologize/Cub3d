@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_path.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 14:17:51 by jrossign          #+#    #+#             */
+/*   Updated: 2022/12/21 14:17:53 by jrossign         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	check_extension(char *path, char *extension)
@@ -16,7 +28,7 @@ int	check_extension(char *path, char *extension)
 	return (0);
 }
 
-int check_map_exist(char *map)
+int	check_map_exist(char *map)
 {
 	int	fd;
 

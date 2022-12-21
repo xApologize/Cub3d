@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
+/*   Updated: 2022/12/21 14:15:19 by jrossign         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -50,7 +62,7 @@ typedef struct s_data
 	char			**map;
 	char			**copy;
 	struct s_map	*map_data;
-} 					t_data;
+}					t_data;
 
 typedef struct s_map
 {

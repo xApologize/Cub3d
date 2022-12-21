@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 14:13:57 by jrossign          #+#    #+#             */
+/*   Updated: 2022/12/21 14:14:00 by jrossign         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	print_data(t_data *data)
@@ -17,9 +29,12 @@ void	print_data(t_data *data)
 	printf("data.map_data.south_wall: %i\n", data->map_data->south_wall);
 	printf("data.map_data.east_wall: %i\n", data->map_data->east_wall);
 	printf("data.map_data.west_wall: %i\n", data->map_data->west_wall);
-	printf("data.map_data.ceiling_color[0]: %d\n", data->map_data->ceiling_color[0]);
-	printf("data.map_data.ceiling_color[1]: %d\n", data->map_data->ceiling_color[1]);
-	printf("data.map_data.ceiling_color[2]: %d\n", data->map_data->ceiling_color[2]);
+	printf("data.map_data.ceiling_color[0]: %d\n",
+		data->map_data->ceiling_color[0]);
+	printf("data.map_data.ceiling_color[1]: %d\n",
+		data->map_data->ceiling_color[1]);
+	printf("data.map_data.ceiling_color[2]: %d\n",
+		data->map_data->ceiling_color[2]);
 	printf("data.map_data.floor_color[0]: %d\n", data->map_data->floor_color[0]);
 	printf("data.map_data.floor_color[1]: %d\n", data->map_data->floor_color[1]);
 	printf("data.map_data.floor_color[2]: %d\n", data->map_data->floor_color[2]);
@@ -34,7 +49,6 @@ int	main(int argc, char **argv)
 	set_map(argv[1], &data);
 	check_arguments(&data);
 	check_map(&data);
-	// print_data(&data);
 	free_full_data(&data);
 	return (EXIT_SUCCESS);
 }
