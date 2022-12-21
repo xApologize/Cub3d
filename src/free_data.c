@@ -9,6 +9,8 @@ void	free_full_data(t_data *data)
 	close_fds(data);
 	if (data->map)
 		ft_freepp((void **) data->map);
+	if (data->copy)
+		ft_freepp((void **) data->copy);
 	if (data->map_data)
 		free(data->map_data);
 }
