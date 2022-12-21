@@ -1,5 +1,4 @@
 #include "cub3d.h"
-#include <stdlib.h>
 
 void	error_and_exit(char *err_msg)
 {
