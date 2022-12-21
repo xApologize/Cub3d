@@ -1,4 +1,5 @@
 #include "cub3d.h"
+#include <unistd.h>
 
 void	print_map(char **map)
 {
@@ -28,24 +29,35 @@ void	flood_fill_algo_in(int x, int y, char **map_copy)
 {
 	int	i;
 	
+	usleep(50000);
+	print_map(map_copy);
 	i = 0;
 	while (map_copy[i++]);
 	if ((x - 1 < 0 || y - 1 < 0 || x + 1 >= i - 1
 		|| (size_t)y + 1 >= ft_strlen(map_copy[x]))
 		&& ft_strchr("0 ", map_copy[x][y]))
 	{
-		printf("flood fill error\n");
+		printf("flood fill error: %c, x: %i, y: %i\n", map_copy[x][y], x, y);
 		exit(EXIT_FAILURE);
 	}
 	if (ft_strchr("0 ", map_copy[x][y])
 		|| ft_strchr(VALID_STARTING_POINT, map_copy[x][y]))
-		map_copy[x][y] = '.';
+	{
+		if (map_copy[x][y] == '0')
+			map_copy[x][y] = '.';
+		if (map_copy[x][y] == ' ')
+			map_copy[x][y] = '!';
+	}
 	else
 		return ;
 	flood_fill_algo_in(x - 1, y, map_copy);
 	flood_fill_algo_in(x, y + 1, map_copy);
 	flood_fill_algo_in(x + 1, y, map_copy);
 	flood_fill_algo_in(x, y - 1, map_copy);
+	flood_fill_algo_in(x + 1, y + 1, map_copy);
+	flood_fill_algo_in(x - 1, y + 1, map_copy);
+	flood_fill_algo_in(x + 1, y - 1, map_copy);
+	flood_fill_algo_in(x - 1, y - 1, map_copy);
 }
 
 // void	flood_fill_algo_in(int x, int y, char **map_copy)
