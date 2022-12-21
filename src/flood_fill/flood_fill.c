@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:20:12 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/21 14:21:07 by jrossign         ###   ########.fr       */
+/*   Updated: 2022/12/21 16:12:28 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	flood_fill_algo(int x, int y, t_data *data)
 	i = 0;
 	while (data->copy[i])
 		i++;
-	if (((x - 1 < 0 || y - 1 < 0 || x + 1 >= i - 1
+	if (((x - 1 < 0 || y - 1 < 0 || x + 1 >= i
 				|| (size_t)y + 1 >= ft_strlen(data->copy[x]))
 			&& ft_strchr("0 ", data->copy[x][y])) || data->copy[x][y] == ' ')
 		error_and_free(data, ERR_MAP_OPEN, 1);
