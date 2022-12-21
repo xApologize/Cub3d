@@ -1,5 +1,4 @@
 #include "cub3d.h"
-#include <unistd.h>
 
 void	print_map(char **map)
 {
@@ -29,8 +28,6 @@ void	flood_fill_algo_in(int x, int y, char **map_copy)
 {
 	int	i;
 	
-	usleep(50000);
-	print_map(map_copy);
 	i = 0;
 	while (map_copy[i++]);
 	if ((x - 1 < 0 || y - 1 < 0 || x + 1 >= i - 1
