@@ -4,6 +4,8 @@ void	check_map(t_data *data)
 {
 	set_map_only(data);
 	check_map_char(data);
+	set_start_pos(data);
+	flood_fill(data);
 }
 
 void	check_map_char(t_data *data)
@@ -30,4 +32,28 @@ void	check_map_char(t_data *data)
 	}
 	if (starting_point != 1)
 		error_and_free(data, ERR_START_POINT, 1);
+}
+
+void	set_start_pos(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (data->map[y])
+	{
+		while (data->map[y][x])
+		{
+			if (ft_strchr(VALID_STARTING_POINT, data->map[y][x]))
+			{
+				data->start_pos[0] = y;
+				data->start_pos[1] = x;
+				return ;
+			}
+			x++;
+		}
+		x = 0;
+		y++;
+	}
 }
