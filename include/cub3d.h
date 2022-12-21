@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/21 14:15:19 by jrossign         ###   ########.fr       */
+/*   Updated: 2022/12/21 17:21:47 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
  .xpm extension.\n"
 # define ERR_ARG_PATH "one of the path in the map information is not valid.\n"
 # define ERR_COL_LINE "one of the line in the map information is not valid.\n"
+# define ERR_COL_NOT_3 "the color you passed in the map information is not a\
+ valid RGB value.\n"
 # define ERR_NOT_DIGIT "the argument for the colours in the map needs to be\
  digit characters only.\n"
 # define ERR_NOT_UCHAR "the argument for the colours in the map needs to be\
