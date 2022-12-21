@@ -1,5 +1,5 @@
 #--PROJECT_NAME--#
-PROJECT_NAME	= cub3D
+PROJECT_NAME	= cub3d
 
 #--C FILES--# >
 C_FILES_MAIN	= cub3d.c error.c free_data.c						\

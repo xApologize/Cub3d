@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
+/*   Updated: 2022/12/21 14:15:19 by jrossign         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -31,6 +43,8 @@
  not exist.\n"
 # define ERR_MAP_DIR "the map you passed in the program argument was a\
  directory.\n"
+# define ERR_MAP_OPEN "the map you passed in the file is not surrounded\
+ by walls or the map contains space inside the walls.\n"
 
 //error code
 # define CODE_PATH_ERR -2
@@ -46,8 +60,9 @@ typedef struct s_data
 {
 	int				start_pos[2];
 	char			**map;
+	char			**copy;
 	struct s_map	*map_data;
-} 					t_data;
+}					t_data;
 
 typedef struct s_map
 {
@@ -98,7 +113,7 @@ void	set_color(t_data *data, char *arg, char *str);
 //flood_fill
 //flood_fill.c
 void	flood_fill(t_data *data);
-void	flood_fill_algo(int x, int y, char **map_copy);
+void	flood_fill_algo(int x, int y, t_data *data);
 
 //flood_fill_utils.c
 char	**copy_map(t_data *data);
