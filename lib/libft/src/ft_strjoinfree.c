@@ -16,6 +16,8 @@ char	*ft_strjoinfree(const char *s1, const char *s2)
 {
 	char	*new_line;
 
+	if (!s2)
+		return (NULL);
 	if (!s1)
 		new_line = ft_strdup(s2);
 	else
