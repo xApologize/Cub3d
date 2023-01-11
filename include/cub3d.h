@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/21 14:15:19 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/11 07:44:46 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,15 @@
 # define ERROR "Error: "
 # define ERR_MALLOC "an error happened when allocating memory.\n"
 # define ERR_MAIN_ARG "you must only give the program one argument.\n"
+# define ERR_MAP_EMPTY "the map file is empty.\n"
 # define ERR_MAP_EXT "the map you pass to the program must have a\
  .cub extension.\n"
 # define ERR_ASSET_EXT "the assets you pass in the map information must have a\
  .xpm extension.\n"
 # define ERR_ARG_PATH "one of the path in the map information is not valid.\n"
 # define ERR_COL_LINE "one of the line in the map information is not valid.\n"
+# define ERR_COL_NOT_3 "the color you passed in the map information is not a\
+ valid RGB value.\n"
 # define ERR_NOT_DIGIT "the argument for the colours in the map needs to be\
  digit characters only.\n"
 # define ERR_NOT_UCHAR "the argument for the colours in the map needs to be\

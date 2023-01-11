@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:17:55 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/21 14:17:57 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/11 07:45:23 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	set_map(char *map, t_data *data)
 	if (check_extension(map, EXTENSION_MAP) == -1)
 		error_and_free(data, ERR_MAP_EXT, 0);
 	get_map(check_map_exist(map), data);
+	if (ft_get_pp_length(data->map) == 0)
+		error_and_free(data, ERR_MAP_EMPTY, 0);
 }
 
 void	get_map(int map_fd, t_data *data)
