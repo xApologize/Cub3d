@@ -20,12 +20,13 @@ NAME			= $(PROJECT_NAME)
 ERROR_FLAGS		= -Werror -Wall -Wextra -g
 LIB_FLAG		= -L./lib/libft -lft
 MLX				= MLX42/libmlx42.a 
-MLX_FLAG		= -lglfw -L /Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib/
-
+MLX_FLAG_JB		= -lglfw -L /Users/$(USER)/homebrew/Cellar/glfw/3.3.8/lib/
+MLX_FLAG_BEN	= -lglfw -L /Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib/
 
 #--DIR PATH--# >
 SRC_DIR			= src/
 OBJ_DIR			= obj/
+MLX_DIR			= MLX42/
 INC_DIR			= include/
 LIB_DIR			= lib/libft/
 CHECK_MAP_DIR	= $(SRC_DIR)check_map/
@@ -44,14 +45,20 @@ $(OBJ_DIR)%.o:		%.c
 
 $(NAME):			$(PRE_OBJ)
 				@make -C $(LIB_DIR)
+				@make -C $(MLX_DIR)
 				@echo "Compiling $(PROJECT_NAME)..."
-				@gcc $(ERROR_FLAGS) $(PRE_OBJ) -Iinclude/ -o $(NAME) $(LIB_FLAG) $(MLX) $(MLX_FLAG)
+ifeq ($(USER), jrossign)
+				@gcc $(ERROR_FLAGS) $(PRE_OBJ) -Iinclude/ -o $(NAME) $(LIB_FLAG) $(MLX) $(MLX_FLAG_JB)
+else
+				@gcc $(ERROR_FLAGS) $(PRE_OBJ) -Iinclude/ -o $(NAME) $(LIB_FLAG) $(MLX) $(MLX_FLAG_BEN)
+endif
 				@echo "Compiling $(PROJECT_NAME) done."
 
 all:				$(NAME)
 
 clean:
 				@make -C $(LIB_DIR) clean
+				@make -C $(MLX_DIR) clean
 				@echo "Removing $(PROJECT_NAME) object files..."
 				@rm -f $(O_FILES)
 				@rm -rf $(OBJ_DIR)
@@ -59,6 +66,7 @@ clean:
 
 fclean:				clean
 				@make -C $(LIB_DIR) fclean
+				@make -C $(MLX_DIR) fclean
 				@echo "Removing $(PROJECT_NAME) program..."
 				@rm -f $(NAME)
 				@echo "Removing $(PROJECT_NAME) program done."
