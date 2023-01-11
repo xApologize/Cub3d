@@ -278,9 +278,9 @@ void	map(t_data *data)
 		init_var(data, i);
 		init_dist(data);
 		dda(data);
-		y = (double) (data->ray->posY) * 10; //+ 4.5;
-		x = (double) (data->ray->posX) * 10; //+ 4.5;
-		hold = data->ray->wallDist * 10; //+ 4.5;
+		y = (double) (data->ray->posY) * 10;
+		x = (double) (data->ray->posX) * 10;
+		hold = data->ray->wallDist * 10;
 		while (hold-- >= 0 && y > 0 && x > 0 && x < mapWidth * 10 && y < mapHeight * 10)
 		{
 			mlx_put_pixel(data->ray->img, x, y, 0xFF0000FF);
@@ -289,6 +289,86 @@ void	map(t_data *data)
 		}
 		i += 0.5;
 	}
+}
+
+
+void	find_hit(t_data *data, xpm_t *texture)
+{
+	double	hit;
+
+	if (data->ray->side == 0 || data->ray->side == 1)
+		hit = data->ray->posY + data->ray->wallDist * data->ray->rayY;
+	else
+		hit = data->ray->posX + data->ray->wallDist * data->ray->rayX;
+	hit -= (int) hit;
+	data->ray->texX = (int) (hit * (double) texture->texture.width);
+	if((data->ray->side == 0 || data->ray->side == 1) && data->ray->rayX > 0) 
+		data->ray->texX = texture->texture.width - data->ray->texX - 1;
+    if((data->ray->side == 2 || data->ray->side == 3) && data->ray->rayY < 0) 
+		data->ray->texX = texture->texture.width - data->ray->texX - 1;
+}
+
+int create_colour(int r, int g, int b, int a)
+{
+    return (r << 24 | g << 16 | b << 8 | a);
+}
+
+/* void	draw_line(t_data *data, xpm_t *texture, int i)
+{
+	double	dist;
+	double	pos;
+	int		texY;
+	int		j;
+
+	dist = 1.0 * texture->texture.height / data->ray->line;
+	pos = (data->ray->start - HEIGHT / 2 + data->ray->line) * dist;
+	j = data->ray->start;
+	while (j < data->ray->end)
+	{
+		texY = (int) pos & (texture->texture.height);
+		pos += dist;
+		j++;
+	}
+} */
+
+void	fill_texture(int **arr, xpm_t *tex)
+{
+	int	i;
+	int	j;
+
+	printf("ok %u\n", tex->texture.height);
+	for (int k = 0;k < 1000; k++)
+		printf("%x", tex->texture.pixels[k]);
+	arr = ft_calloc(sizeof(int *), tex->texture.height);
+	i = -1;
+	while (++i < (int) tex->texture.height)
+	{
+			printf("ok2 %u\n", tex->texture.width);
+		arr[i] = ft_calloc(sizeof(int), tex->texture.width);
+		j = -1;
+		while (++j < (int) tex->texture.width)
+		{
+			printf("ok3\n");
+			arr[i][j] = create_colour(tex->texture.pixels[(tex->texture.width * 4 * i - 4) + (j * 4 - 4) + 0], tex->texture.pixels[(tex->texture.width * 4 * i - 4) + (j * 4 - 4) + 1],
+				tex->texture.pixels[(tex->texture.width * 4 * i - 4) + (j * 4 - 4) + 2], tex->texture.pixels[(tex->texture.width * 4 * i - 4) + (j * 4 - 4) + 3]);
+		}
+	}
+	
+}
+
+void	create_texture(t_data *data)
+{
+	data->ray->tex = ft_calloc(1, sizeof(t_tex *));
+	data->ray->tex->east_tex = mlx_load_xpm42("./asset/Blue_partyhat_1.xpm42");
+	if (!data->ray->tex->east_tex)
+		exit(1);
+	data->ray->tex->west_tex = mlx_load_xpm42("./asset/Green_partyhat_1.xpm42");
+	data->ray->tex->north_tex = mlx_load_xpm42("./asset/Purple_partyhat_1.xpm42");
+	data->ray->tex->south_tex = mlx_load_xpm42("./asset/White_partyhat.xpm42");
+	fill_texture(data->ray->tex->east, data->ray->tex->east_tex);
+	fill_texture(data->ray->tex->west, data->ray->tex->west_tex);
+	fill_texture(data->ray->tex->north, data->ray->tex->north_tex);
+	fill_texture(data->ray->tex->south, data->ray->tex->south_tex);
 }
 
 void	raycaster(t_data *data)
@@ -305,7 +385,9 @@ void	raycaster(t_data *data)
 		calc_line(data);
 		if (i == WIDTH / 2)
 			data->ray->rayLenght = data->ray->wallDist;
-		while (data->ray->start < data->ray->end)
+		//find_hit(data, lol);
+		//draw_line(data, lol, i);
+		/* while (data->ray->start < data->ray->end)
 		{
 			if (data->ray->side == 0)
 				mlx_put_pixel(data->ray->img, i, data->ray->start++, 0xa103fcFF); // east
@@ -315,7 +397,7 @@ void	raycaster(t_data *data)
 				mlx_put_pixel(data->ray->img, i, data->ray->start++, 0xf0224eFF); // south
 			else
 				mlx_put_pixel(data->ray->img, i, data->ray->start++, 0x0000FFFF); // north
-		}
+		} */
 	}
 	if (data->ray->rays == true)
 		map(data);
@@ -392,11 +474,6 @@ void	hook(mlx_key_data_t keydata, void *temp)
 	raycaster(data);
 }
 
-int create_colour(int r, int g, int b, int a)
-{
-    return (r << 24 | g << 16 | b << 8 | a);
-}
-
 void	init_mlx(t_data *data)
 {
 	data->ray = ft_calloc(1, sizeof(t_ray));
@@ -412,6 +489,10 @@ void	init_mlx(t_data *data)
 	data->ray->rays = false;
 	data->ray->ceiling = create_colour(data->map_data->ceiling_color[0], data->map_data->ceiling_color[1], data->map_data->ceiling_color[2], 255);
 	data->ray->floor = create_colour(data->map_data->floor_color[0], data->map_data->floor_color[1], data->map_data->floor_color[2], 255);
+	create_texture(data);
+	for(unsigned int i = 0; i < data->ray->tex->east_tex->texture.height; i++)
+		for (unsigned int j = 0; j < data->ray->tex->east_tex->texture.width; j++)
+			printf("%x\n", data->ray->tex->east[i][j]);
 	raycaster(data);
 	mlx_image_to_window(data->ray->mlx, data->ray->img, 0, 0);
 	mlx_key_hook(data->ray->mlx, &hook, (void *) data);

@@ -13,8 +13,8 @@ int	main(int argc, char **argv)
 	check_map(argv[1], &data);
 	check_arguments(&data);
 	init_mlx(&data);
-	check_map(argv[1], &data);
-	check_arguments(&data);
+	//check_map(argv[1], &data);
+	//check_arguments(&data);
 	free(data.map_data->ceiling_color);
 	free(data.map_data->floor_color);
 	ft_freepp((void **)data.map);
