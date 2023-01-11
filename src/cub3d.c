@@ -49,7 +49,6 @@ int	main(int argc, char **argv)
 	set_map(argv[1], &data);
 	check_arguments(&data);
 	check_map(&data);
-	check_arguments(&data);
 	init_mlx(&data);
 	free_full_data(&data);
 	return (EXIT_SUCCESS);
