@@ -14,6 +14,8 @@ int	ft_get_pp_length(char **pp)
 {
 	int	i;
 
+	if (!pp)
+		return (0);
 	i = 0;
 	while (pp[i])
 		i++;
