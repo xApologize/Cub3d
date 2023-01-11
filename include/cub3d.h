@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/11 10:11:52 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:12:25 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,11 @@ void	check_map_char(t_data *data);
 void	set_start_pos(t_data *data);
 
 //check_map_utils.c
+int		get_longest_row(t_data *data);
+char	*get_new_string(char *str, int longest);
 void	set_map_only(t_data *data);
+void	set_map_square(t_data *data);
+void	set_space(char *new_string, int longest);
 
 //check_path.c
 int		check_extension(char *path, char *extension);
