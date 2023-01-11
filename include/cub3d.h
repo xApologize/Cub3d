@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/21 14:15:19 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/11 07:37:23 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define ERROR "Error: "
 # define ERR_MALLOC "an error happened when allocating memory.\n"
 # define ERR_MAIN_ARG "you must only give the program one argument.\n"
+# define ERR_MAP_EMPTY "the map file is empty.\n"
 # define ERR_MAP_EXT "the map you pass to the program must have a\
  .cub extension.\n"
 # define ERR_ASSET_EXT "the assets you pass in the map information must have a\
