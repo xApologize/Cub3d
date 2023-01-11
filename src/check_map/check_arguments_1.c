@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:16:51 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/21 14:16:55 by jrossign         ###   ########.fr       */
+/*   Updated: 2022/12/21 17:22:03 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	*get_colors(t_data *data, char **color, char *arg)
 	}
 	tmp = ft_strdup(color[1]);
 	split_color = ft_split(tmp, ',');
+	if (ft_get_pp_length(split_color) != 3)
+		error_and_free(data, ERR_COL_NOT_3, 1);
 	free(tmp);
 	ft_freepp((void **) color);
 	check_colors(data, split_color, arg);
