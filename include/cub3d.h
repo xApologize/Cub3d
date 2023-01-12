@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/11 14:12:25 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/12 08:02:43 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,14 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <stdint.h>
 # include <stdbool.h>
 
 typedef struct s_data
 {
 	int				start_pos[2];
+	int				map_width;
+	int				map_height;
 	char			**map;
 	char			**copy;
 	struct s_ray	*ray;
@@ -157,6 +160,7 @@ int		check_map_exist(char *map);
 //get_map.c
 void	set_map(char *map, t_data *data);
 void	get_map(int map_fd, t_data *data);
+void	set_height_width(t_data *data);
 
 //set_map_struct.c
 void	create_map_data(t_data *data);
