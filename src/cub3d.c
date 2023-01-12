@@ -6,11 +6,12 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:13:57 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/11 13:44:05 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/12 07:58:16 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdio.h>
 
 void	print_data(t_data *data)
 {
@@ -49,7 +50,8 @@ int	main(int argc, char **argv)
 	set_map(argv[1], &data);
 	check_arguments(&data);
 	check_map(&data);
-	// init_mlx(&data);
+	set_height_width(&data);
+	init_mlx(&data);
 	free_full_data(&data);
 	return (EXIT_SUCCESS);
 }
