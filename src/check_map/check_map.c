@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:16:59 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/11 14:15:32 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/12 07:58:05 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	check_map(t_data *data)
 	set_start_pos(data);
 	flood_fill(data);
 	set_map_square(data);
-	print_map1(data->map);
 }
 
 void	check_map_char(t_data *data)
