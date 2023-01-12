@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:17:55 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/11 07:45:23 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/12 07:32:56 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,10 @@ void	get_map(int map_fd, t_data *data)
 	data->map = ft_split(map, '\n');
 	free(map);
 	close(map_fd);
+}
+
+void	set_height_width(t_data *data)
+{
+	data->map_height = ft_get_pp_length(data->map);
+	data->map_width = get_longest_row(data);
 }
