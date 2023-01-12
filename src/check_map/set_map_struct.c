@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:18:05 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/21 14:18:06 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:17:17 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,26 @@ void	create_map_data(t_data *data)
 	data->map_data = map;
 }
 
-void	set_texture(t_data *data, char *arg, int fd)
+void	set_texture(t_data *data, char *arg, char **path)
 {
-	if (fd < 0)
+	if (!path)
 	{
 		free(arg);
-		error_code_arg(data, fd);
+		ft_freepp((void *) path);
 	}
 	else if (!ft_strncmp(arg, "NO", ft_strlen(arg))
 		&& !data->map_data->north_wall)
-		data->map_data->north_wall = fd;
+		data->map_data->north_wall = ft_strdup(path[1]);
 	else if (!ft_strncmp(arg, "SO", ft_strlen(arg))
 		&& !data->map_data->south_wall)
-		data->map_data->south_wall = fd;
+		data->map_data->south_wall = ft_strdup(path[1]);
 	else if (!ft_strncmp(arg, "EA", ft_strlen(arg))
 		&& !data->map_data->east_wall)
-		data->map_data->east_wall = fd;
+		data->map_data->east_wall = ft_strdup(path[1]);
 	else if (!ft_strncmp(arg, "WE", ft_strlen(arg))
 		&& !data->map_data->west_wall)
-		data->map_data->west_wall = fd;
+		data->map_data->west_wall = ft_strdup(path[1]);
+	ft_freepp((void **) path);
 }
 
 void	set_color(t_data *data, char *arg, char *str)

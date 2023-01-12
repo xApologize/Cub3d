@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/12 08:02:43 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:16:09 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,14 +85,14 @@ typedef struct s_data
 
 typedef struct s_map
 {
-	int	x;
-	int	y;
-	int	north_wall;
-	int	south_wall;
-	int	east_wall;
-	int	west_wall;
-	int	*ceiling_color;
-	int	*floor_color;
+	int		x;
+	int		y;
+	char	*north_wall;
+	char	*south_wall;
+	char	*east_wall;
+	char	*west_wall;
+	int		*ceiling_color;
+	int		*floor_color;
 }			t_map;
 
 typedef struct s_ray{
@@ -164,7 +164,7 @@ void	set_height_width(t_data *data);
 
 //set_map_struct.c
 void	create_map_data(t_data *data);
-void	set_texture(t_data *data, char *arg, int fd);
+void	set_texture(t_data *data, char *arg, char **path);
 void	set_color(t_data *data, char *arg, char *str);
 
 //flood_fill
