@@ -6,12 +6,11 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:17:19 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/11 14:28:18 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/12 07:58:58 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdlib.h>
 
 int	get_longest_row(t_data *data)
 {
@@ -72,6 +71,7 @@ void	set_map_square(t_data *data)
 		set_space(data->map[i], longest);
 		i++;
 	}
+	data->map[data->start_pos[0]][data->start_pos[1]] = '0';
 }
 
 void	set_space(char *new_string, int longest)
@@ -81,7 +81,8 @@ void	set_space(char *new_string, int longest)
 	i = 0;
 	while (i < longest)
 	{
-		if (new_string[i] != '1' && new_string[i] != '0')
+		if (new_string[i] != '1' && new_string[i] != '0'
+			&& !ft_strchr(VALID_STARTING_POINT, new_string[i]))
 			new_string[i] = '1';
 		i++;
 	}
