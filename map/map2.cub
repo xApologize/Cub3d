@@ -3,8 +3,8 @@ SO ./asset/wall.xpm
 EA ./asset/wall.xpm
 WE ./asset/wall.xpm
 
-C 7,42,12
-F 189,90,098
+C 20,28,237
+F 18,234,26
 
 111111111111111111111
 100000000000000000001

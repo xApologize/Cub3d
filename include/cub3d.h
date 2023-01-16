@@ -20,22 +20,33 @@
 
 # define mapWidth 36 // va etre a mettre dans la struct
 # define mapHeight 42
+# define PI 3.141593
 
 typedef struct s_tex{
-	xpm_t	*north_tex;
-	xpm_t	*south_tex;
-	xpm_t	*east_tex;
-	xpm_t	*west_tex;
 	int		**north;
 	int		**south;
 	int		**east;
 	int		**west;
+	xpm_t	*north_tex;
+	xpm_t	*south_tex;
+	xpm_t	*east_tex;
+	xpm_t	*west_tex;
 }	t_tex;
 
 typedef struct s_ray{
-	t_tex		*tex;
-	mlx_t		*mlx;
-	mlx_image_t	*img;
+	int			texX;
+	int			mapX;
+	int			mapY;
+	int			stepX;
+	int			stepY;
+	int			hit;
+	int			side;
+	int			line;
+	int			end;
+	int			start;
+	int			floor;
+	int			ceiling;
+	bool		rays;
 	double		posX;
 	double		posY;
 	double		dirX;
@@ -52,19 +63,9 @@ typedef struct s_ray{
 	double		wallDist;
 	double		rayLenght;
 	double		mSpeed;
-	int			texX;
-	int			mapX;
-	int			mapY;
-	int			stepX;
-	int			stepY;
-	int			hit;
-	int			side;
-	int			line;
-	int			end;
-	int			start;
-	int			floor;
-	int			ceiling;
-	bool		rays;
+	double		sSpeed;
+	mlx_t		*mlx;
+	mlx_image_t	*img;
 }	t_ray;
 
 typedef struct s_map
@@ -81,6 +82,7 @@ typedef struct s_data
 {
 	char	**map;
 	t_map	*map_data;
+	t_tex	*tex;
 	t_ray	*ray;
 } 	t_data;
 
