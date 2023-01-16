@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/16 13:43:29 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/16 13:27:19 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //valid char/extension
 # define EXTENSION_MAP ".cub"
-# define EXTENSION_TEXTURE ".xpm"
+# define EXTENSION_TEXTURE ".xpm42"
 # define VALID_MAP_CHAR "01 NEWS"
 # define VALID_STARTING_POINT "NEWS"
 
@@ -27,7 +27,7 @@
 # define ERR_MAP_EXT "the map you pass to the program must have a\
  .cub extension.\n"
 # define ERR_ASSET_EXT "the assets you pass in the map information must have a\
- .xpm extension.\n"
+ .xpm42 extension.\n"
 # define ERR_ARG_PATH "one of the path in the map information is not valid.\n"
 # define ERR_COL_LINE "one of the line in the map information is not valid.\n"
 # define ERR_COL_NOT_3 "the color you passed in the map information is not a\
@@ -53,6 +53,14 @@
 # define CODE_PATH_ERR -2
 # define CODE_EXT_ERR -3
 
+//mlx stuff
+# define WIDTH 1920
+# define HEIGHT 1080
+# define RSPEED 0.1
+
+# define mapWidth 36 // va etre a mettre dans la struct
+# define mapHeight 42
+
 # include "../lib/libft/include/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
 # include <stdio.h>
@@ -61,6 +69,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <stdint.h>
 # include <stdbool.h>
 
 # define WIDTH 1920
@@ -119,22 +128,61 @@ typedef struct s_ray{
 
 typedef struct s_map
 {
-	int		north_wall;
-	int		south_wall;
-	int		east_wall;
-	int		west_wall;
-	int		*ceiling_color;
-	int		*floor_color;
-}	t_map;
+	int				start_pos[2];
+	int				map_width;
+	int				map_height;
+	char			**map;
+	char			**copy;
+	struct s_ray	*ray;
+	struct s_map	*map_data;
+}					t_data;
+
 
 typedef struct s_data
 {
-	char	**map;
-	t_map	*map_data;
-	t_tex	*tex;
-	t_ray	*ray;
-} 	t_data;
+	int		x;
+	int		y;
+	char	*north_wall;
+	char	*south_wall;
+	char	*east_wall;
+	char	*west_wall;
+	int		*ceiling_color;
+	int		*floor_color;
+}			t_map;
 
+
+typedef struct s_ray{
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+	double		posX;
+	double		posY;
+	double		dirX;
+	double		dirY;
+	double		planeX;
+	double		planeY;
+	double	 	camera;
+	double	 	rayY;
+	double	 	rayX;
+	double		distY;
+	double		distX;
+	double		deltaX;
+	double		deltaY;
+	double		wallDist;
+	double		rayLenght;
+	double		mSpeed;
+	int			mapX;
+	int			mapY;
+	int			stepX;
+	int			stepY;
+	int			hit;
+	int			side;
+	int			line;
+	int			end;
+	int			start;
+	int			floor;
+	int			ceiling;
+	bool		rays;
+}	t_ray;
 
 //check_map
 //check_arguments.c
@@ -155,32 +203,24 @@ void	check_map_char(t_data *data);
 void	set_start_pos(t_data *data);
 
 //check_map_utils.c
+int		get_longest_row(t_data *data);
+char	*get_new_string(char *str, int longest);
 void	set_map_only(t_data *data);
+void	set_map_square(t_data *data);
+void	set_space(char *new_string, int longest);
 
 //check_path.c
 int		check_extension(char *path, char *extension);
 int		check_map_exist(char *map);
 
-<<<<<<< HEAD
-//raycaster.c
-void	init_mlx(t_data *data);
-void	raycaster(t_data *data);
-void	hook(mlx_key_data_t keydata, void *temp);
-
-//draw.c
-void	draw_player(t_data *data);
-void	draw_wall(t_data *data, int x, int y);
-void	draw_space(t_data *data, int x, int y);
-void	draw_map(t_data *data);
-
-=======
 //get_map.c
 void	set_map(char *map, t_data *data);
 void	get_map(int map_fd, t_data *data);
+void	set_height_width(t_data *data);
 
 //set_map_struct.c
 void	create_map_data(t_data *data);
-void	set_texture(t_data *data, char *arg, int fd);
+void	set_texture(t_data *data, char *arg, char **path);
 void	set_color(t_data *data, char *arg, char *str);
 
 //flood_fill
@@ -199,6 +239,16 @@ void	error_code_arg(t_data *data, int err_code);
 //free_data.c
 void	free_full_data(t_data *data);
 void	close_fds(t_data *data);
->>>>>>> main
+
+//raycaster.c
+void	init_mlx(t_data *data);
+void	raycaster(t_data *data);
+void	hook(mlx_key_data_t keydata, void *temp);
+
+//draw.c
+void	draw_player(t_data *data);
+void	draw_wall(t_data *data, int x, int y);
+void	draw_space(t_data *data, int x, int y);
+void	draw_map(t_data *data);
 
 #endif

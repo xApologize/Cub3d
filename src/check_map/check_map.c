@@ -6,11 +6,23 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:16:59 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/21 14:17:00 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/12 07:58:05 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	print_map1(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		printf("%s\n", map[i]);
+		i++;
+	}
+}
 
 void	check_map(t_data *data)
 {
@@ -18,6 +30,7 @@ void	check_map(t_data *data)
 	check_map_char(data);
 	set_start_pos(data);
 	flood_fill(data);
+	set_map_square(data);
 }
 
 void	check_map_char(t_data *data)

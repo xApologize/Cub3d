@@ -6,11 +6,12 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:46 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/21 14:15:47 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:20:39 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <stdlib.h>
 
 void	free_full_data(t_data *data)
 {
@@ -29,12 +30,12 @@ void	free_full_data(t_data *data)
 
 void	close_fds(t_data *data)
 {
-	if (data->map_data->north_wall != 0)
-		close(data->map_data->north_wall);
-	if (data->map_data->south_wall != 0)
-		close(data->map_data->south_wall);
-	if (data->map_data->east_wall != 0)
-		close(data->map_data->east_wall);
-	if (data->map_data->west_wall != 0)
-		close(data->map_data->west_wall);
+	if (data->map_data->north_wall)
+		free(data->map_data->north_wall);
+	if (data->map_data->south_wall)
+		free(data->map_data->south_wall);
+	if (data->map_data->east_wall)
+		free(data->map_data->east_wall);
+	if (data->map_data->west_wall)
+		free(data->map_data->west_wall);
 }

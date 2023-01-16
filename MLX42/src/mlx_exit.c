@@ -31,6 +31,7 @@ void mlx_close_window(mlx_t* mlx)
 
 /**
  * All of glfw & glads resources are cleaned up by the terminate function.
+
  * Now it's time to cleanup our own mess.
  */
 void mlx_terminate(mlx_t* mlx)
