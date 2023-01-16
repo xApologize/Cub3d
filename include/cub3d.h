@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/16 13:02:37 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/16 13:27:19 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define ERR_MAP_EXT "the map you pass to the program must have a\
  .cub extension.\n"
 # define ERR_ASSET_EXT "the assets you pass in the map information must have a\
- .xpm extension.\n"
+ .xpm42 extension.\n"
 # define ERR_ARG_PATH "one of the path in the map information is not valid.\n"
 # define ERR_COL_LINE "one of the line in the map information is not valid.\n"
 # define ERR_COL_NOT_3 "the color you passed in the map information is not a\

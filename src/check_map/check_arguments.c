@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:16:39 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/12 14:17:27 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/16 13:26:38 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,18 @@ void	set_map_data(t_data *data, char *arg, char *str)
 {
 	int	fd;
 
+	fd = 0;
 	if (!ft_strcmp(arg, "NO") || !ft_strcmp(arg, "SO")
 		|| !ft_strcmp(arg, "EA") || !ft_strcmp(arg, "WE"))
 	{
 		fd = open_assets_file(ft_split(str, ' '));
 		if (fd > 0)
 			set_texture(data, arg, ft_split(str, ' '));
-		close(fd);
+		if (fd < 0)
+		{
+			free(arg);
+			error_and_free(data, ERR_ASSET_EXT, 1);
+		}
 	}
 	else if (!ft_strcmp(arg, "C") || !ft_strcmp(arg, "F"))
 		set_color(data, arg, str);
@@ -52,6 +57,7 @@ void	set_map_data(t_data *data, char *arg, char *str)
 		free(arg);
 		error_and_free(data, ERR_ARG_NAME, 1);
 	}
+	close(fd);
 	free(arg);
 }
 

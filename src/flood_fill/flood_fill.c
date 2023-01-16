@@ -6,24 +6,24 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:20:12 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/11 08:10:49 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/16 13:13:33 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 //to remove before we push the project
-void	print_map(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		printf("%s\n", map[i]);
-		i++;
-	}
-}
+// void	print_map(char **map)
+// {
+// 	int	i;
+//
+// 	i = 0;
+// 	while (map[i])
+// 	{
+// 		printf("%s\n", map[i]);
+// 		i++;
+// 	}
+// }
 
 void	flood_fill(t_data *data)
 {

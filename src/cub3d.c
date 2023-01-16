@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:13:57 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/12 14:18:10 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/16 13:15:23 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	main(int argc, char **argv)
 	check_arguments(&data);
 	check_map(&data);
 	set_height_width(&data);
-	print_data(&data);
 	// init_mlx(&data);
 	free_full_data(&data);
 	return (EXIT_SUCCESS);
