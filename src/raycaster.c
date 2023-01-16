@@ -458,20 +458,20 @@ void	backward(t_data *data)
 		data->ray->posY -= data->ray->dirY * data->ray->mSpeed;
 }
 
-void	left(t_data *data)
+void	left(t_data *data)	// peut cliper quand on est dans un coin 
 {
-	if(worldMap[(int)(data->ray->posY)][(int)(data->ray->posX - data->ray->planeX * data->ray->sSpeed)] == false) 
-		data->ray->posX -= data->ray->planeX * data->ray->sSpeed;
 	if(worldMap[(int)(data->ray->posY - data->ray->planeY * data->ray->sSpeed)][(int)(data->ray->posX)] == false)
 		data->ray->posY -= data->ray->planeY * data->ray->sSpeed;
+	if(worldMap[(int)(data->ray->posY)][(int)(data->ray->posX - data->ray->planeX * data->ray->sSpeed)] == false) 
+		data->ray->posX -= data->ray->planeX * data->ray->sSpeed;
 }
 
-void	right(t_data *data)
+void	right(t_data *data) // peut cliper quand on est dans un coin 
 {
-	if(worldMap[(int)(data->ray->posY)][(int)(data->ray->posX + data->ray->posX * data->ray->sSpeed)] == false) 
-		data->ray->posX += data->ray->planeX * data->ray->sSpeed;
     if(worldMap[(int)(data->ray->posY + data->ray->planeY * data->ray->sSpeed)][(int)(data->ray->posX)] == false)
 		data->ray->posY += data->ray->planeY * data->ray->sSpeed;
+	if(worldMap[(int)(data->ray->posY)][(int)(data->ray->posX + data->ray->posX * data->ray->sSpeed)] == false) 
+		data->ray->posX += data->ray->planeX * data->ray->sSpeed;
 }
 
 void	hook(mlx_key_data_t keydata, void *temp)
@@ -541,7 +541,7 @@ void	init_mlx(t_data *data)
 	create_texture(data);
 	raycaster(data); 
 	mlx_image_to_window(data->ray->mlx, data->ray->img, 0, 0);
-	mlx_image_to_window(data->ray->mlx, img, 500, 0);
+	mlx_image_to_window(data->ray->mlx, img, 860, 300);
 	mlx_key_hook(data->ray->mlx, &hook, (void *) data);
 	mlx_loop(data->ray->mlx);
 	mlx_delete_xpm42(ags);
