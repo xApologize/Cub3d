@@ -23,6 +23,7 @@ MLX				= MLX42/libmlx42.a
 MLX_FLAG_JB		= -lglfw -L /Users/$(USER)/homebrew/Cellar/glfw/3.3.8/lib/
 MLX_FLAG_BEN	= -lglfw -L /Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib/
 
+
 #--DIR PATH--# >
 SRC_DIR			= src/
 OBJ_DIR			= obj/
@@ -47,11 +48,13 @@ $(NAME):			$(PRE_OBJ)
 				@make -C $(LIB_DIR)
 				@make -C $(MLX_DIR)
 				@echo "Compiling $(PROJECT_NAME)..."
+
 ifeq ($(USER), jrossign)
 				@gcc $(ERROR_FLAGS) $(PRE_OBJ) -Iinclude/ -o $(NAME) $(LIB_FLAG) $(MLX) $(MLX_FLAG_JB)
 else
 				@gcc $(ERROR_FLAGS) $(PRE_OBJ) -Iinclude/ -o $(NAME) $(LIB_FLAG) $(MLX) $(MLX_FLAG_BEN)
 endif
+
 				@echo "Compiling $(PROJECT_NAME) done."
 
 all:				$(NAME)

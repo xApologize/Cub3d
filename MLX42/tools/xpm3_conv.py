@@ -14,6 +14,7 @@ import sys
 
 # This script takes an XPM3 as argument and converts it to XPM42.
 
+
 # This is a generated dictionary from the XFree86 distribution.
 colours = {
 	"snow":"fffafa",

@@ -72,7 +72,61 @@
 # include <stdint.h>
 # include <stdbool.h>
 
-typedef struct s_data
+# define WIDTH 1920
+# define HEIGHT 1080
+# define RSPEED 0.1
+
+# define mapWidth 36 // va etre a mettre dans la struct
+# define mapHeight 42
+# define PI 3.141593
+
+typedef struct s_tex{
+	int		**north;
+	int		**south;
+	int		**east;
+	int		**west;
+	xpm_t	*north_tex;
+	xpm_t	*south_tex;
+	xpm_t	*east_tex;
+	xpm_t	*west_tex;
+}	t_tex;
+
+typedef struct s_ray{
+	int			texX;
+	int			mapX;
+	int			mapY;
+	int			stepX;
+	int			stepY;
+	int			hit;
+	int			side;
+	int			line;
+	int			end;
+	int			start;
+	int			floor;
+	int			ceiling;
+	bool		rays;
+	double		posX;
+	double		posY;
+	double		dirX;
+	double		dirY;
+	double		planeX;
+	double		planeY;
+	double	 	camera;
+	double	 	rayY;
+	double	 	rayX;
+	double		distY;
+	double		distX;
+	double		deltaX;
+	double		deltaY;
+	double		wallDist;
+	double		rayLenght;
+	double		mSpeed;
+	double		sSpeed;
+	mlx_t		*mlx;
+	mlx_image_t	*img;
+}	t_ray;
+
+typedef struct s_map
 {
 	int				start_pos[2];
 	int				map_width;
@@ -83,7 +137,8 @@ typedef struct s_data
 	struct s_map	*map_data;
 }					t_data;
 
-typedef struct s_map
+
+typedef struct s_data
 {
 	int		x;
 	int		y;
@@ -94,6 +149,7 @@ typedef struct s_map
 	int		*ceiling_color;
 	int		*floor_color;
 }			t_map;
+
 
 typedef struct s_ray{
 	mlx_t		*mlx;

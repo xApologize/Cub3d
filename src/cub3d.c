@@ -42,7 +42,7 @@ void	print_data(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
+	t_data	*data;
 
 	if (argc != 2)
 		error_and_free(&data, ERR_MAIN_ARG, 0);
