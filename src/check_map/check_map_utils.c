@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoinfree.c                                   :+:      :+:    :+:   */
+/*   check_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 15:18:35 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/09 09:53:55 by jrossign         ###   ########.fr       */
+/*   Created: 2022/12/21 14:17:19 by jrossign          #+#    #+#             */
+/*   Updated: 2022/12/21 14:17:34 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "cub3d.h"
 
-char	*ft_strjoinfree(const char *s1, const char *s2)
+void	set_map_only(t_data *data)
 {
-	char	*new_line;
+	int		i;
+	char	**tmp;
 
-	if (!s2)
-		return (NULL);
-	if (!s1)
-		new_line = ft_strdup(s2);
-	else
-		new_line = ft_strjoin(s1, s2);
-	if (s1)
-		free((char *)s1);
-	free((char *)s2);
-	return (new_line);
+	i = 0;
+	while (data->map[i + 6])
+		i++;
+	tmp = ft_calloc(sizeof(char *), i + 1);
+	i = 0;
+	while (data->map[i + 6])
+	{
+		tmp[i] = ft_strdup(data->map[i + 6]);
+		i++;
+	}
+	ft_freepp((void **)data->map);
+	data->map = tmp;
 }

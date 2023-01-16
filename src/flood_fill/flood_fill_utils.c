@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoinfree.c                                   :+:      :+:    :+:   */
+/*   flood_fill_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 15:18:35 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/09 09:53:55 by jrossign         ###   ########.fr       */
+/*   Created: 2022/12/21 14:21:15 by jrossign          #+#    #+#             */
+/*   Updated: 2022/12/21 14:21:17 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/libft.h"
+#include "cub3d.h"
 
-char	*ft_strjoinfree(const char *s1, const char *s2)
+char	**copy_map(t_data *data)
 {
-	char	*new_line;
+	int		len;
+	char	**copy;
 
-	if (!s2)
-		return (NULL);
-	if (!s1)
-		new_line = ft_strdup(s2);
-	else
-		new_line = ft_strjoin(s1, s2);
-	if (s1)
-		free((char *)s1);
-	free((char *)s2);
-	return (new_line);
+	len = 0;
+	while (data->map[len])
+		len++;
+	copy = ft_calloc(sizeof(char *), len + 1);
+	len = 0;
+	while (data->map[len])
+	{
+		copy[len] = ft_strdup(data->map[len]);
+		len++;
+	}
+	return (copy);
 }

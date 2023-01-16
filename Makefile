@@ -4,11 +4,14 @@ PROJECT_NAME	= cub3d
 #--C FILES--# >
 C_FILES_MAIN	= cub3d.c raycaster.c draw.c						\
 
-C_FILES_CHECK	= check_arguments.c check_map.c check_path.c	\
-				  check_arguments_1.c							\
+C_FILES_CHECK	= check_arguments.c get_map.c check_path.c			\
+				  check_arguments_1.c check_map.c check_map_utils.c	\
+				  set_map_struct.c									\
+
+C_FILES_FF		= flood_fill.c flood_fill_utils.c					\
 
 #--C FILES TO O FILES--# >
-O_FILES			= $(C_FILES_MAIN:.c=.o) $(C_FILES_CHECK:.c=.o)
+O_FILES			= $(C_FILES_MAIN:.c=.o) $(C_FILES_CHECK:.c=.o) $(C_FILES_FF:.c=.o)
 
 #--NAME--# >
 NAME			= $(PROJECT_NAME)
@@ -26,12 +29,13 @@ OBJ_DIR			= obj/
 INC_DIR			= include/
 LIB_DIR			= lib/libft/
 CHECK_MAP_DIR	= $(SRC_DIR)check_map/
+FF_DIR			= $(SRC_DIR)flood_fill/
 
 #--PREFIX--#
 PRE_OBJ			= $(addprefix $(OBJ_DIR), $(O_FILES))
 
 #--VPATH--#
-VPATH			= $(SRC_DIR) $(CHECK_MAP_DIR)
+VPATH			= $(SRC_DIR) $(CHECK_MAP_DIR) $(FF_DIR)
 
 #--ACTIONS--# >
 $(OBJ_DIR)%.o:		%.c
