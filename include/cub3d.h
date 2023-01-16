@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/12 14:16:09 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/16 13:02:37 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 //valid char/extension
 # define EXTENSION_MAP ".cub"
-# define EXTENSION_TEXTURE ".xpm"
+# define EXTENSION_TEXTURE ".xpm42"
 # define VALID_MAP_CHAR "01 NEWS"
 # define VALID_STARTING_POINT "NEWS"
 
