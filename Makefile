@@ -2,7 +2,7 @@
 PROJECT_NAME	= cub3d
 
 #--C FILES--# >
-C_FILES_MAIN	= cub3d.c error.c free_data.c						\
+C_FILES_MAIN	= cub3d.c raycaster.c draw.c						\
 
 C_FILES_CHECK	= check_arguments.c get_map.c check_path.c			\
 				  check_arguments_1.c check_map.c check_map_utils.c	\
@@ -19,6 +19,9 @@ NAME			= $(PROJECT_NAME)
 #--FLAGS--# >
 ERROR_FLAGS		= -Werror -Wall -Wextra -g
 LIB_FLAG		= -L./lib/libft -lft
+MLX				= MLX42/libmlx42.a 
+MLX_FLAG		= -lglfw -L /Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib/
+
 
 #--DIR PATH--# >
 SRC_DIR			= src/
@@ -42,7 +45,7 @@ $(OBJ_DIR)%.o:		%.c
 $(NAME):			$(PRE_OBJ)
 				@make -C $(LIB_DIR)
 				@echo "Compiling $(PROJECT_NAME)..."
-				@gcc $(ERROR_FLAGS) $(PRE_OBJ) -Iinclude/ -o $(NAME) $(LIB_FLAG)
+				@gcc $(ERROR_FLAGS) $(PRE_OBJ) -Iinclude/ -o $(NAME) $(LIB_FLAG) $(MLX) $(MLX_FLAG)
 				@echo "Compiling $(PROJECT_NAME) done."
 
 all:				$(NAME)
