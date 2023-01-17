@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:13:57 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/16 13:15:23 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/17 08:42:32 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	print_data(t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_data	*data;
+	t_data	data;
 
 	if (argc != 2)
 		error_and_free(&data, ERR_MAIN_ARG, 0);
@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 	check_arguments(&data);
 	check_map(&data);
 	set_height_width(&data);
-	// init_mlx(&data);
+	init_mlx(&data);
 	free_full_data(&data);
 	return (EXIT_SUCCESS);
 }
