@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/17 10:27:09 by bperron          ###   ########.fr       */
+/*   Updated: 2023/01/17 12:55:40 by bperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ typedef struct s_ray{
 typedef struct s_data
 {
 	int				start_pos[2];
+	char			orientation;
 	int				map_width;
 	int				map_height;
 	char			**map;
