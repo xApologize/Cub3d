@@ -372,7 +372,7 @@ void	forward(t_data *data)
 {
 	if(data->map[(int)(data->ray->posY)][(int)(data->ray->posX + data->ray->dirX * data->ray->mSpeed)] == '0')
 		data->ray->posX += data->ray->dirX * data->ray->mSpeed;
-  if(data->map[(int)(data->ray->posY + data->ray->dirY * data->ray->mSpeed)][(int)(data->ray->posX)] == '0')
+	if(data->map[(int)(data->ray->posY + data->ray->dirY * data->ray->mSpeed)][(int)(data->ray->posX)] == '0')
 		data->ray->posY += data->ray->dirY * data->ray->mSpeed;
 }
 
@@ -387,17 +387,17 @@ void	backward(t_data *data)
 
 void	left(t_data *data)	// peut cliper quand on est dans un coin 
 {
-	if(data->map[(int)(data->ray->posY - data->ray->planeY * data->ray->sSpeed)][(int)(data->ray->posX)] == false)
+	if(data->map[(int)(data->ray->posY - data->ray->planeY * data->ray->sSpeed)][(int)(data->ray->posX)] == '0')
 		data->ray->posY -= data->ray->planeY * data->ray->sSpeed;
-	if(data->map[(int)(data->ray->posY)][(int)(data->ray->posX - data->ray->planeX * data->ray->sSpeed)] == false) 
+	if(data->map[(int)(data->ray->posY)][(int)(data->ray->posX - data->ray->planeX * data->ray->sSpeed)] == '0') 
 		data->ray->posX -= data->ray->planeX * data->ray->sSpeed;
 }
 
 void	right(t_data *data) // peut cliper quand on est dans un coin 
 {
-  if(data->map[(int)(data->ray->posY + data->ray->planeY * data->ray->sSpeed)][(int)(data->ray->posX)] == false) // changer worldmap pour data->map
+	if(data->map[(int)(data->ray->posY + data->ray->planeY * data->ray->sSpeed)][(int)(data->ray->posX)] == '0') // changer worldmap pour data->map
 		data->ray->posY += data->ray->planeY * data->ray->sSpeed;
-	if(data->map[(int)(data->ray->posY)][(int)(data->ray->posX + data->ray->posX * data->ray->sSpeed)] == false) 
+	if(data->map[(int)(data->ray->posY)][(int)(data->ray->posX + data->ray->posX * data->ray->sSpeed)] == '0') 
 		data->ray->posX += data->ray->planeX * data->ray->sSpeed;
 }
 
