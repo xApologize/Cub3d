@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/16 13:27:19 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/17 08:41:28 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,9 +134,10 @@ typedef struct s_map
 	char			**map;
 	char			**copy;
 	struct s_ray	*ray;
-	struct s_map	*map_data;
-}					t_data;
+	struct s_data	*map_data;
+	struct s_tex	*tex;
 
+}					t_data;
 
 typedef struct s_data
 {
@@ -149,40 +150,6 @@ typedef struct s_data
 	int		*ceiling_color;
 	int		*floor_color;
 }			t_map;
-
-
-typedef struct s_ray{
-	mlx_t		*mlx;
-	mlx_image_t	*img;
-	double		posX;
-	double		posY;
-	double		dirX;
-	double		dirY;
-	double		planeX;
-	double		planeY;
-	double	 	camera;
-	double	 	rayY;
-	double	 	rayX;
-	double		distY;
-	double		distX;
-	double		deltaX;
-	double		deltaY;
-	double		wallDist;
-	double		rayLenght;
-	double		mSpeed;
-	int			mapX;
-	int			mapY;
-	int			stepX;
-	int			stepY;
-	int			hit;
-	int			side;
-	int			line;
-	int			end;
-	int			start;
-	int			floor;
-	int			ceiling;
-	bool		rays;
-}	t_ray;
 
 //check_map
 //check_arguments.c
