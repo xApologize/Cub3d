@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/17 08:41:28 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/17 10:36:19 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ typedef struct s_ray{
 typedef struct s_map
 {
 	int				start_pos[2];
+	char			orientation;
 	int				map_width;
 	int				map_height;
 	char			**map;
