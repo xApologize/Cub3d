@@ -244,7 +244,7 @@ void	draw_line(t_data *data, xpm_t *texture, int **arr, int i)
 
 
 	dist = 1.0 * texture->texture.height / data->ray->line;
-	pos = ((double)data->ray->start - (double)HEIGHT / 2 + (double)data->ray->line / 2) * dist;
+	pos = ((double) data->ray->start - (double) HEIGHT / 2 + (double) data->ray->line / 2) * dist;
 	if (pos < 0)
 		pos = 0;
 	j = data->ray->start - 1;
@@ -257,6 +257,7 @@ void	draw_line(t_data *data, xpm_t *texture, int **arr, int i)
 		mlx_put_pixel(data->ray->img, i, j, arr[texY][data->ray->texX]);
 	}
 }
+
 void	raycaster(t_data *data)
 {
 	int		i;
@@ -384,22 +385,22 @@ void	backward(t_data *data)
 		data->ray->posY -= data->ray->dirY * data->ray->mSpeed;
 }
 
-
-void	left(t_data *data)	// peut cliper quand on est dans un coin 
+void	right(t_data *data)
 {
-	if(data->map[(int)(data->ray->posY - data->ray->planeY * data->ray->sSpeed)][(int)(data->ray->posX)] == '0')
-		data->ray->posY -= data->ray->planeY * data->ray->sSpeed;
+	if(data->map[(int)(data->ray->posY)][(int)(data->ray->posX + data->ray->planeX * data->ray->sSpeed)] == '0') 
+		data->ray->posX += data->ray->planeX * data->ray->sSpeed;
+	if(data->map[(int)(data->ray->posY + data->ray->planeY * data->ray->sSpeed)][(int)(data->ray->posX)] == '0')
+		data->ray->posY += data->ray->planeY * data->ray->sSpeed;
+}
+
+void	left(t_data *data)
+{
 	if(data->map[(int)(data->ray->posY)][(int)(data->ray->posX - data->ray->planeX * data->ray->sSpeed)] == '0') 
 		data->ray->posX -= data->ray->planeX * data->ray->sSpeed;
+	if(data->map[(int)(data->ray->posY - data->ray->planeY * data->ray->sSpeed)][(int)(data->ray->posX)] == '0')
+		data->ray->posY -= data->ray->planeY * data->ray->sSpeed;
 }
 
-void	right(t_data *data) // peut cliper quand on est dans un coin 
-{
-	if(data->map[(int)(data->ray->posY + data->ray->planeY * data->ray->sSpeed)][(int)(data->ray->posX)] == '0') // changer worldmap pour data->map
-		data->ray->posY += data->ray->planeY * data->ray->sSpeed;
-	if(data->map[(int)(data->ray->posY)][(int)(data->ray->posX + data->ray->posX * data->ray->sSpeed)] == '0') 
-		data->ray->posX += data->ray->planeX * data->ray->sSpeed;
-}
 
 void	hook(mlx_key_data_t keydata, void *temp)
 {
