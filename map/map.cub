@@ -1,7 +1,7 @@
-NO ../asset/wall.xpm
-SO ../asset/wall.xpm
-EA ../asset/wall.xpm
-WE ../asset/wall.xpm
+NO ./asset/wall1.xpm42
+SO ./asset/wall2.xpm42
+EA ./asset/wall3.xpm42
+WE ./asset/wall4.xpm42
 
 C 1,230,210
 F 220,123,24
