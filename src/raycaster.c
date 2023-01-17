@@ -244,7 +244,7 @@ void	draw_line(t_data *data, xpm_t *texture, int **arr, int i)
 
 
 	dist = 1.0 * texture->texture.height / data->ray->line;
-	pos = (data->ray->start - HEIGHT / 2 + data->ray->line / 2) * dist;
+	pos = ((double)data->ray->start - (double)HEIGHT / 2 + (double)data->ray->line / 2) * dist;
 	if (pos < 0)
 		pos = 0;
 	j = data->ray->start - 1;
@@ -300,7 +300,7 @@ void	raycaster(t_data *data)
 
 int create_colour(int r, int g, int b, int a)
 {
-    return (r << 24 | g << 16 | b << 8 | a);
+	return (r << 24 | g << 16 | b << 8 | a);
 }
 
 int	**fill_texture(xpm_t *tex)
@@ -350,22 +350,22 @@ void	create_texture(t_data *data)
 
 void	turn_right(t_data *data)
 {
-      double oldDirX = data->ray->dirX;
-    	data->ray->dirX = data->ray->dirX * cos(RSPEED) - data->ray->dirY * sin(RSPEED);
-     	data->ray->dirY = oldDirX * sin(RSPEED) + data->ray->dirY * cos(RSPEED);
-      	double oldPlaneX = data->ray->planeX;
-      	data->ray->planeX = data->ray->planeX * cos(RSPEED) - data->ray->planeY * sin(RSPEED);
-      	data->ray->planeY = oldPlaneX * sin(RSPEED) + data->ray->planeY * cos(RSPEED);
+	double oldDirX = data->ray->dirX;
+	data->ray->dirX = data->ray->dirX * cos(RSPEED) - data->ray->dirY * sin(RSPEED);
+	data->ray->dirY = oldDirX * sin(RSPEED) + data->ray->dirY * cos(RSPEED);
+	double oldPlaneX = data->ray->planeX;
+	data->ray->planeX = data->ray->planeX * cos(RSPEED) - data->ray->planeY * sin(RSPEED);
+	data->ray->planeY = oldPlaneX * sin(RSPEED) + data->ray->planeY * cos(RSPEED);
 }
 
 void	turn_left(t_data *data)
 {
-      	double oldDirX = data->ray->dirX;
-    	data->ray->dirX = data->ray->dirX * cos(-RSPEED) - data->ray->dirY * sin(-RSPEED);
-     	data->ray->dirY = oldDirX * sin(-RSPEED) + data->ray->dirY * cos(-RSPEED);
-      	double oldPlaneX = data->ray->planeX;
-      	data->ray->planeX = data->ray->planeX * cos(-RSPEED) - data->ray->planeY * sin(-RSPEED);
-      	data->ray->planeY = oldPlaneX * sin(-RSPEED) + data->ray->planeY * cos(-RSPEED);
+	double oldDirX = data->ray->dirX;
+	data->ray->dirX = data->ray->dirX * cos(-RSPEED) - data->ray->dirY * sin(-RSPEED);
+	data->ray->dirY = oldDirX * sin(-RSPEED) + data->ray->dirY * cos(-RSPEED);
+	double oldPlaneX = data->ray->planeX;
+	data->ray->planeX = data->ray->planeX * cos(-RSPEED) - data->ray->planeY * sin(-RSPEED);
+	data->ray->planeY = oldPlaneX * sin(-RSPEED) + data->ray->planeY * cos(-RSPEED);
 }
 
 void	forward(t_data *data)
@@ -417,7 +417,7 @@ void	hook(mlx_key_data_t keydata, void *temp)
 		turn_left(data);
 	if (keydata.key == MLX_KEY_W)
 		forward(data);
-  if (keydata.key == MLX_KEY_S)
+	if (keydata.key == MLX_KEY_S)
 		backward(data);
 	if (keydata.key == MLX_KEY_A)
 		left(data);
