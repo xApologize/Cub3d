@@ -1,4 +1,3 @@
-
 #include "cub3d.h"
 
 void	forward(t_data *data) // faut fix que quand tes tout droits tu clip un peu a travers le mur
