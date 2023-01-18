@@ -47,7 +47,7 @@ void	hook(mlx_key_data_t keydata, void *temp)
 		if (data->ray->mSpeed < 0.95)
 			data->ray->mSpeed += 0.05;
 	if (keydata.key == MLX_KEY_DOWN)
-		if (data->ray->mSpeed > 0.1)
+		if (data->ray->mSpeed > 0.15)
 			data->ray->mSpeed -= 0.05;
 	if (keydata.key == MLX_KEY_R && keydata.action == MLX_RELEASE)
 	{

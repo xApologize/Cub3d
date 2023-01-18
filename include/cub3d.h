@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/17 12:55:40 by bperron          ###   ########.fr       */
+/*   Updated: 2023/01/17 14:09:28 by bperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
  one. The valid ones are : N, S, E, W, 0 and 1.\n"
 # define ERR_START_POINT "the map need to have no more and no less than one\
  starting point.\n"
-# define ERR_MA_NOT_EXIST "the map you passed in the program argument did\
+# define ERR_MAP_NOT_EXIST "the map you passed in the program argument did\
  not exist.\n"
 # define ERR_MAP_DIR "the map you passed in the program argument was a\
  directory.\n"
