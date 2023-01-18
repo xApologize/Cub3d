@@ -1,4 +1,3 @@
-
 #include "cub3d.h"
 
 void	turn_right(t_data *data)

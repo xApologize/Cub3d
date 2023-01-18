@@ -1,4 +1,3 @@
-
 #include "cub3d.h"
 
 void	forward(t_data *data)

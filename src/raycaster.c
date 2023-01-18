@@ -51,12 +51,12 @@ void	init_mlx(t_data *data)
 
 	data->ray = ft_calloc(1, sizeof(t_ray));
 	start_var(data);
-	ags = mlx_load_xpm42("./asset/ags1.xpm42");
+	ags = mlx_load_xpm42("./asset/weapon.xpm42");
 	img = mlx_texture_to_image(data->ray->mlx, &ags->texture);
 	create_texture(data);
 	raycaster(data); 
 	mlx_image_to_window(data->ray->mlx, data->ray->img, 0, 0);
-	mlx_image_to_window(data->ray->mlx, img, 860, 300);
+	mlx_image_to_window(data->ray->mlx, img, 730, 674);
 	mlx_key_hook(data->ray->mlx, &hook, (void *) data);
 	mlx_loop(data->ray->mlx);
 	mlx_delete_xpm42(ags);
