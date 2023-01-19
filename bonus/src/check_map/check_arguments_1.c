@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_arguments_1.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 14:16:51 by jrossign          #+#    #+#             */
+/*   Updated: 2022/12/21 17:22:03 by jrossign         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-int	*set_colors(char **color)
+int	*get_colors(t_data *data, char **color, char *arg)
 {
 	int		*rgb;
 	char	*tmp;
@@ -8,30 +20,41 @@ int	*set_colors(char **color)
 
 	if (!color[1])
 	{
-		printf("Error set_colors: %s\n", color[0]);
-		exit(EXIT_FAILURE);
+		ft_freepp((void **) color);
+		return (NULL);
 	}
 	tmp = ft_strdup(color[1]);
 	split_color = ft_split(tmp, ',');
+	if (ft_get_pp_length(split_color) != 3)
+		error_and_free(data, ERR_COL_NOT_3, 1);
 	free(tmp);
 	ft_freepp((void **) color);
-	check_colors(split_color);
+	check_colors(data, split_color, arg);
 	rgb = malloc(sizeof(int) * 3);
 	rgb[0] = ft_atoi(split_color[0]);
 	rgb[1] = ft_atoi(split_color[1]);
 	rgb[2] = ft_atoi(split_color[2]);
 	ft_freepp((void **) split_color);
 	return (rgb);
-
 }
 
-void	check_colors(char **color)
+void	check_colors(t_data *data, char **color, char *arg)
 {
-	check_isdigit(color);
-	check_isuchar(color);
+	if (check_isdigit(color))
+	{
+		free(arg);
+		ft_freepp((void **)color);
+		error_and_free(data, ERR_NOT_DIGIT, 1);
+	}
+	if (check_isuchar(color))
+	{
+		free(arg);
+		ft_freepp((void **)color);
+		error_and_free(data, ERR_NOT_UCHAR, 1);
+	}
 }
 
-void	check_isdigit(char **colors)
+int	check_isdigit(char **colors)
 {
 	int	i;
 	int	j;
@@ -43,18 +66,16 @@ void	check_isdigit(char **colors)
 		while (colors[i][j])
 		{
 			if (!ft_isdigit(colors[i][j]))
-			{
-				printf("Error isdigit: %c\n", colors[i][j]);
-				exit(EXIT_FAILURE);
-			}
+				return (1);
 			j++;
 		}
 		i++;
 		j = 0;
 	}
+	return (0);
 }
 
-void	check_isuchar(char **colors)
+int	check_isuchar(char **colors)
 {
 	int	i;
 
@@ -62,10 +83,8 @@ void	check_isuchar(char **colors)
 	while (colors[i])
 	{
 		if (ft_atoi(colors[i]) > UCHAR_MAX || ft_atoi(colors[i]) < 0)
-		{
-			printf("Error colors is not rgb: %s\n", colors[i]);
-			exit(EXIT_FAILURE);
-		}
+			return (1);
 		i++;
 	}
+	return (0);
 }

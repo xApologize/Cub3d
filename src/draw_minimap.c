@@ -1,7 +1,7 @@
 
 #include "cub3d.h"
 
-void	draw_player(t_data *data)
+/* void	draw_player(t_data *data)
 {
 	int hold;
 	int hold2;
@@ -93,6 +93,11 @@ void	draw_map(t_data *data)
 		y += 10;
 	}
 	draw_player(data);
+} */
+
+void	draw_map(t_data *data)
+{
+	
 }
 
 void	map(t_data *data)
@@ -109,9 +114,9 @@ void	map(t_data *data)
 		init_var(data, i);
 		init_dist(data);
 		dda(data);
-		y = (double) (data->ray->posY) * 10; //+ 4.5;
-		x = (double) (data->ray->posX) * 10; //+ 4.5;
-		hold = data->ray->wallDist * 10; //+ 4.5;
+		y = (double) (data->ray->posY) * 10;
+		x = (double) (data->ray->posX) * 10;
+		hold = data->ray->wallDist * 10;
 		while (hold-- >= 0 && y > 0 && x > 0 && x < data->map_width * 10 && y < data->map_height * 10)
 		{
 			mlx_put_pixel(data->ray->img, x, y, 0xFF0000FF);
@@ -121,3 +126,4 @@ void	map(t_data *data)
 		i += 0.5;
 	}
 }
+11

@@ -1,30 +1,85 @@
-#include "cub3d.h"
-#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 14:16:59 by jrossign          #+#    #+#             */
+/*   Updated: 2023/01/17 10:42:01 by jrossign         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	check_map(char *map, t_data *data)
+#include "cub3d.h"
+
+void	print_map1(char **map)
 {
-	data->map = NULL;
-	check_extension(map, EXTENSION_MAP);
-	get_map(check_map_exist(map), data);
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		printf("%s\n", map[i]);
+		i++;
+	}
 }
 
-void	get_map(int map_fd, t_data *data)
+void	check_map(t_data *data)
 {
-	char	*gnl_ret;
-	char	*map;
+	set_map_only(data);
+	check_map_char(data);
+	set_start_pos(data);
+	flood_fill(data);
+	set_map_square(data);
+}
 
-	map = NULL;
-	gnl_ret = NULL;
-	gnl_ret = get_next_line(map_fd);
-	map = ft_strjoinfree(map, gnl_ret);
-	while (1)
+void	check_map_char(t_data *data)
+{
+	int	i;
+	int	j;
+	int	starting_point;
+
+	i = 0;
+	j = 0;
+	starting_point = 0;
+	while (data->map[i])
 	{
-		gnl_ret = get_next_line(map_fd);
-		if (gnl_ret == NULL)
-			break ;
-		map = ft_strjoinfree(map, gnl_ret);
+		while (data->map[i][j])
+		{
+			if (!ft_strchr(VALID_MAP_CHAR, data->map[i][j]))
+				error_and_free(data, ERR_WRONG_CHAR_MAP, 1);
+			if (ft_strchr(VALID_STARTING_POINT, data->map[i][j]))
+				starting_point++;
+			j++;
+		}
+		j = 0;
+		i++;
 	}
-	data->map = ft_split(map, '\n');
-	free(map);
-	close(map_fd);
+	if (starting_point != 1)
+		error_and_free(data, ERR_START_POINT, 1);
+}
+
+void	set_start_pos(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (data->map[y])
+	{
+		while (data->map[y][x])
+		{
+			if (ft_strchr(VALID_STARTING_POINT, data->map[y][x]))
+			{
+				data->start_pos[0] = y;
+				data->start_pos[1] = x;
+				data->orientation = data->map[y][x];
+				return ;
+			}
+			x++;
+		}
+		x = 0;
+		y++;
+	}
 }
