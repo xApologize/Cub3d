@@ -77,7 +77,7 @@ else
 endif
 				@echo "Compiling $(PROJECT_NAME) done."
 
-bonus:				$(PRE_OBJ_B)
+$(NAME_B):				$(PRE_OBJ_B)
 				@make -C $(LIB_DIR)
 				@make -C $(MLX_DIR)
 				@echo "Compiling $(PROJECT_NAME) bonus..."
@@ -89,6 +89,8 @@ endif
 				@echo "Compiling $(PROJECT_NAME) bonus done."
 
 all:				$(NAME)
+
+bonus:				$(NAME_B)
 
 clean:
 				@make -C $(LIB_DIR) clean
