@@ -6,11 +6,11 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:17:19 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/12 07:58:58 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/19 08:27:59 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int	get_longest_row(t_data *data)
 {

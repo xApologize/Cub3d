@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	forward(t_data *data) // faut fix que quand tes tout droits tu clip un peu a travers le mur
 {

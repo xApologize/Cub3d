@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	turn_right(t_data *data)
 {
@@ -45,7 +45,7 @@ void	hook(mlx_key_data_t keydata, void *temp)
 	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
 		system("afplay ./sound/ice-barrage1.mp3&");
 	if (keydata.key == MLX_KEY_UP)
-		if (data->ray->mSpeed < 0.95)
+		if (data->ray->mSpeed < 0.90)
 			data->ray->mSpeed += 0.05;
 	if (keydata.key == MLX_KEY_DOWN)
 		if (data->ray->mSpeed > 0.15)

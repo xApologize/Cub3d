@@ -6,11 +6,11 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:41 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/21 14:15:42 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/19 08:29:25 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	error_and_exit(char *err_msg)
 {

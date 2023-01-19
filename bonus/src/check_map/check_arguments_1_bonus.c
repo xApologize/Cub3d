@@ -6,11 +6,11 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:16:51 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/21 17:22:03 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/19 08:27:44 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int	*get_colors(t_data *data, char **color, char *arg)
 {

@@ -1,5 +1,4 @@
-
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int create_colour(int r, int g, int b, int a)
 {

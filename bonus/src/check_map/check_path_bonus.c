@@ -6,11 +6,11 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:17:51 by jrossign          #+#    #+#             */
-/*   Updated: 2022/12/21 14:17:53 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/19 08:28:07 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int	check_extension(char *path, char *extension)
 {

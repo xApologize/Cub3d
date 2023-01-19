@@ -6,11 +6,11 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:18:05 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/12 14:17:17 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/19 08:28:26 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	create_map_data(t_data *data)
 {

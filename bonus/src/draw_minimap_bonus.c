@@ -1,5 +1,4 @@
-
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	draw_player(t_data *data)
 {
