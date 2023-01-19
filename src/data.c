@@ -36,17 +36,51 @@ void	init_dist(t_data *data)
 	}
 }
 
+void	orientation2(t_data *data)
+{
+	if (data->orientation == 'E')
+	{
+		data->ray->dirX = 1;
+		data->ray->dirY = 0;
+		data->ray->planeX = 0;
+		data->ray->planeY = 0.66;
+	}
+	if (data->orientation == 'W')
+	{
+		data->ray->dirX = -1;
+		data->ray->dirY = 0;
+		data->ray->planeX = 0;
+		data->ray->planeY = -0.66;
+	}
+}
+
+void	orientation(t_data *data)
+{
+	if (data->orientation == 'N')
+	{
+		data->ray->dirX = 0;
+		data->ray->dirY = -1;
+		data->ray->planeX = 0.66;
+		data->ray->planeY = 0;
+	}
+	if (data->orientation == 'S')
+	{
+		data->ray->dirX = 0;
+		data->ray->dirY = 1;
+		data->ray->planeX = -0.66;
+		data->ray->planeY = 0;
+	}
+	else (orientation2(data));
+}
+
 void	start_var(t_data *data)
 {
 	data->ray->mlx = mlx_init(WIDTH, HEIGHT, "test", false);
 	data->ray->img = mlx_new_image(data->ray->mlx, WIDTH, HEIGHT);
-	data->ray->posX = data->start_pos[1];
-	data->ray->posY = data->start_pos[0];
-	data->ray->dirX = 0; //pour 1 planeY 0.66 pour -1 planeY -0.66
-	data->ray->dirY = -1;// pour 1 planeX -0.66 pour -1 planeX 0.66
-	data->ray->planeX = 0.66;
-	data->ray->planeY = 0;
-	data->ray->mSpeed = 0.1;
+	data->ray->posX = data->start_pos[1] + 0.5;
+	data->ray->posY = data->start_pos[0] + 0.5;
+	orientation(data);
+	data->ray->mSpeed = 0.15;
 	data->ray->sSpeed = 0.15;
 	data->ray->rays = false;
 	data->ray->ceiling = create_colour(data->map_data->ceiling_color[0], data->map_data->ceiling_color[1], data->map_data->ceiling_color[2], 255);
