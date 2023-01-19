@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/17 08:41:28 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/19 07:52:37 by bperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,20 +126,22 @@ typedef struct s_ray{
 	mlx_image_t	*img;
 }	t_ray;
 
-typedef struct s_map
+typedef struct s_data
 {
 	int				start_pos[2];
+	char			orientation;
 	int				map_width;
 	int				map_height;
 	char			**map;
 	char			**copy;
+	mlx_image_t		*minimap;
 	struct s_ray	*ray;
-	struct s_data	*map_data;
+	struct s_map	*map_data;
 	struct s_tex	*tex;
 
 }					t_data;
 
-typedef struct s_data
+typedef struct s_map
 {
 	int		x;
 	int		y;
@@ -190,7 +192,6 @@ void	create_map_data(t_data *data);
 void	set_texture(t_data *data, char *arg, char **path);
 void	set_color(t_data *data, char *arg, char *str);
 
-//flood_fill
 //flood_fill.c
 void	flood_fill(t_data *data);
 void	flood_fill_algo(int x, int y, t_data *data);
@@ -212,10 +213,39 @@ void	init_mlx(t_data *data);
 void	raycaster(t_data *data);
 void	hook(mlx_key_data_t keydata, void *temp);
 
-//draw.c
+//raycasting_utils.c
+void	dda(t_data *data);
+void	calc_line(t_data *data);
+void	find_hit(t_data *data, xpm_t *texture);
+void	draw_line(t_data *data, xpm_t *texture, int **arr, int i);
+
+//draw_minimap.c
 void	draw_player(t_data *data);
 void	draw_wall(t_data *data, int x, int y);
 void	draw_space(t_data *data, int x, int y);
 void	draw_map(t_data *data);
+void	map(t_data *data);
+
+//moves_2.c
+void	turn_right(t_data *data);
+void	turn_left(t_data *data);
+void	hook(mlx_key_data_t keydata, void *temp);
+
+//moves_2.c
+void	forward(t_data *data);
+void	backward(t_data *data);
+void	right(t_data *data);
+void	left(t_data *data);
+
+//utils.c
+int 	create_colour(int r, int g, int b, int a);
+void	clear_image(t_data *data);
+int		**fill_texture(xpm_t *tex);
+void	create_texture(t_data *data);
+
+//data.c
+void	init_var(t_data *data, double i);
+void	init_dist(t_data *data);
+void	start_var(t_data *data);
 
 #endif

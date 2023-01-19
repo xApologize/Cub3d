@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:16:59 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/12 07:58:05 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/17 10:42:01 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	set_start_pos(t_data *data)
 			{
 				data->start_pos[0] = y;
 				data->start_pos[1] = x;
+				data->orientation = data->map[y][x];
 				return ;
 			}
 			x++;

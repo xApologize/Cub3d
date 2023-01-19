@@ -1,0 +1,85 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/21 14:16:59 by jrossign          #+#    #+#             */
+/*   Updated: 2023/01/19 08:27:52 by jrossign         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d_bonus.h"
+
+void	print_map1(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		printf("%s\n", map[i]);
+		i++;
+	}
+}
+
+void	check_map(t_data *data)
+{
+	set_map_only(data);
+	check_map_char(data);
+	set_start_pos(data);
+	flood_fill(data);
+	set_map_square(data);
+}
+
+void	check_map_char(t_data *data)
+{
+	int	i;
+	int	j;
+	int	starting_point;
+
+	i = 0;
+	j = 0;
+	starting_point = 0;
+	while (data->map[i])
+	{
+		while (data->map[i][j])
+		{
+			if (!ft_strchr(VALID_MAP_CHAR, data->map[i][j]))
+				error_and_free(data, ERR_WRONG_CHAR_MAP, 1);
+			if (ft_strchr(VALID_STARTING_POINT, data->map[i][j]))
+				starting_point++;
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+	if (starting_point != 1)
+		error_and_free(data, ERR_START_POINT, 1);
+}
+
+void	set_start_pos(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	while (data->map[y])
+	{
+		while (data->map[y][x])
+		{
+			if (ft_strchr(VALID_STARTING_POINT, data->map[y][x]))
+			{
+				data->start_pos[0] = y;
+				data->start_pos[1] = x;
+				data->orientation = data->map[y][x];
+				return ;
+			}
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
