@@ -97,7 +97,7 @@ void	draw_map(t_data *data)
 
 void	draw_map(t_data *data)
 {
-	
+	(void) data;
 }
 
 void	map(t_data *data)
@@ -126,4 +126,3 @@ void	map(t_data *data)
 		i += 0.5;
 	}
 }
-11
