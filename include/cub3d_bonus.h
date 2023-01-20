@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/19 07:52:37 by bperron          ###   ########.fr       */
+/*   Updated: 2023/01/20 11:25:30 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,15 @@
 # define PI 3.141593
 
 typedef struct s_tex{
-	int		**north;
-	int		**south;
-	int		**east;
-	int		**west;
-	xpm_t	*north_tex;
-	xpm_t	*south_tex;
-	xpm_t	*east_tex;
-	xpm_t	*west_tex;
+	int			**north;
+	int			**south;
+	int			**east;
+	int			**west;
+	xpm_t		*north_tex;
+	xpm_t		*south_tex;
+	xpm_t		*east_tex;
+	xpm_t		*west_tex;
+	mlx_image_t	*player;
 }	t_tex;
 
 typedef struct s_ray{
@@ -138,20 +139,28 @@ typedef struct s_data
 	struct s_ray	*ray;
 	struct s_map	*map_data;
 	struct s_tex	*tex;
-
+	struct s_anim	*anim;
 }					t_data;
 
 typedef struct s_map
 {
 	int		x;
 	int		y;
+	int		*ceiling_color;
+	int		*floor_color;
 	char	*north_wall;
 	char	*south_wall;
 	char	*east_wall;
 	char	*west_wall;
-	int		*ceiling_color;
-	int		*floor_color;
 }			t_map;
+
+typedef struct s_anim
+{
+	int			frame;
+	mlx_image_t	*spell_anim[12];
+	bool		spell;
+}				t_anim;
+
 
 //check_map
 //check_arguments.c
@@ -199,6 +208,15 @@ void	flood_fill_algo(int x, int y, t_data *data);
 //flood_fill_utils.c
 char	**copy_map(t_data *data);
 
+//animation_spell_bonus.c
+void	animation_spell(t_data *data);
+void	set_spell_asset(t_data *data);
+
+//data.c
+void	init_var(t_data *data, double i);
+void	init_dist(t_data *data);
+void	start_var(t_data *data);
+
 //error.c
 void	error_and_exit(char *err_msg);
 void	error_and_free(t_data *data, char *err_msg, int flag);
@@ -226,10 +244,11 @@ void	draw_space(t_data *data, int x, int y);
 void	draw_map(t_data *data);
 void	map(t_data *data);
 
-//moves_2.c
+//moves_1.c
 void	turn_right(t_data *data);
 void	turn_left(t_data *data);
 void	hook(mlx_key_data_t keydata, void *temp);
+void	loop_hook(void *temp);
 
 //moves_2.c
 void	forward(t_data *data);
@@ -242,10 +261,5 @@ int 	create_colour(int r, int g, int b, int a);
 void	clear_image(t_data *data);
 int		**fill_texture(xpm_t *tex);
 void	create_texture(t_data *data);
-
-//data.c
-void	init_var(t_data *data, double i);
-void	init_dist(t_data *data);
-void	start_var(t_data *data);
 
 #endif
