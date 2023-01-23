@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:46 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/23 08:25:31 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/23 09:21:37 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void	free_full_data(t_data *data)
 {
+	destroy_image(data);
 	free_map_data(data);
 	free_tex(data);
 	free_ray(data);
