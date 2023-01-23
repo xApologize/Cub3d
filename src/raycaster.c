@@ -50,10 +50,10 @@ void	init_mlx(t_data *data)
 {
 	data->ray = ft_calloc(1, sizeof(t_ray));
 	start_var(data);
+	create_texture(data);
 	data->tex->overlay = mlx_load_xpm42("./asset/weapon.xpm42");
 	data->tex->overlay_img = mlx_texture_to_image(data->ray->mlx,
 			&data->tex->overlay->texture);
-	create_texture(data);
 	raycaster(data); 
 	mlx_image_to_window(data->ray->mlx, data->ray->img, 0, 0);
 	mlx_image_to_window(data->ray->mlx, data->tex->overlay_img, 730, 674);
