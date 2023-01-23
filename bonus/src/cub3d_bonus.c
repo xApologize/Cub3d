@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 	check_arguments(&data);
 	check_map(&data);
 	set_height_width(&data);
-	system("afplay ./sound/SeaShanty2.mp3&");
+	//system("afplay ./sound/SeaShanty2.mp3&");
 	init_mlx(&data);
 	free_full_data(&data);
 	system("killall afplay");
