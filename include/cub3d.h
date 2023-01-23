@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/19 07:52:37 by bperron          ###   ########.fr       */
+/*   Updated: 2023/01/23 08:20:19 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,16 @@
 # define PI 3.141593
 
 typedef struct s_tex{
-	int		**north;
-	int		**south;
-	int		**east;
-	int		**west;
-	xpm_t	*north_tex;
-	xpm_t	*south_tex;
-	xpm_t	*east_tex;
-	xpm_t	*west_tex;
+	int			**north;
+	int			**south;
+	int			**east;
+	int			**west;
+	xpm_t		*north_tex;
+	xpm_t		*south_tex;
+	xpm_t		*east_tex;
+	xpm_t		*west_tex;
+	xpm_t		*overlay;
+	mlx_image_t	*overlay_img;
 }	t_tex;
 
 typedef struct s_ray{
@@ -206,7 +208,11 @@ void	error_code_arg(t_data *data, int err_code);
 
 //free_data.c
 void	free_full_data(t_data *data);
-void	close_fds(t_data *data);
+void	free_map_data(t_data *data);
+void	free_tex(t_data *data);
+void	free_ray(t_data *data);
+void	destroy_image(t_data *data);
+
 
 //raycaster.c
 void	init_mlx(t_data *data);
@@ -226,7 +232,7 @@ void	draw_space(t_data *data, int x, int y);
 void	draw_map(t_data *data);
 void	map(t_data *data);
 
-//moves_2.c
+//moves_1.c
 void	turn_right(t_data *data);
 void	turn_left(t_data *data);
 void	hook(mlx_key_data_t keydata, void *temp);
