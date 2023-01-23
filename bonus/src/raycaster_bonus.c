@@ -59,5 +59,7 @@ void	init_mlx(t_data *data)
 	mlx_image_to_window(data->ray->mlx, data->tex->overlay_img, 730, 674);
 	mlx_key_hook(data->ray->mlx, &hook, (void *) data);
 	mlx_loop(data->ray->mlx);
+	mlx_delete_image(data->ray->mlx, data->ray->img);
+	mlx_delete_image(data->ray->mlx, data->tex->overlay_img);
 	mlx_terminate(data->ray->mlx);
 }

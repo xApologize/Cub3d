@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:46 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/23 09:58:42 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/23 10:59:58 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,5 @@ void	destroy_image(t_data *data)
 	mlx_delete_xpm42(data->tex->west_tex);
 	mlx_delete_xpm42(data->tex->north_tex);
 	mlx_delete_xpm42(data->tex->south_tex);
-	mlx_delete_image(data->ray->mlx, data->ray->img);
-	mlx_delete_image(data->ray->mlx, data->tex->overlay_img);
 	mlx_delete_xpm42(data->tex->overlay);
 }
