@@ -41,13 +41,11 @@ void	set_spell_asset(t_data *data)
 	{
 		asset = ft_strjoinfree(ft_strdup("asset/animation_attack/spec"), ft_itoa(i));
 		asset = ft_strjoin(asset, EXTENSION_TEXTURE);
-		printf("asset: %s\n", asset);
 		animation = mlx_load_xpm42(asset);
 		anim->spell_anim[i] = mlx_texture_to_image(data->ray->mlx, &animation->texture);
 		mlx_image_to_window(data->ray->mlx, anim->spell_anim[i], 0, 0);
 		mlx_delete_xpm42(animation);
 		anim->spell_anim[i]->instances->enabled = false;
-		printf("z: %d\n", anim->spell_anim[i]->instances->z);
 		free(asset);
 		i++;
 	}
