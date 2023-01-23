@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.c                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:13:57 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/19 08:28:57 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/23 11:00:17 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	main(int argc, char **argv)
 	check_arguments(&data);
 	check_map(&data);
 	set_height_width(&data);
-	//system("afplay ./sound/SeaShanty2.mp3&");
+	system("afplay ./sound/SeaShanty2.mp3&");
 	init_mlx(&data);
 	free_full_data(&data);
 	system("killall afplay");
