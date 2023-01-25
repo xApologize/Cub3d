@@ -39,7 +39,7 @@ void	raycaster(t_data *data)
 		calc_line(data);
 		texture_picker(data, i);
 		if (i == WIDTH / 2)
-			data->ray->ray_lenght = data->ray->wall_dist;
+			data->ray->ray_length = data->ray->wall_dist;
 	}
 	if (data->ray->rays == true)
 		map(data);
