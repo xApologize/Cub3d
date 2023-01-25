@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/25 08:07:20 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/25 08:20:50 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define RSPEED 0.1
-# define mapWidth 36 // va etre a mettre dans la struct
-# define mapHeight 42
+# define MAP_WIDTH 36 // va etre a mettre dans la struct
+# define MAP_HEIGHT 42
 # define PI 3.141593
 
 # include "../lib/libft/include/libft.h"
@@ -103,9 +103,9 @@ typedef struct s_ray{
 	double		dir_y;
 	double		plane_x;
 	double		plane_y;
-	double	 	camera;
-	double	 	ray_y;
-	double	 	ray_x;
+	double		camera;
+	double		ray_y;
+	double		ray_x;
 	double		dist_y;
 	double		dist_x;
 	double		delta_x;
@@ -230,7 +230,7 @@ void	right(t_data *data);
 void	left(t_data *data);
 
 //utils.c
-int 	create_colour(int r, int g, int b, int a);
+int		create_colour(int r, int g, int b, int a);
 void	clear_image(t_data *data);
 int		**fill_texture(xpm_t *tex);
 void	create_texture(t_data *data);
