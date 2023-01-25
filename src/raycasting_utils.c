@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting_utils.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/25 10:39:38 by jrossign          #+#    #+#             */
+/*   Updated: 2023/01/25 10:39:39 by jrossign         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	dda(t_data *data)
@@ -21,7 +33,6 @@ void	dda(t_data *data)
 				data->ray->side = 2;
 			else
 				data->ray->side = 3;
-			
 		}
 		if (data->map[data->ray->map_y][data->ray->map_x] != '0')
 			break ;
@@ -53,10 +64,10 @@ void	find_hit(t_data *data, xpm_t *texture)
 	else
 		hit = data->ray->pos_x + data->ray->wall_dist * data->ray->ray_x;
 	hit -= (int) hit;
-	data->ray->tex_x = (int) (hit * (double) texture->texture.width);
-	if((data->ray->side == 0 || data->ray->side == 1) && data->ray->ray_x > 0) 
+	data->ray->tex_x = (int)(hit * (double) texture->texture.width);
+	if ((data->ray->side == 0 || data->ray->side == 1) && data->ray->ray_x > 0)
 		data->ray->tex_x = texture->texture.width - data->ray->tex_x - 1;
-    if((data->ray->side == 2 || data->ray->side == 3) && data->ray->ray_y < 0) 
+	if ((data->ray->side == 2 || data->ray->side == 3) && data->ray->ray_y < 0)
 		data->ray->tex_x = texture->texture.width - data->ray->tex_x - 1;
 }
 
@@ -64,21 +75,21 @@ void	draw_line(t_data *data, xpm_t *texture, int **arr, int i)
 {
 	double	dist;
 	double	pos;
-	int		texY;
+	int		tex_y;
 	int		j;
 
-
 	dist = 1.0 * texture->texture.height / data->ray->line;
-	pos = ((double) data->ray->start - (double) HEIGHT / 2 + (double) data->ray->line / 2) * dist;
+	pos = ((double) data->ray->start - (double) HEIGHT / 2
+			+ (double) data->ray->line / 2) * dist;
 	if (pos < 0)
 		pos = 0;
 	j = data->ray->start - 1;
 	while (++j < data->ray->end)
 	{
-		texY = (int) pos;
+		tex_y = (int) pos;
 		if (pos > texture->texture.height - 1)
 			pos = texture->texture.height - 1;
 		pos += dist;
-		mlx_put_pixel(data->ray->img, i, j, arr[texY][data->ray->tex_x]);
+		mlx_put_pixel(data->ray->img, i, j, arr[tex_y][data->ray->tex_x]);
 	}
 }

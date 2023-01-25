@@ -1,13 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   data.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/25 08:29:00 by jrossign          #+#    #+#             */
+/*   Updated: 2023/01/25 08:29:07 by jrossign         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
 void	init_var(t_data *data, double i)
 {
-	data->ray->camera = 2 * i /  (double) WIDTH - 1;
-	data->ray->ray_x = data->ray->dir_x + data->ray->plane_x * data->ray->camera;
-	data->ray->ray_y = data->ray->dir_y + data->ray->plane_y * data->ray->camera;
+	data->ray->camera = 2 * i / (double) WIDTH - 1;
+	data->ray->ray_x = data->ray->dir_x + data->ray->plane_x
+		* data->ray->camera;
+	data->ray->ray_y = data->ray->dir_y + data->ray->plane_y
+		* data->ray->camera;
 	data->ray->map_x = data->ray->pos_x;
-	data->ray->map_y = data->ray->pos_y;	
+	data->ray->map_y = data->ray->pos_y;
 	data->ray->delta_x = fabs(1 / data->ray->ray_x);
 	data->ray->delta_y = fabs(1 / data->ray->ray_y);
 }
@@ -17,22 +30,26 @@ void	init_dist(t_data *data)
 	if (data->ray->ray_x < 0)
 	{
 		data->ray->step_x = -1;
-		data->ray->dist_x = (data->ray->pos_x - data->ray->map_x) * data->ray->delta_x;
+		data->ray->dist_x = (data->ray->pos_x - data->ray->map_x)
+			* data->ray->delta_x;
 	}
 	else
 	{
 		data->ray->step_x = 1;
-		data->ray->dist_x = (data->ray->map_x - data->ray->pos_x + 1) * data->ray->delta_x;
+		data->ray->dist_x = (data->ray->map_x - data->ray->pos_x + 1)
+			* data->ray->delta_x;
 	}
 	if (data->ray->ray_y < 0)
 	{
 		data->ray->step_y = -1;
-		data->ray->dist_y = (data->ray->pos_y - data->ray->map_y) * data->ray->delta_y;
+		data->ray->dist_y = (data->ray->pos_y - data->ray->map_y)
+			* data->ray->delta_y;
 	}
 	else
 	{
 		data->ray->step_y = 1;
-		data->ray->dist_y = (data->ray->map_y - data->ray->pos_y  + 1) * data->ray->delta_y;
+		data->ray->dist_y = (data->ray->map_y - data->ray->pos_y + 1)
+			* data->ray->delta_y;
 	}
 }
 
@@ -70,7 +87,8 @@ void	orientation(t_data *data)
 		data->ray->plane_x = -0.66;
 		data->ray->plane_y = 0;
 	}
-	else (orientation2(data));
+	else
+		(orientation2(data));
 }
 
 void	start_var(t_data *data)
@@ -83,6 +101,10 @@ void	start_var(t_data *data)
 	data->ray->m_speed = 0.15;
 	data->ray->s_speed = 0.15;
 	data->ray->rays = false;
-	data->ray->ceiling = create_colour(data->map_data->ceiling_color[0], data->map_data->ceiling_color[1], data->map_data->ceiling_color[2], 255);
-	data->ray->floor = create_colour(data->map_data->floor_color[0], data->map_data->floor_color[1], data->map_data->floor_color[2], 255);
+	data->ray->ceiling = create_colour(data->map_data->ceiling_color[0],
+			data->map_data->ceiling_color[1],
+			data->map_data->ceiling_color[2], 255);
+	data->ray->floor = create_colour(data->map_data->floor_color[0],
+			data->map_data->floor_color[1],
+			data->map_data->floor_color[2], 255);
 }

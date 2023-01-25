@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycaster.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/25 10:36:37 by jrossign          #+#    #+#             */
+/*   Updated: 2023/01/25 10:36:38 by jrossign         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cub3d.h"
 
@@ -43,21 +54,21 @@ void	raycaster(t_data *data)
 	}
 	if (data->ray->rays == true)
 		map(data);
-	else 
+	else
 		draw_map(data);
 }
 
 void	init_mlx(t_data *data)
 {
-	xpm_t *overlay;
-	mlx_image_t *img;
+	xpm_t		*overlay;
+	mlx_image_t	*img;
 
 	data->ray = ft_calloc(1, sizeof(t_ray));
 	start_var(data);
 	overlay = mlx_load_xpm42("./asset/weapon.xpm42");
 	img = mlx_texture_to_image(data->ray->mlx, &overlay->texture);
 	create_texture(data);
-	raycaster(data); 
+	raycaster(data);
 	mlx_image_to_window(data->ray->mlx, data->ray->img, 0, 0);
 	mlx_image_to_window(data->ray->mlx, img, 730, 674);
 	mlx_key_hook(data->ray->mlx, &hook, (void *) data);
