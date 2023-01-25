@@ -7,8 +7,8 @@ void	draw_player(t_data *data)
 	double x;
 	double y;
 
-	y = (double) (data->ray->posY) * 10 - 4.5;
-	x = (double) (data->ray->posX) * 10 - 4.5;
+	y = (double) (data->ray->pos_y) * 10 - 4.5;
+	x = (double) (data->ray->pos_x) * 10 - 4.5;
 	hold = y + 9;
 	while (y < hold)
 	{
@@ -18,14 +18,14 @@ void	draw_player(t_data *data)
 		y++;
 		x -= 9;
 	}
-	y = (double) (data->ray->posY) * 10;
-	x = (double) (data->ray->posX) * 10;
-	hold = data->ray->rayLenght * 10;
+	y = (double) (data->ray->pos_y) * 10;
+	x = (double) (data->ray->pos_x) * 10;
+	hold = data->ray->ray_length * 10;
 	while (hold-- >= 0 && y > 0 && x > 0 && x < data->map_width * 10 && y < data->map_height * 10)
 	{
 		mlx_put_pixel(data->ray->img, x, y, 0xFF0000FF );
-		y += data->ray->dirY;
-		x += data->ray->dirX;
+		y += data->ray->dir_y;
+		x += data->ray->dir_x;
 	}
 }
 
@@ -108,14 +108,14 @@ void	map(t_data *data)
 		init_var(data, i);
 		init_dist(data);
 		dda(data);
-		y = (double) (data->ray->posY) * 10; //+ 4.5;
-		x = (double) (data->ray->posX) * 10; //+ 4.5;
-		hold = data->ray->wallDist * 10; //+ 4.5;
+		y = (double) (data->ray->pos_y) * 10; //+ 4.5;
+		x = (double) (data->ray->pos_x) * 10; //+ 4.5;
+		hold = data->ray->wall_dist * 10; //+ 4.5;
 		while (hold-- >= 0 && y > 0 && x > 0 && x < data->map_width * 10 && y < data->map_height * 10)
 		{
 			mlx_put_pixel(data->ray->img, x, y, 0xFF0000FF);
-			y += (double) data->ray->rayY;
-			x += (double) data->ray->rayX;
+			y += (double) data->ray->ray_y;
+			x += (double) data->ray->ray_x;
 		}
 		i += 0.5;
 	}

@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/25 07:41:23 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/25 08:07:20 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ typedef struct s_ray{
 	double		delta_x;
 	double		delta_y;
 	double		wall_dist;
-	double		ray_lenght;
+	double		ray_length;
 	double		m_speed;
 	double		s_speed;
 	mlx_t		*mlx;
