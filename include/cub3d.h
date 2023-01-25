@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/19 07:52:37 by bperron          ###   ########.fr       */
+/*   Updated: 2023/01/25 07:41:23 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define RSPEED 0.1
-
 # define mapWidth 36 // va etre a mettre dans la struct
 # define mapHeight 42
+# define PI 3.141593
 
 # include "../lib/libft/include/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
@@ -71,14 +71,6 @@
 # include <limits.h>
 # include <stdint.h>
 # include <stdbool.h>
-
-# define WIDTH 1920
-# define HEIGHT 1080
-# define RSPEED 0.1
-
-# define mapWidth 36 // va etre a mettre dans la struct
-# define mapHeight 42
-# define PI 3.141593
 
 typedef struct s_tex{
 	int		**north;
@@ -92,11 +84,11 @@ typedef struct s_tex{
 }	t_tex;
 
 typedef struct s_ray{
-	int			texX;
-	int			mapX;
-	int			mapY;
-	int			stepX;
-	int			stepY;
+	int			tex_x;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
 	int			hit;
 	int			side;
 	int			line;
@@ -105,23 +97,23 @@ typedef struct s_ray{
 	int			floor;
 	int			ceiling;
 	bool		rays;
-	double		posX;
-	double		posY;
-	double		dirX;
-	double		dirY;
-	double		planeX;
-	double		planeY;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
 	double	 	camera;
-	double	 	rayY;
-	double	 	rayX;
-	double		distY;
-	double		distX;
-	double		deltaX;
-	double		deltaY;
-	double		wallDist;
-	double		rayLenght;
-	double		mSpeed;
-	double		sSpeed;
+	double	 	ray_y;
+	double	 	ray_x;
+	double		dist_y;
+	double		dist_x;
+	double		delta_x;
+	double		delta_y;
+	double		wall_dist;
+	double		ray_lenght;
+	double		m_speed;
+	double		s_speed;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 }	t_ray;

@@ -114,14 +114,14 @@ void	map(t_data *data)
 		init_var(data, i);
 		init_dist(data);
 		dda(data);
-		y = (double) (data->ray->posY) * 10;
-		x = (double) (data->ray->posX) * 10;
-		hold = data->ray->wallDist * 10;
+		y = (double) (data->ray->pos_y) * 10;
+		x = (double) (data->ray->pos_x) * 10;
+		hold = data->ray->wall_dist * 10;
 		while (hold-- >= 0 && y > 0 && x > 0 && x < data->map_width * 10 && y < data->map_height * 10)
 		{
 			mlx_put_pixel(data->ray->img, x, y, 0xFF0000FF);
-			y += (double) data->ray->rayY;
-			x += (double) data->ray->rayX;
+			y += (double) data->ray->ray_y;
+			x += (double) data->ray->ray_x;
 		}
 		i += 0.5;
 	}
