@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 10:31:26 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/25 10:31:29 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:18:53 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,8 @@ void	turn_left(t_data *data)
 		+ data->ray->plane_y * cos(-RSPEED);
 }
 
-void	hook(mlx_key_data_t keydata, void *temp)
+void	hook_two(mlx_key_data_t keydata, t_data *data)
 {
-	t_data	*data;
-
-	data = temp;
 	if (keydata.key == MLX_KEY_ESCAPE)
 	{
 		mlx_close_window(data->ray->mlx);
@@ -68,6 +65,13 @@ void	hook(mlx_key_data_t keydata, void *temp)
 		left(data);
 	if (keydata.key == MLX_KEY_D)
 		right(data);
+}
+
+void	hook(mlx_key_data_t keydata, void *temp)
+{
+	t_data	*data;
+
+	data = temp;
 	if (keydata.key == MLX_KEY_UP)
 		if (data->ray->m_speed < 0.95)
 			data->ray->m_speed += 0.05;
@@ -81,5 +85,7 @@ void	hook(mlx_key_data_t keydata, void *temp)
 		else
 			data->ray->rays = true;
 	}
+	else
+		hook_two(keydata, data);
 	raycaster(data);
 }
