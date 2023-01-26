@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 10:31:26 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/25 11:18:53 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/26 07:31:25 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,9 @@ void	hook(mlx_key_data_t keydata, void *temp)
 		if (data->ray->m_speed < 0.95)
 			data->ray->m_speed += 0.05;
 	if (keydata.key == MLX_KEY_DOWN)
+	{
 		if (data->ray->m_speed > 0.15)
 			data->ray->m_speed -= 0.05;
-	if (keydata.key == MLX_KEY_R && keydata.action == MLX_RELEASE)
-	{
-		if (data->ray->rays == true)
-			data->ray->rays = false;
-		else
-			data->ray->rays = true;
 	}
 	else
 		hook_two(keydata, data);
