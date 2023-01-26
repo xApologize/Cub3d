@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 10:39:38 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/25 10:39:39 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/26 07:28:05 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,7 @@ void	dda(t_data *data)
 {
 	while (1)
 	{
-		if (data->ray->dist_x < data->ray->dist_y)
-		{
-			data->ray->dist_x += data->ray->delta_x;
-			data->ray->map_x += data->ray->step_x;
-			if (data->ray->ray_x > 0)
-				data->ray->side = 0;
-			else
-				data->ray->side = 1;
-		}
-		else
-		{
-			data->ray->dist_y += data->ray->delta_y;
-			data->ray->map_y += data->ray->step_y;
-			if (data->ray->ray_y > 0)
-				data->ray->side = 2;
-			else
-				data->ray->side = 3;
-		}
+		dda_calc(data);
 		if (data->map[data->ray->map_y][data->ray->map_x] != '0')
 			break ;
 	}
@@ -41,6 +24,28 @@ void	dda(t_data *data)
 		data->ray->wall_dist = data->ray->dist_x - data->ray->delta_x;
 	else
 		data->ray->wall_dist = data->ray->dist_y - data->ray->delta_y;
+}
+
+void	dda_calc(t_data *data)
+{
+	if (data->ray->dist_x < data->ray->dist_y)
+	{
+		data->ray->dist_x += data->ray->delta_x;
+		data->ray->map_x += data->ray->step_x;
+		if (data->ray->ray_x > 0)
+			data->ray->side = 0;
+		else
+			data->ray->side = 1;
+	}
+	else
+	{
+		data->ray->dist_y += data->ray->delta_y;
+		data->ray->map_y += data->ray->step_y;
+		if (data->ray->ray_y > 0)
+			data->ray->side = 2;
+		else
+			data->ray->side = 3;
+	}
 }
 
 void	calc_line(t_data *data)

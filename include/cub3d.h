@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/26 07:24:26 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/26 07:27:54 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,6 +208,7 @@ void	hook(mlx_key_data_t keydata, void *temp);
 
 //raycasting_utils.c
 void	dda(t_data *data);
+void	dda_calc(t_data *data);
 void	calc_line(t_data *data);
 void	find_hit(t_data *data, xpm_t *texture);
 void	draw_line(t_data *data, xpm_t *texture, int **arr, int i);
