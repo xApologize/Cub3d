@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/26 09:03:19 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/26 09:54:41 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,6 +233,7 @@ void	turn_right(t_data *data);
 void	turn_left(t_data *data);
 void	hook_two(mlx_key_data_t keydata, t_data *data);
 void	hook(mlx_key_data_t keydata, void *temp);
+void	loop_hook(void *temp);
 
 //moves_2.c
 void	forward(t_data *data);
