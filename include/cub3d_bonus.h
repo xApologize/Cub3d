@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/20 11:25:30 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/26 09:03:19 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,6 @@ typedef struct s_anim
 	bool		spell;
 }				t_anim;
 
-
 //check_map
 //check_arguments.c
 void	check_arguments(t_data *data);
@@ -199,7 +198,6 @@ void	flood_fill_algo(int x, int y, t_data *data);
 
 //flood_fill_utils.c
 char	**copy_map(t_data *data);
-
 
 //animation_spell_bonus.c
 void	animation_spell(t_data *data);

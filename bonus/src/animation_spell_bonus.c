@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   animation_spell_bonus.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/26 09:03:02 by jrossign          #+#    #+#             */
+/*   Updated: 2023/01/26 09:03:04 by jrossign         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d_bonus.h"
 
 void	set_anim_coor(t_data *data)
@@ -20,7 +32,8 @@ void	animation_spell(t_data *data)
 	if (data->anim->spell == 1)
 	{
 		if (data->anim->frame > 0)
-			data->anim->spell_anim[data->anim->frame - 1]->instances->enabled = false;
+			data->anim->spell_anim
+			[data->anim->frame - 1]->instances->enabled = false;
 		set_anim_coor(data);
 		data->anim->spell_anim[data->anim->frame]->instances->enabled = true;
 		usleep(90000);
@@ -39,10 +52,12 @@ void	set_spell_asset(t_data *data)
 	anim = ft_calloc(1, sizeof(t_anim));
 	while (i < 12)
 	{
-		asset = ft_strjoinfree(ft_strdup("asset/animation_attack/spec"), ft_itoa(i));
+		asset = ft_strjoinfree(ft_strdup("asset/animation_attack/spec"),
+				ft_itoa(i));
 		asset = ft_strjoin(asset, EXTENSION_TEXTURE);
 		animation = mlx_load_xpm42(asset);
-		anim->spell_anim[i] = mlx_texture_to_image(data->ray->mlx, &animation->texture);
+		anim->spell_anim[i] = mlx_texture_to_image(data->ray->mlx,
+				&animation->texture);
 		mlx_image_to_window(data->ray->mlx, anim->spell_anim[i], 0, 0);
 		mlx_delete_xpm42(animation);
 		anim->spell_anim[i]->instances->enabled = false;
