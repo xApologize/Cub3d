@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/25 08:22:23 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/26 08:38:21 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,22 @@ void	flood_fill_algo(int x, int y, t_data *data);
 //flood_fill_utils.c
 char	**copy_map(t_data *data);
 
+//data.c
+void	init_var(t_data *data, double i);
+void	init_dist(t_data *data);
+void	start_var(t_data *data);
+
+//draw_minimap_utils.c
+void	draw_player_two(t_data *data);
+void	draw_map_two(t_data *data);
+
+//draw_minimap.c
+void	draw_player(t_data *data);
+void	draw_wall(t_data *data, int x, int y);
+void	draw_space(t_data *data, int x, int y);
+void	draw_map(t_data *data);
+void	map(t_data *data);
+
 //error.c
 void	error_and_exit(char *err_msg);
 void	error_and_free(t_data *data, char *err_msg, int flag);
@@ -200,27 +216,10 @@ void	error_code_arg(t_data *data, int err_code);
 void	free_full_data(t_data *data);
 void	close_fds(t_data *data);
 
-//raycaster.c
-void	init_mlx(t_data *data);
-void	raycaster(t_data *data);
-void	hook(mlx_key_data_t keydata, void *temp);
-
-//raycasting_utils.c
-void	dda(t_data *data);
-void	calc_line(t_data *data);
-void	find_hit(t_data *data, xpm_t *texture);
-void	draw_line(t_data *data, xpm_t *texture, int **arr, int i);
-
-//draw_minimap.c
-void	draw_player(t_data *data);
-void	draw_wall(t_data *data, int x, int y);
-void	draw_space(t_data *data, int x, int y);
-void	draw_map(t_data *data);
-void	map(t_data *data);
-
-//moves_2.c
+//moves_1.c
 void	turn_right(t_data *data);
 void	turn_left(t_data *data);
+void	hook_two(mlx_key_data_t keydata, t_data *data);
 void	hook(mlx_key_data_t keydata, void *temp);
 
 //moves_2.c
@@ -229,15 +228,22 @@ void	backward(t_data *data);
 void	right(t_data *data);
 void	left(t_data *data);
 
+//raycaster.c
+void	init_mlx(t_data *data);
+void	raycaster(t_data *data);
+void	hook(mlx_key_data_t keydata, void *temp);
+
+//raycasting_utils.c
+void	dda(t_data *data);
+void	dda_calc(t_data *data);
+void	calc_line(t_data *data);
+void	find_hit(t_data *data, xpm_t *texture);
+void	draw_line(t_data *data, xpm_t *texture, int **arr, int i);
+
 //utils.c
 int		create_colour(int r, int g, int b, int a);
 void	clear_image(t_data *data);
 int		**fill_texture(xpm_t *tex);
 void	create_texture(t_data *data);
-
-//data.c
-void	init_var(t_data *data, double i);
-void	init_dist(t_data *data);
-void	start_var(t_data *data);
 
 #endif

@@ -1,13 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves_2_bonus.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/26 08:21:44 by jrossign          #+#    #+#             */
+/*   Updated: 2023/01/26 08:21:45 by jrossign         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d_bonus.h"
 
-void	forward(t_data *data) // faut fix que quand tes tout droits tu clip un peu a travers le mur
+// faut fix que quand tes tout droits tu clip un peu a travers le mur
+void	forward(t_data *data)
 {
 	double	i;
 
 	i = 0;
 	while (data->ray->m_speed - i >= 0.15)
 	{
-		if(data->map[(int)(data->ray->pos_y)][(int)(data->ray->pos_x + data->ray->dir_x * (data->ray->m_speed - i))] == '0')
+		if (data->map[(int)(data->ray->pos_y)][(int)(data->ray->pos_x
+			+ data->ray->dir_x * (data->ray->m_speed - i))] == '0')
 		{
 			data->ray->pos_x += data->ray->dir_x * data->ray->m_speed - i;
 			break ;
@@ -17,9 +31,9 @@ void	forward(t_data *data) // faut fix que quand tes tout droits tu clip un peu 
 	i = 0;
 	while (data->ray->m_speed - i >= 0.15)
 	{
-		if(data->map[(int)(data->ray->pos_y + data->ray->dir_y * (data->ray->m_speed - i))][(int)(data->ray->pos_x)] == '0')
+		if (data->map[(int)(data->ray->pos_y + data->ray->dir_y
+				* (data->ray->m_speed - i))][(int)(data->ray->pos_x)] == '0')
 		{
-			
 			data->ray->pos_y += data->ray->dir_y * data->ray->m_speed - i;
 			break ;
 		}
@@ -34,7 +48,8 @@ void	backward(t_data *data)
 	i = 0;
 	while (data->ray->m_speed - i >= 0.15)
 	{
-		if(data->map[(int)(data->ray->pos_y)][(int)(data->ray->pos_x - data->ray->dir_x * (data->ray->m_speed - i))] == '0')
+		if (data->map[(int)(data->ray->pos_y)][(int)(data->ray->pos_x
+			- data->ray->dir_x * (data->ray->m_speed - i))] == '0')
 		{
 			data->ray->pos_x -= data->ray->dir_x * data->ray->m_speed - i;
 			break ;
@@ -44,7 +59,8 @@ void	backward(t_data *data)
 	i = 0;
 	while (data->ray->m_speed - i >= 0.15)
 	{
-		if(data->map[(int)(data->ray->pos_y - data->ray->dir_y * (data->ray->m_speed - i))][(int)(data->ray->pos_x)] == '0')
+		if (data->map[(int)(data->ray->pos_y - data->ray->dir_y
+				* (data->ray->m_speed - i))][(int)(data->ray->pos_x)] == '0')
 		{
 			data->ray->pos_y -= data->ray->dir_y * data->ray->m_speed - i;
 			break ;
@@ -55,16 +71,20 @@ void	backward(t_data *data)
 
 void	right(t_data *data)
 {
-	if(data->map[(int)(data->ray->pos_y)][(int)(data->ray->pos_x + data->ray->plane_x * data->ray->s_speed)] == '0') 
+	if (data->map[(int)(data->ray->pos_y)][(int)(data->ray->pos_x
+			+ data->ray->plane_x * data->ray->s_speed)] == '0')
 		data->ray->pos_x += data->ray->plane_x * data->ray->s_speed;
-	if(data->map[(int)(data->ray->pos_y + data->ray->plane_y * data->ray->s_speed)][(int)(data->ray->pos_x)] == '0')
+	if (data->map[(int)(data->ray->pos_y + data->ray->plane_y
+			* data->ray->s_speed)][(int)(data->ray->pos_x)] == '0')
 		data->ray->pos_y += data->ray->plane_y * data->ray->s_speed;
 }
 
 void	left(t_data *data)
 {
-	if(data->map[(int)(data->ray->pos_y)][(int)(data->ray->pos_x - data->ray->plane_x * data->ray->s_speed)] == '0') 
+	if (data->map[(int)(data->ray->pos_y)][(int)(data->ray->pos_x
+			- data->ray->plane_x * data->ray->s_speed)] == '0')
 		data->ray->pos_x -= data->ray->plane_x * data->ray->s_speed;
-	if(data->map[(int)(data->ray->pos_y - data->ray->plane_y * data->ray->s_speed)][(int)(data->ray->pos_x)] == '0')
+	if (data->map[(int)(data->ray->pos_y - data->ray->plane_y
+			* data->ray->s_speed)][(int)(data->ray->pos_x)] == '0')
 		data->ray->pos_y -= data->ray->plane_y * data->ray->s_speed;
 }

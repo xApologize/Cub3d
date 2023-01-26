@@ -1,30 +1,53 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves_1_bonus.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/26 08:16:16 by jrossign          #+#    #+#             */
+/*   Updated: 2023/01/26 08:16:18 by jrossign         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d_bonus.h"
 
 void	turn_right(t_data *data)
 {
-	double old_dir_x = data->ray->dir_x;
-	data->ray->dir_x = data->ray->dir_x * cos(RSPEED) - data->ray->dir_y * sin(RSPEED);
-	data->ray->dir_y = old_dir_x * sin(RSPEED) + data->ray->dir_y * cos(RSPEED);
-	double oldPlaneX = data->ray->plane_x;
-	data->ray->plane_x = data->ray->plane_x * cos(RSPEED) - data->ray->plane_y * sin(RSPEED);
-	data->ray->plane_y = oldPlaneX * sin(RSPEED) + data->ray->plane_y * cos(RSPEED);
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_plane_x = data->ray->plane_x;
+	old_dir_x = data->ray->dir_x;
+	data->ray->dir_x = data->ray->dir_x * cos(RSPEED)
+		- data->ray->dir_y * sin(RSPEED);
+	data->ray->dir_y = old_dir_x * sin(RSPEED)
+		+ data->ray->dir_y * cos(RSPEED);
+	data->ray->plane_x = data->ray->plane_x
+		* cos(RSPEED) - data->ray->plane_y * sin(RSPEED);
+	data->ray->plane_y = old_plane_x * sin(RSPEED)
+		+ data->ray->plane_y * cos(RSPEED);
 }
 
 void	turn_left(t_data *data)
 {
-	double old_dir_x = data->ray->dir_x;
-	data->ray->dir_x = data->ray->dir_x * cos(-RSPEED) - data->ray->dir_y * sin(-RSPEED);
-	data->ray->dir_y = old_dir_x * sin(-RSPEED) + data->ray->dir_y * cos(-RSPEED);
-	double oldPlaneX = data->ray->plane_x;
-	data->ray->plane_x = data->ray->plane_x * cos(-RSPEED) - data->ray->plane_y * sin(-RSPEED);
-	data->ray->plane_y = oldPlaneX * sin(-RSPEED) + data->ray->plane_y * cos(-RSPEED);
+	double	old_dir_x;
+	double	old_plane_x;
+
+	old_plane_x = data->ray->plane_x;
+	old_dir_x = data->ray->dir_x;
+	data->ray->dir_x = data->ray->dir_x * cos(-RSPEED)
+		- data->ray->dir_y * sin(-RSPEED);
+	data->ray->dir_y = old_dir_x * sin(-RSPEED)
+		+ data->ray->dir_y * cos(-RSPEED);
+	data->ray->plane_x = data->ray->plane_x
+		* cos(-RSPEED) - data->ray->plane_y * sin(-RSPEED);
+	data->ray->plane_y = old_plane_x * sin(-RSPEED)
+		+ data->ray->plane_y * cos(-RSPEED);
 }
 
-void	hook(mlx_key_data_t keydata, void *temp)
+void	hook_two(mlx_key_data_t keydata, t_data *data)
 {
-	t_data *data;
-
-	data = temp;
 	if (keydata.key == MLX_KEY_ESCAPE)
 	{
 		mlx_close_window(data->ray->mlx);
@@ -42,6 +65,13 @@ void	hook(mlx_key_data_t keydata, void *temp)
 		left(data);
 	if (keydata.key == MLX_KEY_D)
 		right(data);
+}
+
+void	hook(mlx_key_data_t keydata, void *temp)
+{
+	t_data	*data;
+
+	data = temp;
 	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
 		system("afplay ./sound/ice-barrage1.mp3&");
 	if (keydata.key == MLX_KEY_UP)
@@ -57,5 +87,7 @@ void	hook(mlx_key_data_t keydata, void *temp)
 		else
 			data->ray->rays = true;
 	}
+	else
+		hook_two(keydata, data);
 	raycaster(data);
 }
