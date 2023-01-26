@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 //valid char/extension
 # define EXTENSION_MAP ".cub"
@@ -57,9 +57,9 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define RSPEED 0.1
-
-# define mapWidth 36 // va etre a mettre dans la struct
-# define mapHeight 42
+# define PI 3.141593
+# define MAP_WIDTH 36 // va etre a mettre dans la struct
+# define MAP_HEIGHT 42
 
 # include "../lib/libft/include/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
@@ -71,14 +71,6 @@
 # include <limits.h>
 # include <stdint.h>
 # include <stdbool.h>
-
-# define WIDTH 1920
-# define HEIGHT 1080
-# define RSPEED 0.1
-
-# define mapWidth 36 // va etre a mettre dans la struct
-# define mapHeight 42
-# define PI 3.141593
 
 typedef struct s_tex{
 	int			**north;
@@ -93,11 +85,11 @@ typedef struct s_tex{
 }	t_tex;
 
 typedef struct s_ray{
-	int			texX;
-	int			mapX;
-	int			mapY;
-	int			stepX;
-	int			stepY;
+	int			tex_x;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
 	int			hit;
 	int			side;
 	int			line;
@@ -106,23 +98,23 @@ typedef struct s_ray{
 	int			floor;
 	int			ceiling;
 	bool		rays;
-	double		posX;
-	double		posY;
-	double		dirX;
-	double		dirY;
-	double		planeX;
-	double		planeY;
-	double	 	camera;
-	double	 	rayY;
-	double	 	rayX;
-	double		distY;
-	double		distX;
-	double		deltaX;
-	double		deltaY;
-	double		wallDist;
-	double		rayLenght;
-	double		mSpeed;
-	double		sSpeed;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	double		camera;
+	double		ray_y;
+	double		ray_x;
+	double		dist_y;
+	double		dist_x;
+	double		delta_x;
+	double		delta_y;
+	double		wall_dist;
+	double		ray_length;
+	double		m_speed;
+	double		s_speed;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 }	t_ray;
@@ -208,6 +200,7 @@ void	flood_fill_algo(int x, int y, t_data *data);
 //flood_fill_utils.c
 char	**copy_map(t_data *data);
 
+
 //animation_spell_bonus.c
 void	animation_spell(t_data *data);
 void	set_spell_asset(t_data *data);
@@ -216,6 +209,17 @@ void	set_spell_asset(t_data *data);
 void	init_var(t_data *data, double i);
 void	init_dist(t_data *data);
 void	start_var(t_data *data);
+
+//draw_minimap_utils.c
+void	draw_player_two(t_data *data);
+void	draw_map_two(t_data *data);
+
+//draw_minimap.c
+void	draw_player(t_data *data);
+void	draw_wall(t_data *data, int x, int y);
+void	draw_space(t_data *data, int x, int y);
+void	draw_map(t_data *data);
+void	map(t_data *data);
 
 //error.c
 void	error_and_exit(char *err_msg);
@@ -226,29 +230,11 @@ void	error_code_arg(t_data *data, int err_code);
 void	free_full_data(t_data *data);
 void	close_fds(t_data *data);
 
-//raycaster.c
-void	init_mlx(t_data *data);
-void	raycaster(t_data *data);
-void	hook(mlx_key_data_t keydata, void *temp);
-
-//raycasting_utils.c
-void	dda(t_data *data);
-void	calc_line(t_data *data);
-void	find_hit(t_data *data, xpm_t *texture);
-void	draw_line(t_data *data, xpm_t *texture, int **arr, int i);
-
-//draw_minimap.c
-void	draw_player(t_data *data);
-void	draw_wall(t_data *data, int x, int y);
-void	draw_space(t_data *data, int x, int y);
-void	draw_map(t_data *data);
-void	map(t_data *data);
-
 //moves_1.c
 void	turn_right(t_data *data);
 void	turn_left(t_data *data);
+void	hook_two(mlx_key_data_t keydata, t_data *data);
 void	hook(mlx_key_data_t keydata, void *temp);
-void	loop_hook(void *temp);
 
 //moves_2.c
 void	forward(t_data *data);
@@ -256,8 +242,20 @@ void	backward(t_data *data);
 void	right(t_data *data);
 void	left(t_data *data);
 
+//raycaster.c
+void	init_mlx(t_data *data);
+void	raycaster(t_data *data);
+void	hook(mlx_key_data_t keydata, void *temp);
+
+//raycasting_utils.c
+void	dda(t_data *data);
+void	dda_calc(t_data *data);
+void	calc_line(t_data *data);
+void	find_hit(t_data *data, xpm_t *texture);
+void	draw_line(t_data *data, xpm_t *texture, int **arr, int i);
+
 //utils.c
-int 	create_colour(int r, int g, int b, int a);
+int		create_colour(int r, int g, int b, int a);
 void	clear_image(t_data *data);
 int		**fill_texture(xpm_t *tex);
 void	create_texture(t_data *data);

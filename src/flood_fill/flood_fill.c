@@ -6,13 +6,11 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:20:12 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/18 07:38:32 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/25 11:15:10 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h>
-#include <unistd.h>
 
 //to remove before we push the project
 void	print_map(char **map)
