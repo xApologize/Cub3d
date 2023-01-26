@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/25 08:20:50 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/26 07:24:26 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,7 @@ void	close_fds(t_data *data);
 //raycaster.c
 void	init_mlx(t_data *data);
 void	raycaster(t_data *data);
+void	hook_two(mlx_key_data_t keydata, t_data *data);
 void	hook(mlx_key_data_t keydata, void *temp);
 
 //raycasting_utils.c
