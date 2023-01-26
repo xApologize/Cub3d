@@ -73,7 +73,7 @@ void	hook(mlx_key_data_t keydata, void *temp)
 
 	data = temp;
 	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
-		system("afplay ./sound/ice-barrage1.mp3&");
+		data->anim->spell = 1;
 	if (keydata.key == MLX_KEY_UP)
 		if (data->ray->m_speed < 0.90)
 			data->ray->m_speed += 0.05;
@@ -90,4 +90,22 @@ void	hook(mlx_key_data_t keydata, void *temp)
 	else
 		hook_two(keydata, data);
 	raycaster(data);
+}
+
+void	loop_hook(void *temp)
+{
+	t_data	*data;
+
+	data = (t_data *)temp;
+	if (data->anim->spell == true)
+	{
+		if (data->anim->frame == 0)
+		{
+			system("afplay ./sound/ice-barrage1.mp3&");
+			data->tex->player->instances->enabled = false;
+		}
+		if (data->anim->frame == 11)
+			data->tex->player->instances->enabled = true;
+		animation_spell(data);
+	}
 }

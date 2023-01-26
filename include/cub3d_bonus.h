@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/26 08:38:21 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:25:30 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,14 +73,15 @@
 # include <stdbool.h>
 
 typedef struct s_tex{
-	int		**north;
-	int		**south;
-	int		**east;
-	int		**west;
-	xpm_t	*north_tex;
-	xpm_t	*south_tex;
-	xpm_t	*east_tex;
-	xpm_t	*west_tex;
+	int			**north;
+	int			**south;
+	int			**east;
+	int			**west;
+	xpm_t		*north_tex;
+	xpm_t		*south_tex;
+	xpm_t		*east_tex;
+	xpm_t		*west_tex;
+	mlx_image_t	*player;
 }	t_tex;
 
 typedef struct s_ray{
@@ -130,20 +131,28 @@ typedef struct s_data
 	struct s_ray	*ray;
 	struct s_map	*map_data;
 	struct s_tex	*tex;
-
+	struct s_anim	*anim;
 }					t_data;
 
 typedef struct s_map
 {
 	int		x;
 	int		y;
+	int		*ceiling_color;
+	int		*floor_color;
 	char	*north_wall;
 	char	*south_wall;
 	char	*east_wall;
 	char	*west_wall;
-	int		*ceiling_color;
-	int		*floor_color;
 }			t_map;
+
+typedef struct s_anim
+{
+	int			frame;
+	mlx_image_t	*spell_anim[12];
+	bool		spell;
+}				t_anim;
+
 
 //check_map
 //check_arguments.c
@@ -190,6 +199,11 @@ void	flood_fill_algo(int x, int y, t_data *data);
 
 //flood_fill_utils.c
 char	**copy_map(t_data *data);
+
+
+//animation_spell_bonus.c
+void	animation_spell(t_data *data);
+void	set_spell_asset(t_data *data);
 
 //data.c
 void	init_var(t_data *data, double i);

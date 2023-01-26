@@ -71,7 +71,11 @@ void	init_mlx(t_data *data)
 	raycaster(data);
 	mlx_image_to_window(data->ray->mlx, data->ray->img, 0, 0);
 	mlx_image_to_window(data->ray->mlx, img, 730, 674);
+	img->instances->enabled = true;
+	data->tex->player = img;
+	set_spell_asset(data);
 	mlx_key_hook(data->ray->mlx, &hook, (void *) data);
+	mlx_loop_hook(data->ray->mlx, &loop_hook, data);
 	mlx_loop(data->ray->mlx);
 	mlx_delete_xpm42(data->tex->east_tex);
 	mlx_delete_xpm42(data->tex->west_tex);
