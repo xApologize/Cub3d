@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/26 09:54:41 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/30 10:57:35 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ typedef struct s_data
 	char			orientation;
 	int				map_width;
 	int				map_height;
+	double			old_x;
 	char			**map;
 	char			**copy;
 	mlx_image_t		*minimap;
@@ -223,6 +224,9 @@ void	map(t_data *data);
 void	error_and_exit(char *err_msg);
 void	error_and_free(t_data *data, char *err_msg, int flag);
 void	error_code_arg(t_data *data, int err_code);
+
+//mouse_movement_bonus.c
+void	mouse_move(double xpos, double ypos, void *tmp);
 
 //free_data.c
 void	free_full_data(t_data *data);
