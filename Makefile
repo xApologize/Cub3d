@@ -17,7 +17,7 @@ C_FILES_MAIN_B	= cub3d_bonus.c error_bonus.c free_data_bonus.c		\
 				  draw_minimap_bonus.c moves_1_bonus.c				\
 				  moves_2_bonus.c utils_bonus.c						\
 				  raycasting_utils_bonus.c animation_spell_bonus.c	\
-				  draw_minimap_utils_bonus.c						\
+				  draw_minimap_utils_bonus.c mouse_movement_bonus.c	\
 
 C_FILES_CHECK_B	= check_arguments_bonus.c get_map_bonus.c			\
 				  check_path_bonus.c check_arguments_1_bonus.c		\
