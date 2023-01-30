@@ -42,7 +42,6 @@ MLX				= MLX42/libmlx42.a
 MLX_FLAG_JB		= -lglfw -L /Users/$(USER)/homebrew/Cellar/glfw/3.3.8/lib/
 MLX_FLAG_BEN	= -lglfw -L /Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib/
 
-
 #--DIR PATH--# >
 SRC_DIR			= src/
 SRC_DIR_B		= $(BONUS_DIR)src/
