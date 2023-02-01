@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_arguments.c                                  :+:      :+:    :+:   */
+/*   check_arguments_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:16:39 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/19 08:24:49 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/01 08:08:12 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,23 @@ void	check_arguments(t_data *data)
 {
 	create_map_data(data);
 	get_arguments(data);
+	check_all_arg(data);
+}
+
+void	check_all_arg(t_data *data)
+{
+	if (!data->map_data->east_wall)
+		error_and_free(data, ERR_ARG_MISSING, 1);
+	if (!data->map_data->north_wall)
+		error_and_free(data, ERR_ARG_MISSING, 1);
+	if (!data->map_data->south_wall)
+		error_and_free(data, ERR_ARG_MISSING, 1);
+	if (!data->map_data->west_wall)
+		error_and_free(data, ERR_ARG_MISSING, 1);
+	if (!data->map_data->ceiling_color)
+		error_and_free(data, ERR_ARG_MISSING, 1);
+	if (!data->map_data->floor_color)
+		error_and_free(data, ERR_ARG_MISSING, 1);
 }
 
 void	get_arguments(t_data *data)

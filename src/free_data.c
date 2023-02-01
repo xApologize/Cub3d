@@ -6,12 +6,11 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:46 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/12 14:20:39 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/01 08:02:58 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdlib.h>
 
 void	free_full_data(t_data *data)
 {

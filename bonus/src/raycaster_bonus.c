@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 08:22:38 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/26 08:22:39 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/26 11:08:08 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	raycaster(t_data *data)
 
 	i = -1;
 	clear_image(data);
+	mlx_cursor_hook(data->ray->mlx, &mouse_move, (void*)data);
 	while (++i < WIDTH)
 	{
 		init_var(data, i);

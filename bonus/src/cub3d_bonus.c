@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:13:57 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/23 13:22:28 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/26 11:08:24 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		error_and_free(&data, ERR_MAIN_ARG, 0);
+	data.old_x = 0;
 	set_map(argv[1], &data);
 	check_arguments(&data);
 	check_map(&data);

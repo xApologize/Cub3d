@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/26 09:54:41 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/01 08:09:16 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
  .cub extension.\n"
 # define ERR_ASSET_EXT "the assets you pass in the map information must have a\
  .xpm42 extension.\n"
+# define ERR_ARG_MISSING "one or more argument in the map information is missing.\n"
 # define ERR_ARG_PATH "one of the path in the map information is not valid.\n"
 # define ERR_COL_LINE "one of the line in the map information is not valid.\n"
 # define ERR_COL_NOT_3 "the color you passed in the map information is not a\
@@ -125,6 +126,7 @@ typedef struct s_data
 	char			orientation;
 	int				map_width;
 	int				map_height;
+	double			old_x;
 	char			**map;
 	char			**copy;
 	mlx_image_t		*minimap;
@@ -156,6 +158,7 @@ typedef struct s_anim
 //check_map
 //check_arguments.c
 void	check_arguments(t_data *data);
+void	check_all_arg(t_data *data);
 void	get_arguments(t_data *data);
 void	set_map_data(t_data *data, char *arg, char *str);
 int		open_assets_file(char **path);
@@ -223,6 +226,9 @@ void	map(t_data *data);
 void	error_and_exit(char *err_msg);
 void	error_and_free(t_data *data, char *err_msg, int flag);
 void	error_code_arg(t_data *data, int err_code);
+
+//mouse_movement_bonus.c
+void	mouse_move(double xpos, double ypos, void *tmp);
 
 //free_data.c
 void	free_full_data(t_data *data);
