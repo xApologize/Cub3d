@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/26 07:27:54 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/01/31 11:20:23 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
  .cub extension.\n"
 # define ERR_ASSET_EXT "the assets you pass in the map information must have a\
  .xpm42 extension.\n"
+# define ERR_ARG_MISSING "one or more argument in the map information is missing.\n"
 # define ERR_ARG_PATH "one of the path in the map information is not valid.\n"
 # define ERR_COL_LINE "one of the line in the map information is not valid.\n"
 # define ERR_COL_NOT_3 "the color you passed in the map information is not a\
@@ -148,6 +149,7 @@ typedef struct s_map
 //check_map
 //check_arguments.c
 void	check_arguments(t_data *data);
+void	check_all_arg(t_data *data);
 void	get_arguments(t_data *data);
 void	set_map_data(t_data *data, char *arg, char *str);
 int		open_assets_file(char **path);
