@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 10:36:37 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/25 10:36:38 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/02 10:43:10 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,23 +60,18 @@ void	raycaster(t_data *data)
 
 void	init_mlx(t_data *data)
 {
-	xpm_t		*overlay;
-	mlx_image_t	*img;
-
 	data->ray = ft_calloc(1, sizeof(t_ray));
 	start_var(data);
-	overlay = mlx_load_xpm42("./asset/weapon.xpm42");
-	img = mlx_texture_to_image(data->ray->mlx, &overlay->texture);
 	create_texture(data);
+	data->tex->overlay = mlx_load_xpm42("./asset/weapon.xpm42");
+	data->tex->overlay_img = mlx_texture_to_image(data->ray->mlx,
+			&data->tex->overlay->texture);
 	raycaster(data);
 	mlx_image_to_window(data->ray->mlx, data->ray->img, 0, 0);
-	mlx_image_to_window(data->ray->mlx, img, 730, 674);
+	mlx_image_to_window(data->ray->mlx, data->tex->overlay_img, 730, 674);
 	mlx_key_hook(data->ray->mlx, &hook, (void *) data);
 	mlx_loop(data->ray->mlx);
-	mlx_delete_xpm42(data->tex->east_tex);
-	mlx_delete_xpm42(data->tex->west_tex);
-	mlx_delete_xpm42(data->tex->north_tex);
-	mlx_delete_xpm42(data->tex->south_tex);
 	mlx_delete_image(data->ray->mlx, data->ray->img);
+	mlx_delete_image(data->ray->mlx, data->tex->overlay_img);
 	mlx_terminate(data->ray->mlx);
 }

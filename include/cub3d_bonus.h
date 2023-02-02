@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/02/01 08:09:16 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/02 11:13:33 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
  .cub extension.\n"
 # define ERR_ASSET_EXT "the assets you pass in the map information must have a\
  .xpm42 extension.\n"
-# define ERR_ARG_MISSING "one or more argument in the map information is missing.\n"
+# define ERR_ARG_MISSING "one or more argument in the map information is\
+ missing.\n"
 # define ERR_ARG_PATH "one of the path in the map information is not valid.\n"
 # define ERR_COL_LINE "one of the line in the map information is not valid.\n"
 # define ERR_COL_NOT_3 "the color you passed in the map information is not a\
@@ -82,6 +83,8 @@ typedef struct s_tex{
 	xpm_t		*south_tex;
 	xpm_t		*east_tex;
 	xpm_t		*west_tex;
+	xpm_t		*overlay;
+	mlx_image_t	*overlay_img;
 	mlx_image_t	*player;
 }	t_tex;
 
@@ -205,6 +208,13 @@ char	**copy_map(t_data *data);
 //animation_spell_bonus.c
 void	animation_spell(t_data *data);
 void	set_spell_asset(t_data *data);
+
+//free_data.c
+void	free_full_data(t_data *data);
+void	free_map_data(t_data *data);
+void	free_tex(t_data *data);
+void	free_ray(t_data *data);
+void	destroy_image(t_data *data);
 
 //data.c
 void	init_var(t_data *data, double i);

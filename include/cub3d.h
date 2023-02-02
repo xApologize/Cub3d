@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/31 11:20:23 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/02 11:13:20 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
  .cub extension.\n"
 # define ERR_ASSET_EXT "the assets you pass in the map information must have a\
  .xpm42 extension.\n"
-# define ERR_ARG_MISSING "one or more argument in the map information is missing.\n"
+# define ERR_ARG_MISSING "one or more argument in the map information is\
+ missing.\n"
 # define ERR_ARG_PATH "one of the path in the map information is not valid.\n"
 # define ERR_COL_LINE "one of the line in the map information is not valid.\n"
 # define ERR_COL_NOT_3 "the color you passed in the map information is not a\
@@ -74,14 +75,16 @@
 # include <stdbool.h>
 
 typedef struct s_tex{
-	int		**north;
-	int		**south;
-	int		**east;
-	int		**west;
-	xpm_t	*north_tex;
-	xpm_t	*south_tex;
-	xpm_t	*east_tex;
-	xpm_t	*west_tex;
+	int			**north;
+	int			**south;
+	int			**east;
+	int			**west;
+	xpm_t		*north_tex;
+	xpm_t		*south_tex;
+	xpm_t		*east_tex;
+	xpm_t		*west_tex;
+	xpm_t		*overlay;
+	mlx_image_t	*overlay_img;
 }	t_tex;
 
 typedef struct s_ray{
@@ -200,7 +203,10 @@ void	error_code_arg(t_data *data, int err_code);
 
 //free_data.c
 void	free_full_data(t_data *data);
-void	close_fds(t_data *data);
+void	free_map_data(t_data *data);
+void	free_tex(t_data *data);
+void	free_ray(t_data *data);
+void	destroy_image(t_data *data);
 
 //raycaster.c
 void	init_mlx(t_data *data);
@@ -222,7 +228,7 @@ void	draw_space(t_data *data, int x, int y);
 void	draw_map(t_data *data);
 void	map(t_data *data);
 
-//moves_2.c
+//moves_1.c
 void	turn_right(t_data *data);
 void	turn_left(t_data *data);
 void	hook(mlx_key_data_t keydata, void *temp);
