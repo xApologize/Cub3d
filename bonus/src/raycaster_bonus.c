@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycaster_bonus.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/26 08:22:38 by jrossign          #+#    #+#             */
+/*   Updated: 2023/02/02 11:09:04 by jrossign         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d_bonus.h"
 
 void	texture_picker(t_data *data, int i)
@@ -30,6 +42,7 @@ void	raycaster(t_data *data)
 
 	i = -1;
 	clear_image(data);
+	mlx_cursor_hook(data->ray->mlx, &mouse_move, (void*)data);
 	while (++i < WIDTH)
 	{
 		init_var(data, i);
@@ -38,11 +51,11 @@ void	raycaster(t_data *data)
 		calc_line(data);
 		texture_picker(data, i);
 		if (i == WIDTH / 2)
-			data->ray->rayLenght = data->ray->wallDist;
+			data->ray->ray_length = data->ray->wall_dist;
 	}
 	if (data->ray->rays == true)
 		map(data);
-	else 
+	else
 		draw_map(data);
 }
 
@@ -57,7 +70,12 @@ void	init_mlx(t_data *data)
 	raycaster(data); 
 	mlx_image_to_window(data->ray->mlx, data->ray->img, 0, 0);
 	mlx_image_to_window(data->ray->mlx, data->tex->overlay_img, 730, 674);
+	raycaster(data);
+	data->tex->overlay_img->instances->enabled = true;
+	data->tex->player = data->tex->overlay_img;
+	set_spell_asset(data);
 	mlx_key_hook(data->ray->mlx, &hook, (void *) data);
+	mlx_loop_hook(data->ray->mlx, &loop_hook, data);
 	mlx_loop(data->ray->mlx);
 	mlx_delete_image(data->ray->mlx, data->ray->img);
 	mlx_delete_image(data->ray->mlx, data->tex->overlay_img);

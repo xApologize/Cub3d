@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/23 09:11:19 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/02 10:44:11 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
  .cub extension.\n"
 # define ERR_ASSET_EXT "the assets you pass in the map information must have a\
  .xpm42 extension.\n"
+# define ERR_ARG_MISSING "one or more argument in the map information is missing.\n"
 # define ERR_ARG_PATH "one of the path in the map information is not valid.\n"
 # define ERR_COL_LINE "one of the line in the map information is not valid.\n"
 # define ERR_COL_NOT_3 "the color you passed in the map information is not a\
@@ -57,9 +58,9 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define RSPEED 0.1
-
-# define mapWidth 36 // va etre a mettre dans la struct
-# define mapHeight 42
+# define MAP_WIDTH 36 // va etre a mettre dans la struct
+# define MAP_HEIGHT 42
+# define PI 3.141593
 
 # include "../lib/libft/include/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
@@ -71,14 +72,6 @@
 # include <limits.h>
 # include <stdint.h>
 # include <stdbool.h>
-
-# define WIDTH 1920
-# define HEIGHT 1080
-# define RSPEED 0.1
-
-# define mapWidth 36 // va etre a mettre dans la struct
-# define mapHeight 42
-# define PI 3.141593
 
 typedef struct s_tex{
 	int			**north;
@@ -94,11 +87,11 @@ typedef struct s_tex{
 }	t_tex;
 
 typedef struct s_ray{
-	int			texX;
-	int			mapX;
-	int			mapY;
-	int			stepX;
-	int			stepY;
+	int			tex_x;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
 	int			hit;
 	int			side;
 	int			line;
@@ -107,23 +100,23 @@ typedef struct s_ray{
 	int			floor;
 	int			ceiling;
 	bool		rays;
-	double		posX;
-	double		posY;
-	double		dirX;
-	double		dirY;
-	double		planeX;
-	double		planeY;
-	double	 	camera;
-	double	 	rayY;
-	double	 	rayX;
-	double		distY;
-	double		distX;
-	double		deltaX;
-	double		deltaY;
-	double		wallDist;
-	double		rayLenght;
-	double		mSpeed;
-	double		sSpeed;
+	double		pos_x;
+	double		pos_y;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
+	double		camera;
+	double		ray_y;
+	double		ray_x;
+	double		dist_y;
+	double		dist_x;
+	double		delta_x;
+	double		delta_y;
+	double		wall_dist;
+	double		ray_length;
+	double		m_speed;
+	double		s_speed;
 	mlx_t		*mlx;
 	mlx_image_t	*img;
 }	t_ray;
@@ -158,6 +151,7 @@ typedef struct s_map
 //check_map
 //check_arguments.c
 void	check_arguments(t_data *data);
+void	check_all_arg(t_data *data);
 void	get_arguments(t_data *data);
 void	set_map_data(t_data *data, char *arg, char *str);
 int		open_assets_file(char **path);
@@ -213,14 +207,15 @@ void	free_tex(t_data *data);
 void	free_ray(t_data *data);
 void	destroy_image(t_data *data);
 
-
 //raycaster.c
 void	init_mlx(t_data *data);
 void	raycaster(t_data *data);
+void	hook_two(mlx_key_data_t keydata, t_data *data);
 void	hook(mlx_key_data_t keydata, void *temp);
 
 //raycasting_utils.c
 void	dda(t_data *data);
+void	dda_calc(t_data *data);
 void	calc_line(t_data *data);
 void	find_hit(t_data *data, xpm_t *texture);
 void	draw_line(t_data *data, xpm_t *texture, int **arr, int i);
@@ -244,7 +239,7 @@ void	right(t_data *data);
 void	left(t_data *data);
 
 //utils.c
-int 	create_colour(int r, int g, int b, int a);
+int		create_colour(int r, int g, int b, int a);
 void	clear_image(t_data *data);
 int		**fill_texture(xpm_t *tex);
 void	create_texture(t_data *data);

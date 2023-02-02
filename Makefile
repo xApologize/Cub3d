@@ -12,15 +12,19 @@ C_FILES_CHECK	= check_arguments.c get_map.c check_path.c			\
 
 C_FILES_FF		= flood_fill.c flood_fill_utils.c					\
 
-C_FILES_MAIN_B	= cub3d_bonus.c error_bonus.c free_data_bonus.c raycaster_bonus.c data_bonus.c	\
-				  draw_minimap_bonus.c moves_1_bonus.c moves_2_bonus.c utils_bonus.c			\
-				  raycasting_utils_bonus.c								\
+C_FILES_MAIN_B	= cub3d_bonus.c error_bonus.c free_data_bonus.c		\
+				  raycaster_bonus.c data_bonus.c					\
+				  draw_minimap_bonus.c moves_1_bonus.c				\
+				  moves_2_bonus.c utils_bonus.c						\
+				  raycasting_utils_bonus.c animation_spell_bonus.c	\
+				  draw_minimap_utils_bonus.c mouse_movement_bonus.c	\
 
-C_FILES_CHECK_B	= check_arguments_bonus.c get_map_bonus.c check_path_bonus.c			\
-				  check_arguments_1_bonus.c check_map_bonus.c check_map_utils_bonus.c	\
-				  set_map_struct_bonus.c									\
+C_FILES_CHECK_B	= check_arguments_bonus.c get_map_bonus.c			\
+				  check_path_bonus.c check_arguments_1_bonus.c		\
+				  check_map_bonus.c check_map_utils_bonus.c			\
+				  set_map_struct_bonus.c							\
 
-C_FILES_FF_B	= flood_fill_bonus.c flood_fill_utils_bonus.c					\
+C_FILES_FF_B	= flood_fill_bonus.c flood_fill_utils_bonus.c		\
 
 #--C FILES TO O FILES--# >
 O_FILES			= $(C_FILES_MAIN:.c=.o) $(C_FILES_CHECK:.c=.o) $(C_FILES_FF:.c=.o)
@@ -37,7 +41,6 @@ LIB_FLAG		= -L./lib/libft -lft
 MLX				= MLX42/libmlx42.a 
 MLX_FLAG_JB		= -lglfw -L /Users/$(USER)/homebrew/Cellar/glfw/3.3.8/lib/
 MLX_FLAG_BEN	= -lglfw -L /Users/$(USER)/.brew/Cellar/glfw/3.3.8/lib/
-
 
 #--DIR PATH--# >
 SRC_DIR			= src/

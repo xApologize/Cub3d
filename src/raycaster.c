@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycaster.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/25 10:36:37 by jrossign          #+#    #+#             */
+/*   Updated: 2023/02/02 10:43:10 by jrossign         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	texture_picker(t_data *data, int i)
@@ -38,11 +50,11 @@ void	raycaster(t_data *data)
 		calc_line(data);
 		texture_picker(data, i);
 		if (i == WIDTH / 2)
-			data->ray->rayLenght = data->ray->wallDist;
+			data->ray->ray_length = data->ray->wall_dist;
 	}
 	if (data->ray->rays == true)
 		map(data);
-	else 
+	else
 		draw_map(data);
 }
 
@@ -54,7 +66,7 @@ void	init_mlx(t_data *data)
 	data->tex->overlay = mlx_load_xpm42("./asset/weapon.xpm42");
 	data->tex->overlay_img = mlx_texture_to_image(data->ray->mlx,
 			&data->tex->overlay->texture);
-	raycaster(data); 
+	raycaster(data);
 	mlx_image_to_window(data->ray->mlx, data->ray->img, 0, 0);
 	mlx_image_to_window(data->ray->mlx, data->tex->overlay_img, 730, 674);
 	mlx_key_hook(data->ray->mlx, &hook, (void *) data);
