@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:46 by jrossign          #+#    #+#             */
-/*   Updated: 2023/02/02 11:29:40 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/02 11:41:17 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	free_full_data(t_data *data)
 	if (data->tex)
 		free_tex(data);
 	free_ray(data);
+	if (data->anim)
+		free(data->anim);
 }
 
 void	free_map_data(t_data *data)
