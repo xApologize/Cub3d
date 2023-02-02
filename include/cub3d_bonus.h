@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/02/02 11:13:33 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/02 11:46:06 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,8 +206,10 @@ void	flood_fill_algo(int x, int y, t_data *data);
 char	**copy_map(t_data *data);
 
 //animation_spell_bonus.c
+void	set_anim_coor(t_data *data);
 void	animation_spell(t_data *data);
 void	set_spell_asset(t_data *data);
+void	create_spell_img(t_data *data, t_anim *anim, int i);
 
 //free_data.c
 void	free_full_data(t_data *data);

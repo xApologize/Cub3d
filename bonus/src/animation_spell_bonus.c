@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 09:03:02 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/26 09:03:04 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/02 11:46:47 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,27 +44,35 @@ void	animation_spell(t_data *data)
 void	set_spell_asset(t_data *data)
 {
 	int		i;
-	char	*asset;
-	xpm_t	*animation;
 	t_anim	*anim;
 
 	i = 0;
 	anim = ft_calloc(1, sizeof(t_anim));
 	while (i < 12)
 	{
-		asset = ft_strjoinfree(ft_strdup("asset/animation_attack/spec"),
-				ft_itoa(i));
-		asset = ft_strjoin(asset, EXTENSION_TEXTURE);
-		animation = mlx_load_xpm42(asset);
-		anim->spell_anim[i] = mlx_texture_to_image(data->ray->mlx,
-				&animation->texture);
-		mlx_image_to_window(data->ray->mlx, anim->spell_anim[i], 0, 0);
-		mlx_delete_xpm42(animation);
-		anim->spell_anim[i]->instances->enabled = false;
-		free(asset);
+		create_spell_img(data, anim, i);
 		i++;
 	}
 	anim->frame = 0;
 	anim->spell = 0;
 	data->anim = anim;
+}
+
+void	create_spell_img(t_data *data, t_anim *anim, int i)
+{
+	char	*asset;
+	char	*asset_ext;
+	xpm_t	*animation;
+
+	asset = ft_strjoinfree(ft_strdup("asset/animation_attack/spec"),
+			ft_itoa(i));
+	asset_ext = ft_strjoin(asset, EXTENSION_TEXTURE);
+	animation = mlx_load_xpm42(asset_ext);
+	anim->spell_anim[i] = mlx_texture_to_image(data->ray->mlx,
+			&animation->texture);
+	mlx_image_to_window(data->ray->mlx, anim->spell_anim[i], 0, 0);
+	mlx_delete_xpm42(animation);
+	anim->spell_anim[i]->instances->enabled = false;
+	free(asset);
+	free(asset_ext);
 }
