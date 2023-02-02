@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 08:22:38 by jrossign          #+#    #+#             */
-/*   Updated: 2023/02/02 11:09:04 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/02 11:12:50 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	raycaster(t_data *data)
 
 	i = -1;
 	clear_image(data);
-	mlx_cursor_hook(data->ray->mlx, &mouse_move, (void*)data);
+	mlx_cursor_hook(data->ray->mlx, &mouse_move, (void *)data);
 	while (++i < WIDTH)
 	{
 		init_var(data, i);
@@ -67,7 +67,7 @@ void	init_mlx(t_data *data)
 	data->tex->overlay = mlx_load_xpm42("./asset/weapon.xpm42");
 	data->tex->overlay_img = mlx_texture_to_image(data->ray->mlx,
 			&data->tex->overlay->texture);
-	raycaster(data); 
+	raycaster(data);
 	mlx_image_to_window(data->ray->mlx, data->ray->img, 0, 0);
 	mlx_image_to_window(data->ray->mlx, data->tex->overlay_img, 730, 674);
 	raycaster(data);
