@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:46 by jrossign          #+#    #+#             */
-/*   Updated: 2023/02/02 11:08:09 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/02 11:29:40 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	free_full_data(t_data *data)
 {
-	destroy_image(data);
 	free_map_data(data);
-	free_tex(data);
+	if (data->tex)
+		free_tex(data);
 	free_ray(data);
 }
 
@@ -52,6 +52,7 @@ void	free_tex(t_data *data)
 		ft_freepp((void **)data->tex->east);
 	if (data->tex->west)
 		ft_freepp((void **)data->tex->west);
+	destroy_image(data);
 	if (data->tex)
 		free(data->tex);
 }
@@ -64,9 +65,14 @@ void	free_ray(t_data *data)
 
 void	destroy_image(t_data *data)
 {
-	mlx_delete_xpm42(data->tex->east_tex);
-	mlx_delete_xpm42(data->tex->west_tex);
-	mlx_delete_xpm42(data->tex->north_tex);
-	mlx_delete_xpm42(data->tex->south_tex);
-	mlx_delete_xpm42(data->tex->overlay);
+	if (data->tex->east_tex)
+		mlx_delete_xpm42(data->tex->east_tex);
+	if (data->tex->west_tex)
+		mlx_delete_xpm42(data->tex->west_tex);
+	if (data->tex->north_tex)
+		mlx_delete_xpm42(data->tex->north_tex);
+	if (data->tex->south_tex)
+		mlx_delete_xpm42(data->tex->south_tex);
+	if (data->tex->overlay)
+		mlx_delete_xpm42(data->tex->overlay);
 }
