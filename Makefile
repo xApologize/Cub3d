@@ -99,7 +99,7 @@ clean:
 				@make -C $(LIB_DIR) clean
 				@make -C $(MLX_DIR) clean
 				@echo "Removing $(PROJECT_NAME) object files..."
-				@rm -f $(O_FILES) $(O_FILES_B)
+				@rm -f $(O_FILES)
 				@rm -rf $(OBJ_DIR)
 				@echo "Removing $(PROJECT_NAME) object files done."
 
@@ -107,9 +107,26 @@ fclean:				clean
 				@make -C $(LIB_DIR) fclean
 				@make -C $(MLX_DIR) fclean
 				@echo "Removing $(PROJECT_NAME) program..."
-				@rm -f $(NAME) $(NAME_B)
+				@rm -f $(NAME)
 				@echo "Removing $(PROJECT_NAME) program done."
 
+clean_bonus:
+				@make -C $(LIB_DIR) clean
+				@make -C $(MLX_DIR) clean
+				@echo "Removing $(PROJECT_NAME)_bonus object files..."
+				@rm -f $(O_FILES_B)
+				@rm -rf $(OBJ_DIR)
+				@echo "Removing $(PROJECT_NAME)_bonus object files done."
+
+fclean_bonus:		clean_bonus
+				@make -C $(LIB_DIR) fclean
+				@make -C $(MLX_DIR) fclean
+				@echo "Removing $(PROJECT_NAME)_bonus program..."
+				@rm -f $(NAME_B)
+				@echo "Removing $(PROJECT_NAME)_bonus program done."
+
 re:					fclean all
+
+re_bonus:			fclean_bonus bonus 
 
 .PHONY: all fclean clean re
