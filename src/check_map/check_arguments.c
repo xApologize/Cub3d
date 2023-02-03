@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:16:39 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/31 11:20:35 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/03 11:34:05 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,15 @@ void	set_map_data(t_data *data, char *arg, char *str)
 int	open_assets_file(char **path)
 {
 	int		fd;
+	char	*trimmed;
 
 	if (!path[1])
 	{
 		ft_freepp((void **) path);
 		return (CODE_PATH_ERR);
 	}
+	trimmed = ft_strtrim_free(path[1], '\t');
+	path[1] = trimmed;
 	if (check_extension(path[1], EXTENSION_TEXTURE) == -1)
 	{
 		ft_freepp((void **) path);
