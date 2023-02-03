@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:18:05 by jrossign          #+#    #+#             */
-/*   Updated: 2023/02/02 11:28:51 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:08:04 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@ void	create_map_data(t_data *data)
 
 void	set_texture(t_data *data, char *arg, char **path)
 {
+	char	*trimmed;
+
+	trimmed = ft_strtrim_free(path[1], '\t');
+	path[1] = trimmed;
 	if (!path)
 	{
 		free(arg);
