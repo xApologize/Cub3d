@@ -48,12 +48,5 @@ void	hook(mlx_key_data_t keydata, void *temp)
 	if (keydata.key == MLX_KEY_DOWN)
 		if (data->ray->mSpeed > 0.15)
 			data->ray->mSpeed -= 0.05;
-	if (keydata.key == MLX_KEY_R && keydata.action == MLX_RELEASE)
-	{
-		if (data->ray->rays == true)
-			data->ray->rays = false;
-		else
-			data->ray->rays = true;
-	}
 	raycaster(data);
 }

@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/19 07:52:37 by bperron          ###   ########.fr       */
+/*   Updated: 2023/01/20 13:33:27 by bperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ typedef struct s_data
 	char			**map;
 	char			**copy;
 	mlx_image_t		*minimap;
+	mlx_image_t		*cursor;
 	struct s_ray	*ray;
 	struct s_map	*map_data;
 	struct s_tex	*tex;

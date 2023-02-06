@@ -77,6 +77,7 @@ void	start_var(t_data *data)
 {
 	data->ray->mlx = mlx_init(WIDTH, HEIGHT, "test", false);
 	data->ray->img = mlx_new_image(data->ray->mlx, WIDTH, HEIGHT);
+	data->minimap = mlx_new_image(data->ray->mlx, 220, 220);
 	data->ray->posX = data->start_pos[1] + 0.5;
 	data->ray->posY = data->start_pos[0] + 0.5;
 	orientation(data);
