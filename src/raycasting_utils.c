@@ -89,7 +89,7 @@ void	draw_line(t_data *data, xpm_t *texture, int **arr, int i)
 	if (pos < 0)
 		pos = 0;
 	j = data->ray->start - 1;
-	while (++j < data->ray->end)
+	while (++j <= data->ray->end)
 	{
 		tex_y = (int) pos;
 		if (pos > texture->texture.height - 1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 08:22:38 by jrossign          #+#    #+#             */
-/*   Updated: 2023/02/02 11:12:50 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/07 11:48:20 by bperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	raycaster(t_data *data)
 
 	i = -1;
 	clear_image(data);
-	mlx_cursor_hook(data->ray->mlx, &mouse_move, (void *)data);
 	while (++i < WIDTH)
 	{
 		init_var(data, i);
@@ -53,10 +52,7 @@ void	raycaster(t_data *data)
 		if (i == WIDTH / 2)
 			data->ray->ray_length = data->ray->wall_dist;
 	}
-	if (data->ray->rays == true)
-		map(data);
-	else
-		draw_map(data);
+	draw_map(data);
 }
 
 void	init_mlx(t_data *data)
@@ -70,14 +66,18 @@ void	init_mlx(t_data *data)
 	raycaster(data);
 	mlx_image_to_window(data->ray->mlx, data->ray->img, 0, 0);
 	mlx_image_to_window(data->ray->mlx, data->tex->overlay_img, 730, 674);
-	raycaster(data);
+	mlx_image_to_window(data->ray->mlx, data->minimap, 0, 0);
+	cursor(data);
 	data->tex->overlay_img->instances->enabled = true;
 	data->tex->player = data->tex->overlay_img;
 	set_spell_asset(data);
 	mlx_key_hook(data->ray->mlx, &hook, (void *) data);
+	mlx_cursor_hook(data->ray->mlx, &mouse_move, (void *)data);
 	mlx_loop_hook(data->ray->mlx, &loop_hook, data);
 	mlx_loop(data->ray->mlx);
 	mlx_delete_image(data->ray->mlx, data->ray->img);
 	mlx_delete_image(data->ray->mlx, data->tex->overlay_img);
+	mlx_delete_image(data->ray->mlx, data->minimap);
+	mlx_delete_image(data->ray->mlx, data->cursor);
 	mlx_terminate(data->ray->mlx);
 }

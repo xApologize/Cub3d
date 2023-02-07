@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves_1_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 08:16:16 by jrossign          #+#    #+#             */
-/*   Updated: 2023/02/03 11:02:25 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/07 11:21:59 by bperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,13 +74,6 @@ void	hook(mlx_key_data_t keydata, void *temp)
 	data = temp;
 	if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
 		data->anim->spell = 1;
-	if (keydata.key == MLX_KEY_R && keydata.action == MLX_RELEASE)
-	{
-		if (data->ray->rays == true)
-			data->ray->rays = false;
-		else
-			data->ray->rays = true;
-	}
 	else
 		hook_two(keydata, data);
 	raycaster(data);

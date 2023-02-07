@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 07:56:22 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/26 08:43:17 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/07 08:47:20 by bperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,18 @@
 
 void	draw_player(t_data *data)
 {
-	int		hold;
-	int		hold2;
 	double	x;
 	double	y;
 
-	y = (double)(data->ray->pos_y) * 10 - 4.5;
-	x = (double)(data->ray->pos_x) * 10 - 4.5;
-	hold = y + 9;
-	while (y < hold)
+	x = 99;
+	while (++x < 109)
 	{
-		hold2 = x + 9;
-		while (x < hold2)
-			mlx_put_pixel(data->ray->img, x++, y, 0x8a15bdFF);
-		y++;
-		x -= 9;
+		y = 99;
+		while (++y < 109)
+		{
+			mlx_put_pixel(data->minimap, x, y, 0xe303fcFF);
+		}
 	}
-	draw_player_two(data);
 }
 
 void	draw_wall(t_data *data, int x, int y)
@@ -43,7 +38,7 @@ void	draw_wall(t_data *data, int x, int y)
 	{
 		hold2 = x + 9;
 		while (x < hold2)
-			mlx_put_pixel(data->ray->img, x++, y, 0xFFFFFFFF);
+			mlx_put_pixel(data->minimap, x++, y, 0xFFFFFFFF);
 		y++;
 		x -= 9;
 	}
@@ -59,64 +54,51 @@ void	draw_space(t_data *data, int x, int y)
 	{
 		hold2 = x + 9;
 		while (x < hold2)
-			mlx_put_pixel(data->ray->img, x++, y, 0x000000FF);
+			mlx_put_pixel(data->minimap, x++, y, 0x000000FF);
 		y++;
 		x -= 9;
 	}
 }
 
-void	draw_map(t_data *data)
+void	decide_draw(t_data *data, double *i, double *y)
 {
-	int	i;
-	int	j;
-	int	x;
-	int	y;
+	double	j;
+	double	x;
 
-	i = -1;
-	y = 0;
-	draw_map_two(data);
-	while (++i < data->map_height)
+	j = data->ray->pos_x - 9;
+	x = 0;
+	while (++x < 210)
 	{
-		j = -1;
-		x = 0;
-		while (++j < data->map_width)
+		if (*i >= 0 && j >= 0 && *i < data->map_height && j < data->map_width)
 		{
-			if (data->map[i][j] != '0')
-				draw_wall(data, x, y);
+			if (data->map[(int) *i][(int) j] != '0')
+				draw_wall(data, x, *y);
 			else
-				draw_space(data, x, y);
-			x += 10;
+				draw_space(data, x, *y);
 		}
-		y += 10;
+		j++;
+		x += 10;
 	}
-	draw_player(data);
+	*i += 1;
+	*y += 10;
 }
 
-//line 125 to 127 + 4.5
-void	map(t_data *data)
+void	draw_map(t_data *data)
 {
 	double	i;
+	double	j;
 	double	y;
-	double	x;
-	double	hold;
 
 	i = -1;
-	draw_map(data);
-	while (i < WIDTH)
+	while (++i < 210)
 	{
-		init_var(data, i);
-		init_dist(data);
-		dda(data);
-		y = (double)(data->ray->pos_y) * 10;
-		x = (double)(data->ray->pos_x) * 10;
-		hold = data->ray->wall_dist * 10;
-		while (hold-- >= 0 && y > 0 && x > 0
-			&& x < data->map_width * 10 && y < data->map_height * 10)
-		{
-			mlx_put_pixel(data->ray->img, x, y, 0xFF0000FF);
-			y += (double) data->ray->ray_y;
-			x += (double) data->ray->ray_x;
-		}
-		i += 0.5;
+		j = -1;
+		while (++j < 210)
+			mlx_put_pixel(data->minimap, i, j, 0x4d4d4dFF);
 	}
+	i = data->ray->pos_y - 9;
+	y = 0;
+	while (++y < 210)
+		decide_draw(data, &i, &y);
+	draw_player(data);
 }

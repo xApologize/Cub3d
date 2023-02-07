@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 08:29:53 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/26 08:29:54 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/07 11:41:17 by bperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,19 @@ void	create_texture(t_data *data)
 	data->tex->west = fill_texture(data->tex->west_tex);
 	data->tex->north = fill_texture(data->tex->north_tex);
 	data->tex->south = fill_texture(data->tex->south_tex);
+}
+
+void	cursor(t_data *data)
+{
+	mlx_texture_t	*cursor;
+	int				x;
+	int				y;
+
+	mlx_get_mouse_pos(data->ray->mlx, &x, &y);
+	data->cursor = mlx_new_image(data->ray->mlx, 0, 0);
+	cursor = mlx_load_png("./asset/scimitar.png");
+	data->cursor = mlx_texture_to_image(data->ray->mlx, cursor);
+	mlx_set_cursor_mode(data->ray->mlx, MLX_MOUSE_HIDDEN);
+	mlx_image_to_window(data->ray->mlx, data->cursor, x, y);
+	mlx_delete_texture(cursor);
 }

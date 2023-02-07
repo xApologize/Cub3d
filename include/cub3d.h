@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/02/02 11:13:20 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/07 11:42:58 by bperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ typedef struct s_data
 	char			**map;
 	char			**copy;
 	mlx_image_t		*minimap;
+	mlx_image_t		*cursor;
 	struct s_ray	*ray;
 	struct s_map	*map_data;
 	struct s_tex	*tex;
@@ -244,6 +245,7 @@ int		create_colour(int r, int g, int b, int a);
 void	clear_image(t_data *data);
 int		**fill_texture(xpm_t *tex);
 void	create_texture(t_data *data);
+void	cursor(t_data *data);
 
 //data.c
 void	init_var(t_data *data, double i);
