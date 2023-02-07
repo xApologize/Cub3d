@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   moves_2.c                                          :+:      :+:    :+:   */
+/*   moves_2_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 10:35:20 by jrossign          #+#    #+#             */
-/*   Updated: 2023/02/06 13:08:16 by bperron          ###   ########.fr       */
+/*   Created: 2023/01/26 08:21:44 by jrossign          #+#    #+#             */
+/*   Updated: 2023/01/26 08:21:45 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 // faut fix que quand tes tout droits tu clip un peu a travers le mur
 void	forward(t_data *data)
@@ -21,7 +21,7 @@ void	forward(t_data *data)
 	while (data->ray->m_speed - i >= 0.15)
 	{
 		if (data->map[(int)(data->ray->pos_y)][(int)(data->ray->pos_x
-				+ data->ray->dir_x * (data->ray->m_speed - i))] == '0')
+			+ data->ray->dir_x * (data->ray->m_speed - i))] == '0')
 		{
 			data->ray->pos_x += data->ray->dir_x * data->ray->m_speed - i;
 			break ;
@@ -49,7 +49,7 @@ void	backward(t_data *data)
 	while (data->ray->m_speed - i >= 0.15)
 	{
 		if (data->map[(int)(data->ray->pos_y)][(int)(data->ray->pos_x
-				- data->ray->dir_x * (data->ray->m_speed - i))] == '0')
+			- data->ray->dir_x * (data->ray->m_speed - i))] == '0')
 		{
 			data->ray->pos_x -= data->ray->dir_x * data->ray->m_speed - i;
 			break ;

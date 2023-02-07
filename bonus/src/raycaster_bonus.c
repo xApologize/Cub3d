@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycaster.c                                        :+:      :+:    :+:   */
+/*   raycaster_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 10:36:37 by jrossign          #+#    #+#             */
-/*   Updated: 2023/02/07 11:45:05 by bperron          ###   ########.fr       */
+/*   Created: 2023/01/26 08:22:38 by jrossign          #+#    #+#             */
+/*   Updated: 2023/02/07 11:48:20 by bperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+#include "cub3d_bonus.h"
 
 void	texture_picker(t_data *data, int i)
 {
@@ -55,17 +55,6 @@ void	raycaster(t_data *data)
 	draw_map(data);
 }
 
-void	cursor_hook(double x, double y, void *temp)
-{
-	t_data	*data;
-
-	data = temp;
-	data->cursor->instances->x = x;
-	data->cursor->instances->y = y;
-	if (x > 1919 || x < 1 || y > 1079 || y < 1)
-		mlx_set_mouse_pos(data->ray->mlx, 960, 540);
-}
-
 void	init_mlx(t_data *data)
 {
 	data->ray = ft_calloc(1, sizeof(t_ray));
@@ -79,8 +68,12 @@ void	init_mlx(t_data *data)
 	mlx_image_to_window(data->ray->mlx, data->tex->overlay_img, 730, 674);
 	mlx_image_to_window(data->ray->mlx, data->minimap, 0, 0);
 	cursor(data);
+	data->tex->overlay_img->instances->enabled = true;
+	data->tex->player = data->tex->overlay_img;
+	set_spell_asset(data);
 	mlx_key_hook(data->ray->mlx, &hook, (void *) data);
-	mlx_cursor_hook(data->ray->mlx, &cursor_hook, (void *) data);
+	mlx_cursor_hook(data->ray->mlx, &mouse_move, (void *)data);
+	mlx_loop_hook(data->ray->mlx, &loop_hook, data);
 	mlx_loop(data->ray->mlx);
 	mlx_delete_image(data->ray->mlx, data->ray->img);
 	mlx_delete_image(data->ray->mlx, data->tex->overlay_img);

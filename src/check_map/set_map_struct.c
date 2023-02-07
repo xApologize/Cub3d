@@ -6,7 +6,7 @@
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:18:05 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/12 14:17:17 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/03 11:38:42 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,18 @@ void	create_map_data(t_data *data)
 	map->west_wall = 0;
 	map->ceiling_color = NULL;
 	map->floor_color = NULL;
+	data->copy = NULL;
 	data->map_data = map;
+	data->tex = NULL;
+	data->ray = NULL;
 }
 
 void	set_texture(t_data *data, char *arg, char **path)
 {
+	char	*trimmed;
+
+	trimmed = ft_strtrim_free(path[1], '\t');
+	path[1] = trimmed;
 	if (!path)
 	{
 		free(arg);

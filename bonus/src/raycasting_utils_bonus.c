@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting_utils.c                                 :+:      :+:    :+:   */
+/*   raycasting_utils_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 10:39:38 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/26 07:28:05 by jrossign         ###   ########.fr       */
+/*   Created: 2023/01/26 08:25:12 by jrossign          #+#    #+#             */
+/*   Updated: 2023/01/26 08:27:48 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	dda(t_data *data)
 {
@@ -89,7 +89,7 @@ void	draw_line(t_data *data, xpm_t *texture, int **arr, int i)
 	if (pos < 0)
 		pos = 0;
 	j = data->ray->start - 1;
-	while (++j <= data->ray->end)
+	while (++j < data->ray->end)
 	{
 		tex_y = (int) pos;
 		if (pos > texture->texture.height - 1)

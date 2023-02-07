@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_arguments.c                                  :+:      :+:    :+:   */
+/*   check_arguments_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:16:39 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/16 13:26:38 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/03 12:07:31 by jrossign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	check_arguments(t_data *data)
 {
 	create_map_data(data);
 	get_arguments(data);
+	check_all_arg(data);
+}
+
+void	check_all_arg(t_data *data)
+{
+	if (!data->map_data->east_wall)
+		error_and_free(data, ERR_ARG_MISSING, 1);
+	if (!data->map_data->north_wall)
+		error_and_free(data, ERR_ARG_MISSING, 1);
+	if (!data->map_data->south_wall)
+		error_and_free(data, ERR_ARG_MISSING, 1);
+	if (!data->map_data->west_wall)
+		error_and_free(data, ERR_ARG_MISSING, 1);
+	if (!data->map_data->ceiling_color)
+		error_and_free(data, ERR_ARG_MISSING, 1);
+	if (!data->map_data->floor_color)
+		error_and_free(data, ERR_ARG_MISSING, 1);
 }
 
 void	get_arguments(t_data *data)
@@ -64,12 +81,15 @@ void	set_map_data(t_data *data, char *arg, char *str)
 int	open_assets_file(char **path)
 {
 	int		fd;
+	char	*trimmed;
 
 	if (!path[1])
 	{
 		ft_freepp((void **) path);
 		return (CODE_PATH_ERR);
 	}
+	trimmed = ft_strtrim_free(path[1], '\t');
+	path[1] = trimmed;
 	if (check_extension(path[1], EXTENSION_TEXTURE) == -1)
 	{
 		ft_freepp((void **) path);

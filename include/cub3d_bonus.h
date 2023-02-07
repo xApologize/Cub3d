@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 14:15:18 by jrossign          #+#    #+#             */
-/*   Updated: 2023/02/07 11:42:58 by bperron          ###   ########.fr       */
+/*   Updated: 2023/02/07 11:37:46 by bperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 //valid char/extension
 # define EXTENSION_MAP ".cub"
@@ -59,9 +59,9 @@
 # define WIDTH 1920
 # define HEIGHT 1080
 # define RSPEED 0.1
+# define PI 3.141593
 # define MAP_WIDTH 36 // va etre a mettre dans la struct
 # define MAP_HEIGHT 42
-# define PI 3.141593
 
 # include "../lib/libft/include/libft.h"
 # include "../MLX42/include/MLX42/MLX42.h"
@@ -85,6 +85,7 @@ typedef struct s_tex{
 	xpm_t		*west_tex;
 	xpm_t		*overlay;
 	mlx_image_t	*overlay_img;
+	mlx_image_t	*player;
 }	t_tex;
 
 typedef struct s_ray{
@@ -128,6 +129,7 @@ typedef struct s_data
 	char			orientation;
 	int				map_width;
 	int				map_height;
+	double			old_x;
 	char			**map;
 	char			**copy;
 	mlx_image_t		*minimap;
@@ -135,20 +137,27 @@ typedef struct s_data
 	struct s_ray	*ray;
 	struct s_map	*map_data;
 	struct s_tex	*tex;
-
+	struct s_anim	*anim;
 }					t_data;
 
 typedef struct s_map
 {
 	int		x;
 	int		y;
+	int		*ceiling_color;
+	int		*floor_color;
 	char	*north_wall;
 	char	*south_wall;
 	char	*east_wall;
 	char	*west_wall;
-	int		*ceiling_color;
-	int		*floor_color;
 }			t_map;
+
+typedef struct s_anim
+{
+	int			frame;
+	mlx_image_t	*spell_anim[12];
+	bool		spell;
+}				t_anim;
 
 //check_map
 //check_arguments.c
@@ -197,10 +206,11 @@ void	flood_fill_algo(int x, int y, t_data *data);
 //flood_fill_utils.c
 char	**copy_map(t_data *data);
 
-//error.c
-void	error_and_exit(char *err_msg);
-void	error_and_free(t_data *data, char *err_msg, int flag);
-void	error_code_arg(t_data *data, int err_code);
+//animation_spell_bonus.c
+void	set_anim_coor(t_data *data);
+void	animation_spell(t_data *data);
+void	set_spell_asset(t_data *data);
+void	create_spell_img(t_data *data, t_anim *anim, int i);
 
 //free_data.c
 void	free_full_data(t_data *data);
@@ -209,10 +219,50 @@ void	free_tex(t_data *data);
 void	free_ray(t_data *data);
 void	destroy_image(t_data *data);
 
+//data.c
+void	init_var(t_data *data, double i);
+void	init_dist(t_data *data);
+void	start_var(t_data *data);
+
+//draw_minimap_utils.c
+void	draw_player_two(t_data *data);
+void	draw_map_two(t_data *data);
+
+//draw_minimap.c
+void	draw_player(t_data *data);
+void	draw_wall(t_data *data, int x, int y);
+void	draw_space(t_data *data, int x, int y);
+void	draw_map(t_data *data);
+void	map(t_data *data);
+
+//error.c
+void	error_and_exit(char *err_msg);
+void	error_and_free(t_data *data, char *err_msg, int flag);
+void	error_code_arg(t_data *data, int err_code);
+
+//mouse_movement_bonus.c
+void	mouse_move(double xpos, double ypos, void *tmp);
+
+//free_data.c
+void	free_full_data(t_data *data);
+void	close_fds(t_data *data);
+
+//moves_1.c
+void	turn_right(t_data *data);
+void	turn_left(t_data *data);
+void	hook_two(mlx_key_data_t keydata, t_data *data);
+void	hook(mlx_key_data_t keydata, void *temp);
+void	loop_hook(void *temp);
+
+//moves_2.c
+void	forward(t_data *data);
+void	backward(t_data *data);
+void	right(t_data *data);
+void	left(t_data *data);
+
 //raycaster.c
 void	init_mlx(t_data *data);
 void	raycaster(t_data *data);
-void	hook_two(mlx_key_data_t keydata, t_data *data);
 void	hook(mlx_key_data_t keydata, void *temp);
 
 //raycasting_utils.c
@@ -222,34 +272,11 @@ void	calc_line(t_data *data);
 void	find_hit(t_data *data, xpm_t *texture);
 void	draw_line(t_data *data, xpm_t *texture, int **arr, int i);
 
-//draw_minimap.c
-void	draw_player(t_data *data);
-void	draw_wall(t_data *data, int x, int y);
-void	draw_space(t_data *data, int x, int y);
-void	draw_map(t_data *data);
-void	map(t_data *data);
-
-//moves_1.c
-void	turn_right(t_data *data);
-void	turn_left(t_data *data);
-void	hook(mlx_key_data_t keydata, void *temp);
-
-//moves_2.c
-void	forward(t_data *data);
-void	backward(t_data *data);
-void	right(t_data *data);
-void	left(t_data *data);
-
 //utils.c
 int		create_colour(int r, int g, int b, int a);
 void	clear_image(t_data *data);
 int		**fill_texture(xpm_t *tex);
 void	create_texture(t_data *data);
 void	cursor(t_data *data);
-
-//data.c
-void	init_var(t_data *data, double i);
-void	init_dist(t_data *data);
-void	start_var(t_data *data);
 
 #endif

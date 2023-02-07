@@ -6,5 +6,6 @@
 **.dSYM
 .DS_Store
 .vscode
-cub3D
+cub3d
+cub3d_bonus
 cub3d.dSYM

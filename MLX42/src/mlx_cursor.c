@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 20:10:54 by W2Wizard          #+#    #+#             */
-/*   Updated: 2023/01/20 12:45:23 by bperron          ###   ########.fr       */
+/*   Updated: 2023/02/06 13:41:44 by bperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,4 @@ void mlx_set_cursor_mode(mlx_t* mlx, mouse_mode_t mode)
 
 	glfwSetInputMode(mlx->window, GLFW_CURSOR, mode);
 }
+

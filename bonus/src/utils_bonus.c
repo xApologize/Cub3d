@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 11:13:10 by jrossign          #+#    #+#             */
-/*   Updated: 2023/02/07 11:42:41 by bperron          ###   ########.fr       */
+/*   Created: 2023/01/26 08:29:53 by jrossign          #+#    #+#             */
+/*   Updated: 2023/02/07 11:41:17 by bperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 int	create_colour(int r, int g, int b, int a)
 {
@@ -50,14 +50,14 @@ int	**fill_texture(xpm_t *tex)
 		arr[i - 4] = ft_calloc(sizeof(int), tex->texture.width);
 		while (++j < (int) tex->texture.width + 4)
 			arr[i - 4][j - 4] = create_colour(
-					tex->texture.pixels[(tex->texture.width * 4 * (i - 4))
-					+ (4 * (j - 4)) + 0],
-					tex->texture.pixels[(tex->texture.width
-						* 4 * (i - 4)) + (4 * (j - 4)) + 1],
-					tex->texture.pixels[(tex->texture.width * 4 * (i - 4))
-					+ (4 * (j - 4)) + 2],
-					tex->texture.pixels[(tex->texture.width
-						* 4 * (i - 4)) + (4 * (j - 4)) + 3]);
+					tex->texture.pixels[(tex->texture.width * 4
+						* (i - 4)) + (4 * (j - 4)) + 0],
+					tex->texture.pixels[(tex->texture.width * 4
+						* (i - 4)) + (4 * (j - 4)) + 1],
+					tex->texture.pixels[(tex->texture.width * 4
+						* (i - 4)) + (4 * (j - 4)) + 2],
+					tex->texture.pixels[(tex->texture.width * 4
+						* (i - 4)) + (4 * (j - 4)) + 3]);
 	}
 	return (arr);
 }

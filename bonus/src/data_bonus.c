@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data.c                                             :+:      :+:    :+:   */
+/*   data_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 08:29:00 by jrossign          #+#    #+#             */
-/*   Updated: 2023/02/07 11:43:19 by bperron          ###   ########.fr       */
+/*   Created: 2023/01/26 07:44:08 by jrossign          #+#    #+#             */
+/*   Updated: 2023/02/07 11:36:59 by bperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub3d_bonus.h"
 
 void	init_var(t_data *data, double i)
 {
@@ -93,10 +93,9 @@ void	orientation(t_data *data)
 
 void	start_var(t_data *data)
 {
-	data->ray->mlx = mlx_init(WIDTH, HEIGHT, "cub3D", false);
+	data->ray->mlx = mlx_init(WIDTH, HEIGHT, "test", false);
 	data->ray->img = mlx_new_image(data->ray->mlx, WIDTH, HEIGHT);
 	data->minimap = mlx_new_image(data->ray->mlx, 210, 210);
-	data->cursor = mlx_new_image(data->ray->mlx, 0, 0);
 	data->ray->pos_x = data->start_pos[1] + 0.5;
 	data->ray->pos_y = data->start_pos[0] + 0.5;
 	orientation(data);
