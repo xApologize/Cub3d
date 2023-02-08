@@ -1,10 +1,10 @@
-NO 			./asset/wall.xpm42
+NO ./asset/wall.xpm42
 SO ./asset/wall.xpm42
+C 20,28,237
+F 18,234,26
 EA ./asset/wall.xpm42
 WE ./asset/wall.xpm42
 
-C 20,28,237
-F 18,234,26
 
 111111111111111111111
 100000000000000000001
