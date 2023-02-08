@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 10:39:38 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/26 07:28:05 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/08 09:26:45 by bperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	calc_line(t_data *data)
 		data->ray->start = 0;
 	data->ray->end = data->ray->line / 2 + HEIGHT / 2;
 	if (data->ray->end >= HEIGHT)
-		data->ray->end = HEIGHT - 1;
+		data->ray->end = HEIGHT;
 }
 
 void	find_hit(t_data *data, xpm_t *texture)
@@ -89,7 +89,7 @@ void	draw_line(t_data *data, xpm_t *texture, int **arr, int i)
 	if (pos < 0)
 		pos = 0;
 	j = data->ray->start - 1;
-	while (++j <= data->ray->end)
+	while (++j < data->ray->end)
 	{
 		tex_y = (int) pos;
 		if (pos > texture->texture.height - 1)

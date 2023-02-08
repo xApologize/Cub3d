@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils_bonus.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jrossign <jrossign@student.42quebec.c      +#+  +:+       +#+        */
+/*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 08:25:12 by jrossign          #+#    #+#             */
-/*   Updated: 2023/01/26 08:27:48 by jrossign         ###   ########.fr       */
+/*   Updated: 2023/02/08 09:27:20 by bperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	calc_line(t_data *data)
 		data->ray->start = 0;
 	data->ray->end = data->ray->line / 2 + HEIGHT / 2;
 	if (data->ray->end >= HEIGHT)
-		data->ray->end = HEIGHT - 1;
+		data->ray->end = HEIGHT;
 }
 
 void	find_hit(t_data *data, xpm_t *texture)

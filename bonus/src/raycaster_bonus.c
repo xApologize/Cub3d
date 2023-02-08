@@ -6,7 +6,7 @@
 /*   By: bperron <bperron@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 08:22:38 by jrossign          #+#    #+#             */
-/*   Updated: 2023/02/07 11:48:20 by bperron          ###   ########.fr       */
+/*   Updated: 2023/02/08 09:21:09 by bperron          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void	raycaster(t_data *data)
 		dda(data);
 		calc_line(data);
 		texture_picker(data, i);
-		if (i == WIDTH / 2)
-			data->ray->ray_length = data->ray->wall_dist;
 	}
 	draw_map(data);
 }
