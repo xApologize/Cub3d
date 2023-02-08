@@ -66,6 +66,7 @@ void	set_map_data(t_data *data, char *arg, char *str)
 			free(arg);
 			error_and_free(data, ERR_ASSET_EXT, 1);
 		}
+		close(fd);
 	}
 	else if (!ft_strcmp(arg, "C") || !ft_strcmp(arg, "F"))
 		set_color(data, arg, str);
@@ -74,7 +75,6 @@ void	set_map_data(t_data *data, char *arg, char *str)
 		free(arg);
 		error_and_free(data, ERR_ARG_NAME, 1);
 	}
-	close(fd);
 	free(arg);
 }
 
