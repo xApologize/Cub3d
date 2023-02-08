@@ -1,7 +1,7 @@
-NO ./include/maps/xpm/1.xpm
-SO ./include/maps/xpm/2.xpm
-EA ./include/maps/xpm/3.xpm
-WE ./include/maps/xpm/4.xpm
+NO ./asset/Goblin.xpm42
+SO ./asset/Goblin.xpm42
+EA ./asset/Goblin_chathead.xpm42
+WE ./asset/Goblin_chathead.xpm42
 
 C 255,255,255
 F 225,0,0

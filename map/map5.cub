@@ -1,7 +1,7 @@
-NO ./include/maps/xpm/wood.xpm
-SO ./include/maps/xpm/concrete1.xpm
-EA ./include/maps/xpm/brick1.xpm
-WE ./include/maps/xpm/rock.xpm
+NO ./asset/Basic_wood.xpm42
+SO ./asset/Fancy_stone.xpm42
+EA ./asset/Dark_stone.xpm42
+WE ./asset/Basic_stone.xpm42
 C 200,100,1
 F 200,254,12
 

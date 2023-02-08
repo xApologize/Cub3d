@@ -1,19 +1,18 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    xpm3_conv.py                                       :+:    :+:             #
-#                                                      +:+                     #
-#    By: pvan-dij <pvan-dij@student.codam.nl>         +#+                      #
-#                                                    +#+                       #
-#    Created: 2022/02/09 21:04:31 by pvan-dij      #+#    #+#                  #
-#    Updated: 2022/02/23 16:48:19 by lde-la-h      ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    xpm3_conv.py                                       :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: bperron <bperron@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/02/09 21:04:31 by pvan-dij          #+#    #+#              #
+#    Updated: 2023/02/07 13:59:56 by bperron          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import sys
 
 # This script takes an XPM3 as argument and converts it to XPM42.
-
 
 # This is a generated dictionary from the XFree86 distribution.
 colours = {

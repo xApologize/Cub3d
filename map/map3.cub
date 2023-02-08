@@ -1,7 +1,7 @@
-NO ./Wall1.xpm
-SO ./Wall2.xpm
-EA ./Wall1.xpm
-WE ./Wall2.xpm
+NO ./asset/scimitar.xpm42
+SO ./asset/scimitar.xpm42
+EA ./asset/scimitar.xpm42
+WE ./asset/scimitar.xpm42
 
 C 200,100,1
 F 200,254,12
