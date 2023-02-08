@@ -1,7 +1,7 @@
-NO ./include/maps/xpm/1.xpm
-SO ./include/maps/xpm/2.xpm
-EA ./include/maps/xpm/3.xpm
-WE ./include/maps/xpm/rock.xpm
+NO ./asset/Dust_devil.xpm42
+SO ./asset/Greater_Nechryael.xpm42
+EA ./asset/Smoke_devil.xpm42
+WE ./asset/Warped_Jelly.xpm42
 
 C 200,100,1
 F 200,254,12
@@ -9,7 +9,7 @@ F 200,254,12
               111111111
 111111111   111000000011
 100000001111111000000001
-10000N000000000011111111
+10000W000000000011111111
 111111111101001111
   1      100001
   1      111111 

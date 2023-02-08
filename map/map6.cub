@@ -1,7 +1,7 @@
-NO ./include/maps/xpm/5.xpm
-SO ./include/maps/xpm/6.xpm
-EA ./include/maps/xpm/7.xpm
-WE ./include/maps/xpm/8.xpm
+NO ./asset/Basic_wood.xpm42
+SO ./asset/Fancy_stone.xpm42
+EA ./asset/Dark_stone.xpm42
+WE ./asset/Basic_stone.xpm42
 
 C 0,0,0
 F 5,5,5
